@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private const int Jump    = 2;
     private const int Landing = 3;
 
+    [Header("Move Property")]
     [SerializeField] private Rigidbody2D _Rigidbody;
     public Rigidbody2D Rigidbody => _Rigidbody;
 
@@ -21,6 +22,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float _MoveSpeedMax;
     private IEnumerator _MoveRoutine;
 
+    [Header("Slip Property")] // 이동이 끝난 후 미끄러지는거
+    [SerializeField, Range(0f, 3f)] private float _SlipTime;
+    [SerializeField] private AnimationCurve _SlipCurve;
+
+    [Header("Other Property")]
     [SerializeField] private Animator _Animator;
     private int _AnimatorHash;
 
@@ -101,16 +107,19 @@ public class Player : MonoBehaviour
         if (_Animator.GetInteger(_AnimatorHash) == Move) {
             _Animator.SetInteger(_AnimatorHash, Idle);
         }
-        for (float i = 0f; i < 3f; i += Time.deltaTime * Time.timeScale)
-        {
-            Vector2 velocity = _Rigidbody.velocity;
+        // ========== Slip Routine ========== //
+        float velX = _Rigidbody.velocity.x;
 
-            _Rigidbody.velocity = new Vector2
-                (Mathf.Lerp(velocity.x, 0f, Mathf.Min(i / 3f, 1f)), velocity.y);
+        for (float i = 0f; i < _SlipTime; i += Time.deltaTime * Time.timeScale)
+        {
+            float ratio = _SlipCurve.Evaluate(Mathf.Min(i / _SlipTime, 1f));
+
+            Vector2 velocity = _Rigidbody.velocity;
+            _Rigidbody.velocity = new Vector2(Mathf.Lerp(velX, 0f, ratio), velocity.y);
 
             yield return null;
         }
+        // ========== Slip Routine ========== //
         _MoveRoutine = null;
     }
-
 }
