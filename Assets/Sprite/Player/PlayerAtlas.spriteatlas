@@ -32,12 +32,16 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: ca1430d540a199547be8f1f234c98bc7, type: 3}
-    totalSpriteSurfaceArea: 1703936
+    totalSpriteSurfaceArea: 1966080
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 4369730389764039790, guid: bc3c6260c2da7cb4f9480df9e91e43ad, type: 3}
+  - {fileID: -1367241583256516138, guid: bc3c6260c2da7cb4f9480df9e91e43ad, type: 3}
+  - {fileID: -1775421054394109905, guid: bc3c6260c2da7cb4f9480df9e91e43ad, type: 3}
+  - {fileID: -6100405274338109274, guid: bc3c6260c2da7cb4f9480df9e91e43ad, type: 3}
   - {fileID: 5260684762499650057, guid: 5981124349186894f95c3dc964d46b19, type: 3}
   - {fileID: -2818428513412729264, guid: 5981124349186894f95c3dc964d46b19, type: 3}
   - {fileID: -7747645841164725587, guid: 5981124349186894f95c3dc964d46b19, type: 3}
@@ -65,6 +69,10 @@ SpriteAtlas:
   - {fileID: 4330694004763997605, guid: 87b3a06d443f696418910c7a2e2de4ea, type: 3}
   - {fileID: -9012280687236740709, guid: 87b3a06d443f696418910c7a2e2de4ea, type: 3}
   m_PackedSpriteNamesToIndex:
+  - player-landing-loop_0
+  - player-landing-loop_1
+  - player-landing-loop_2
+  - player-landing-loop_3
   - player_move_1
   - player_move_0
   - player_move_3
