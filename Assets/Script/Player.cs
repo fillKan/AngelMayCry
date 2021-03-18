@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private bool _CanJump;
 
     [SerializeField] private float _MoveSpeed;
+    [SerializeField] private float _MoveSpeedMax;
     private IEnumerator _MoveRoutine;
 
     [SerializeField] private Animator _Animator;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && _CanJump)
         {
-            _Rigidbody.AddForce(Vector2.up * _JumpForce);
+            _Rigidbody.AddForce(Vector2.up * _JumpForce, ForceMode2D.Impulse);
             _CanJump = false;
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -63,6 +64,10 @@ public class Player : MonoBehaviour
         {
             _Animator.SetInteger(_AnimatorHash, Jump);
         }
+        else if(_Rigidbody.velocity.magnitude == 0f)
+        {
+            _Animator.SetInteger(_AnimatorHash, Idle);
+        }
     }
     public void MoveOrder(Vector2 direction, Func<bool> moveStop)
     {
@@ -78,17 +83,34 @@ public class Player : MonoBehaviour
     {
         do
         {
-            if (_Animator.GetInteger(_AnimatorHash) == Idle) {
+            if (_Animator.GetInteger(_AnimatorHash) == Idle)
+            {
                 _Animator.SetInteger(_AnimatorHash, Move);
             }
-            transform.position += direction * _MoveSpeed * Time.deltaTime * Time.timeScale;
+            _Rigidbody.AddForce(direction * _MoveSpeed * Time.deltaTime * Time.timeScale);
+            {
+                Vector2 velocity = _Rigidbody.velocity;
+
+                _Rigidbody.velocity = new Vector2
+                    (Mathf.Clamp(velocity.x, -_MoveSpeedMax, _MoveSpeedMax), velocity.y);
+            }
             yield return null;
         }
         while (!moveStop.Invoke());
 
-        _Animator.SetInteger(_AnimatorHash, Idle);
-        SetNatualAnimation();
+        if (_Animator.GetInteger(_AnimatorHash) == Move) {
+            _Animator.SetInteger(_AnimatorHash, Idle);
+        }
+        for (float i = 0f; i < 3f; i += Time.deltaTime * Time.timeScale)
+        {
+            Vector2 velocity = _Rigidbody.velocity;
 
+            _Rigidbody.velocity = new Vector2
+                (Mathf.Lerp(velocity.x, 0f, Mathf.Min(i / 3f, 1f)), velocity.y);
+
+            yield return null;
+        }
         _MoveRoutine = null;
     }
+
 }
