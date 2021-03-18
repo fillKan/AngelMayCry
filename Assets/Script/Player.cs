@@ -56,8 +56,18 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            _CanJump = true;
-            _Animator.SetInteger(_AnimatorHash, Idle);
+            var contacts = collision.contacts;
+            foreach (var contactPoint in contacts)
+            {
+                // 콜라이더의 밑 부분과 닿았는가??
+                if (contactPoint.normal.y > 0)
+                {
+                    _CanJump = true;
+                    _Animator.SetInteger(_AnimatorHash, Idle);
+                
+                    break;
+                }
+            }
         }
     }
     private void SetNatualAnimation()
@@ -69,10 +79,6 @@ public class Player : MonoBehaviour
         else if (_Rigidbody.velocity.y > 0)
         {
             _Animator.SetInteger(_AnimatorHash, Jump);
-        }
-        else if(_Rigidbody.velocity.magnitude == 0f)
-        {
-            _Animator.SetInteger(_AnimatorHash, Idle);
         }
     }
     public void MoveOrder(Vector2 direction, Func<bool> moveStop)
