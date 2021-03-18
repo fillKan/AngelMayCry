@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,11 +37,11 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            MoveOrder(Vector2.left, KeyCode.A);
+            MoveOrder(Vector2.left, () => Input.GetKeyUp(KeyCode.A));
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            MoveOrder(Vector2.right, KeyCode.D);
+            MoveOrder(Vector2.right,() => Input.GetKeyUp(KeyCode.D));
         }
         SetNatualAnimation();
     }
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
             _Animator.SetInteger(_AnimatorHash, Jump);
         }
     }
-    public void MoveOrder(Vector2 direction, KeyCode keyCode)
+    public void MoveOrder(Vector2 direction, Func<bool> moveStop)
     {
         transform.rotation = direction.x < 0 ? 
             Quaternion.identity : Quaternion.Euler(0, 180, 0);
@@ -71,9 +72,9 @@ public class Player : MonoBehaviour
         if (_MoveRoutine != null) {
             StopCoroutine(_MoveRoutine);
         }
-        StartCoroutine(_MoveRoutine = MoveRoutine(direction, keyCode));
+        StartCoroutine(_MoveRoutine = MoveRoutine(direction, moveStop));
     }
-    private IEnumerator MoveRoutine(Vector3 direction, KeyCode keyCode)
+    private IEnumerator MoveRoutine(Vector3 direction, Func<bool> moveStop)
     {
         do
         {
@@ -83,7 +84,7 @@ public class Player : MonoBehaviour
             transform.position += direction * _MoveSpeed * Time.deltaTime * Time.timeScale;
             yield return null;
         }
-        while (!Input.GetKeyUp(keyCode));
+        while (!moveStop.Invoke());
 
         _Animator.SetInteger(_AnimatorHash, Idle);
         SetNatualAnimation();
