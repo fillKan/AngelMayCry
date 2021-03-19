@@ -10,7 +10,7 @@ public class ObjectTracer : MonoBehaviour
     private void LateUpdate()
     {
         if (TraceTarget) {
-            transform.position = TraceTarget.position + _Offset;
+            transform.localPosition = TraceTarget.position + _Offset;
         }
     }
 }
