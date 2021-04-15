@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Demon_WonchulAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 98ebd050b13de844aac69c3e60d86247, type: 3}
+    totalSpriteSurfaceArea: 3932160
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 39b223d611aa81b4381466a964462345, type: 3}
+  - {fileID: 21300000, guid: 5a0f283847718234fafb81ae75820cc2, type: 3}
+  - {fileID: 21300000, guid: bea42a19eccdf214091a3e1bf5e32d6f, type: 3}
+  - {fileID: -8745596491901182172, guid: 6967fcea58e577544a528dd5823b22ec, type: 3}
+  - {fileID: -7966996620996628257, guid: 6967fcea58e577544a528dd5823b22ec, type: 3}
+  - {fileID: -4652432242988628384, guid: 6967fcea58e577544a528dd5823b22ec, type: 3}
+  - {fileID: -108911950221284199, guid: 6967fcea58e577544a528dd5823b22ec, type: 3}
+  - {fileID: 2454606675503411836, guid: 6967fcea58e577544a528dd5823b22ec, type: 3}
+  - {fileID: -140165868834704947, guid: 6967fcea58e577544a528dd5823b22ec, type: 3}
+  - {fileID: 5962727441465473685, guid: 6967fcea58e577544a528dd5823b22ec, type: 3}
+  - {fileID: 2102442257810606114, guid: bb41c30bd47e3954f8c6b59d723a40f3, type: 3}
+  - {fileID: 5630684034487733534, guid: bb41c30bd47e3954f8c6b59d723a40f3, type: 3}
+  - {fileID: -8880329846595488821, guid: bb41c30bd47e3954f8c6b59d723a40f3, type: 3}
+  - {fileID: -4257399019111568121, guid: bb41c30bd47e3954f8c6b59d723a40f3, type: 3}
+  - {fileID: 3532061172980811071, guid: bb41c30bd47e3954f8c6b59d723a40f3, type: 3}
+  - {fileID: 4776739598937493054, guid: bb41c30bd47e3954f8c6b59d723a40f3, type: 3}
+  - {fileID: 7337335879332548928, guid: bb41c30bd47e3954f8c6b59d723a40f3, type: 3}
+  - {fileID: -8280147703310447596, guid: b150134b39941f34fbccf4c3a50bf317, type: 3}
+  - {fileID: 1150150980300992290, guid: b150134b39941f34fbccf4c3a50bf317, type: 3}
+  - {fileID: -1203761201534796319, guid: b150134b39941f34fbccf4c3a50bf317, type: 3}
+  - {fileID: -7446965297238779953, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: -7111797576178295848, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: 3564856884668324006, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: 8598544034106258353, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: -1083410682616603844, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: -9166153895366474343, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: 8186155085853395360, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: 9154576574606982085, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  - {fileID: 44039042688587996, guid: 7fcfebde9b3cbdf42b5f4d7ee0ff37fd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Demon_Wonchul_airborne
+  - Demon_Wonchul_death
+  - Demon_Wonchul_fall
+  - Woncheol-Idle-1-Sheet_6
+  - Woncheol-Idle-1-Sheet_4
+  - Woncheol-Idle-1-Sheet_5
+  - Woncheol-Idle-1-Sheet_2
+  - Woncheol-Idle-1-Sheet_3
+  - Woncheol-Idle-1-Sheet_0
+  - Woncheol-Idle-1-Sheet_1
+  - Demon_Wonchul_move_4
+  - Demon_Wonchul_move_5
+  - Demon_Wonchul_move_6
+  - Demon_Wonchul_move_0
+  - Demon_Wonchul_move_1
+  - Demon_Wonchul_move_2
+  - Demon_Wonchul_move_3
+  - Demon_Wonchul_wake_2
+  - Demon_Wonchul_wake_1
+  - Demon_Wonchul_wake_0
+  - Demon_Wonchul_attack_7
+  - Demon_Wonchul_attack_6
+  - Demon_Wonchul_attack_5
+  - Demon_Wonchul_attack_4
+  - Demon_Wonchul_attack_3
+  - Demon_Wonchul_attack_2
+  - Demon_Wonchul_attack_1
+  - Demon_Wonchul_attack_0
+  - Demon_Wonchul_attack_8
+  m_RenderDataMap: {}
+  m_Tag: Demon_WonchulAtlas
+  m_IsVariant: 0
