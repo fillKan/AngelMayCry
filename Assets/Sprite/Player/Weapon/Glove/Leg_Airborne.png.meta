@@ -1,28 +1,43 @@
 fileFormatVersion: 2
-guid: be09aead19d4eb343b965059dd0a3dd8
+guid: 59d2056c92d1a154a8e7bc3c7e47d951
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5758642898329121934
-    second: Hand_StrongAttack_0
+      213: -4953643863434875146
+    second: Leg_Airborne_0
   - first:
-      213: 9157206464083666141
-    second: Hand_StrongAttack_1
+      213: -4265781598184617599
+    second: Leg_Airborne_1
   - first:
-      213: -1568627466832496186
-    second: Hand_StrongAttack_2
+      213: -5139770123962393451
+    second: Leg_Airborne_2
   - first:
-      213: 80140196400487548
-    second: Hand_StrongAttack_3
+      213: -1350824985139778616
+    second: Leg_Airborne_3
   - first:
-      213: -8018824286966426947
-    second: Hand_StrongAttack_4
+      213: -5811284562105887426
+    second: Leg_Airborne_4
   - first:
-      213: -5056731696112902730
-    second: Hand_StrongAttack_5
+      213: 2263551375563809722
+    second: Leg_Airborne_5
   - first:
-      213: -6116600596914026563
-    second: Hand_StrongAttack_6
+      213: -9023072970258387408
+    second: Leg_Airborne_6
+  - first:
+      213: 7329072472883257450
+    second: Leg_Airborne_7
+  - first:
+      213: 6187181034961716606
+    second: Leg_Airborne_8
+  - first:
+      213: -603435716182479582
+    second: Leg_Airborne_9
+  - first:
+      213: 6696309849656260002
+    second: Leg_Airborne_10
+  - first:
+      213: -3815476565877943792
+    second: Leg_Airborne_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,7 +127,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hand_StrongAttack_0
+      name: Leg_Airborne_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,14 +141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e84bb37943fcaef40800000000000000
-      internalID: 5758642898329121934
+      spriteID: 6feab28d62f114bb0800000000000000
+      internalID: -4953643863434875146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_1
+      name: Leg_Airborne_1
       rect:
         serializedVersion: 2
         x: 64
@@ -147,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd42e9a13cee41f70800000000000000
-      internalID: 9157206464083666141
+      spriteID: 189cececc36ecc4c0800000000000000
+      internalID: -4265781598184617599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_2
+      name: Leg_Airborne_2
       rect:
         serializedVersion: 2
         x: 128
@@ -168,14 +183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c9378e31ad1b3ae0800000000000000
-      internalID: -1568627466832496186
+      spriteID: 59c5e0ecd4edba8b0800000000000000
+      internalID: -5139770123962393451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_3
+      name: Leg_Airborne_3
       rect:
         serializedVersion: 2
         x: 192
@@ -189,14 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7c5ea28517bc1100800000000000000
-      internalID: 80140196400487548
+      spriteID: 8cb650f35d7e04de0800000000000000
+      internalID: -1350824985139778616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_4
+      name: Leg_Airborne_4
       rect:
         serializedVersion: 2
         x: 256
@@ -210,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db2571bebc967b090800000000000000
-      internalID: -8018824286966426947
+      spriteID: e3597f2fa7b2a5fa0800000000000000
+      internalID: -5811284562105887426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_5
+      name: Leg_Airborne_5
       rect:
         serializedVersion: 2
         x: 320
@@ -231,14 +246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bd5bb86051e2d9b0800000000000000
-      internalID: -5056731696112902730
+      spriteID: ab3e357bbffb96f10800000000000000
+      internalID: 2263551375563809722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_6
+      name: Leg_Airborne_6
       rect:
         serializedVersion: 2
         x: 384
@@ -252,8 +267,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db74ffb0a287d1ba0800000000000000
-      internalID: -6116600596914026563
+      spriteID: 03ee15990fa97c280800000000000000
+      internalID: -9023072970258387408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a60ec4f359816b560800000000000000
+      internalID: 7329072472883257450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e754de5ce584dd550800000000000000
+      internalID: 6187181034961716606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22de82cc96a20a7f0800000000000000
+      internalID: -603435716182479582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a5f5b664521eec50800000000000000
+      internalID: 6696309849656260002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01294025744bc0bc0800000000000000
+      internalID: -3815476565877943792
       vertices: []
       indices: 
       edges: []

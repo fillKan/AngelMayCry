@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - PlayerHitBox
+  - EnemyHitBox
+  - PlayerHurtBox
+  - EnemyHurtBox
   layers:
   - Default
   - TransparentFX
@@ -12,10 +16,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - HitBox
+  - HurtBox
+  - Character
+  - Map
   - 
   - 
   - 

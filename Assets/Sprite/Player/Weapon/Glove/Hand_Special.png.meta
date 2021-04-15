@@ -1,28 +1,46 @@
 fileFormatVersion: 2
-guid: be09aead19d4eb343b965059dd0a3dd8
+guid: ea08b7826a78dda419ae05854fbbcd1c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5758642898329121934
-    second: Hand_StrongAttack_0
+      213: 4109693135393070983
+    second: Hand_Special_0
   - first:
-      213: 9157206464083666141
-    second: Hand_StrongAttack_1
+      213: 8900794076756272990
+    second: Hand_Special_1
   - first:
-      213: -1568627466832496186
-    second: Hand_StrongAttack_2
+      213: 2486090781455447765
+    second: Hand_Special_2
   - first:
-      213: 80140196400487548
-    second: Hand_StrongAttack_3
+      213: -5870190476736532454
+    second: Hand_Special_3
   - first:
-      213: -8018824286966426947
-    second: Hand_StrongAttack_4
+      213: 723313671413931340
+    second: Hand_Special_4
   - first:
-      213: -5056731696112902730
-    second: Hand_StrongAttack_5
+      213: 6646405666140313747
+    second: Hand_Special_5
   - first:
-      213: -6116600596914026563
-    second: Hand_StrongAttack_6
+      213: 7020675381533865562
+    second: Hand_Special_6
+  - first:
+      213: -9010217099981796891
+    second: Hand_Special_7
+  - first:
+      213: 8514307958686825431
+    second: Hand_Special_8
+  - first:
+      213: 931814695186740851
+    second: Hand_Special_9
+  - first:
+      213: -654063871882484236
+    second: Hand_Special_10
+  - first:
+      213: -3529319557610945958
+    second: Hand_Special_11
+  - first:
+      213: 5156088518422017569
+    second: Hand_Special_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,7 +130,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hand_StrongAttack_0
+      name: Hand_Special_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e84bb37943fcaef40800000000000000
-      internalID: 5758642898329121934
+      spriteID: 78f17fee120980930800000000000000
+      internalID: 4109693135393070983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_1
+      name: Hand_Special_1
       rect:
         serializedVersion: 2
         x: 64
@@ -147,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd42e9a13cee41f70800000000000000
-      internalID: 9157206464083666141
+      spriteID: e5765fbed09f58b70800000000000000
+      internalID: 8900794076756272990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_2
+      name: Hand_Special_2
       rect:
         serializedVersion: 2
         x: 128
@@ -168,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c9378e31ad1b3ae0800000000000000
-      internalID: -1568627466832496186
+      spriteID: 5d67604d46e508220800000000000000
+      internalID: 2486090781455447765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_3
+      name: Hand_Special_3
       rect:
         serializedVersion: 2
         x: 192
@@ -189,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7c5ea28517bc1100800000000000000
-      internalID: 80140196400487548
+      spriteID: a10fc3eecd4e88ea0800000000000000
+      internalID: -5870190476736532454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_4
+      name: Hand_Special_4
       rect:
         serializedVersion: 2
         x: 256
@@ -210,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db2571bebc967b090800000000000000
-      internalID: -8018824286966426947
+      spriteID: c4d9fcda3f9b90a00800000000000000
+      internalID: 723313671413931340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_5
+      name: Hand_Special_5
       rect:
         serializedVersion: 2
         x: 320
@@ -231,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bd5bb86051e2d9b0800000000000000
-      internalID: -5056731696112902730
+      spriteID: 398df6b3db6cc3c50800000000000000
+      internalID: 6646405666140313747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand_StrongAttack_6
+      name: Hand_Special_6
       rect:
         serializedVersion: 2
         x: 384
@@ -252,8 +270,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db74ffb0a287d1ba0800000000000000
-      internalID: -6116600596914026563
+      spriteID: a56f7a7ff037e6160800000000000000
+      internalID: 7020675381533865562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e94f66294745f280800000000000000
+      internalID: -9010217099981796891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db3fc94af5e82670800000000000000
+      internalID: 8514307958686825431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 376381f37887eec00800000000000000
+      internalID: 931814695186740851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f52708bf5c4ce6f0800000000000000
+      internalID: -654063871882484236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52c2cdbf86550fc0800000000000000
+      internalID: -3529319557610945958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126b30b703b1e8740800000000000000
+      internalID: 5156088518422017569
       vertices: []
       indices: 
       edges: []
