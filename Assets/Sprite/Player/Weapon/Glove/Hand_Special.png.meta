@@ -1,31 +1,46 @@
 fileFormatVersion: 2
-guid: 5981124349186894f95c3dc964d46b19
+guid: ea08b7826a78dda419ae05854fbbcd1c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2818428513412729264
-    second: player_move_0
+      213: 4109693135393070983
+    second: Hand_Special_0
   - first:
-      213: 5260684762499650057
-    second: player_move_1
+      213: 8900794076756272990
+    second: Hand_Special_1
   - first:
-      213: -3308717793270664449
-    second: player_move_2
+      213: 2486090781455447765
+    second: Hand_Special_2
   - first:
-      213: -7747645841164725587
-    second: player_move_3
+      213: -5870190476736532454
+    second: Hand_Special_3
   - first:
-      213: 6787443719386497838
-    second: player_move_4
+      213: 723313671413931340
+    second: Hand_Special_4
   - first:
-      213: 3105340001632321046
-    second: player_move_5
+      213: 6646405666140313747
+    second: Hand_Special_5
   - first:
-      213: -9038080974893075049
-    second: player_move_6
+      213: 7020675381533865562
+    second: Hand_Special_6
   - first:
-      213: -4461981064981020287
-    second: player_move_7
+      213: -9010217099981796891
+    second: Hand_Special_7
+  - first:
+      213: 8514307958686825431
+    second: Hand_Special_8
+  - first:
+      213: 931814695186740851
+    second: Hand_Special_9
+  - first:
+      213: -654063871882484236
+    second: Hand_Special_10
+  - first:
+      213: -3529319557610945958
+    second: Hand_Special_11
+  - first:
+      213: 5156088518422017569
+    second: Hand_Special_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,7 +104,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,19 +116,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -127,7 +130,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_move_0
+      name: Hand_Special_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 056b331233ee2e8d0800000000000000
-      internalID: -2818428513412729264
+      spriteID: 78f17fee120980930800000000000000
+      internalID: 4109693135393070983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_1
+      name: Hand_Special_1
       rect:
         serializedVersion: 2
         x: 64
@@ -162,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9021a105be4b10940800000000000000
-      internalID: 5260684762499650057
+      spriteID: e5765fbed09f58b70800000000000000
+      internalID: 8900794076756272990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_2
+      name: Hand_Special_2
       rect:
         serializedVersion: 2
         x: 128
@@ -183,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff2761682b21512d0800000000000000
-      internalID: -3308717793270664449
+      spriteID: 5d67604d46e508220800000000000000
+      internalID: 2486090781455447765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_3
+      name: Hand_Special_3
       rect:
         serializedVersion: 2
         x: 192
@@ -204,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da218dff725da7490800000000000000
-      internalID: -7747645841164725587
+      spriteID: a10fc3eecd4e88ea0800000000000000
+      internalID: -5870190476736532454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_4
+      name: Hand_Special_4
       rect:
         serializedVersion: 2
         x: 256
@@ -225,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e230df2f918d13e50800000000000000
-      internalID: 6787443719386497838
+      spriteID: c4d9fcda3f9b90a00800000000000000
+      internalID: 723313671413931340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_5
+      name: Hand_Special_5
       rect:
         serializedVersion: 2
         x: 320
@@ -246,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61efa185742681b20800000000000000
-      internalID: 3105340001632321046
+      spriteID: 398df6b3db6cc3c50800000000000000
+      internalID: 6646405666140313747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_6
+      name: Hand_Special_6
       rect:
         serializedVersion: 2
         x: 384
@@ -267,14 +270,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79538483d39429280800000000000000
-      internalID: -9038080974893075049
+      spriteID: a56f7a7ff037e6160800000000000000
+      internalID: 7020675381533865562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_7
+      name: Hand_Special_7
       rect:
         serializedVersion: 2
         x: 448
@@ -288,8 +291,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 181894bacdbd312c0800000000000000
-      internalID: -4461981064981020287
+      spriteID: 5e94f66294745f280800000000000000
+      internalID: -9010217099981796891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db3fc94af5e82670800000000000000
+      internalID: 8514307958686825431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 376381f37887eec00800000000000000
+      internalID: 931814695186740851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f52708bf5c4ce6f0800000000000000
+      internalID: -654063871882484236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52c2cdbf86550fc0800000000000000
+      internalID: -3529319557610945958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_Special_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126b30b703b1e8740800000000000000
+      internalID: 5156088518422017569
       vertices: []
       indices: 
       edges: []

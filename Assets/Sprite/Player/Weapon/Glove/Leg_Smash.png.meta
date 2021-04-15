@@ -1,31 +1,49 @@
 fileFormatVersion: 2
-guid: 5981124349186894f95c3dc964d46b19
+guid: 85f02cb8efecd874592879e8fa5f74d0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2818428513412729264
-    second: player_move_0
+      213: 886115401448825390
+    second: Leg_Smash_0
   - first:
-      213: 5260684762499650057
-    second: player_move_1
+      213: 7167849358121249905
+    second: Leg_Smash_1
   - first:
-      213: -3308717793270664449
-    second: player_move_2
+      213: -6923902352411672338
+    second: Leg_Smash_2
   - first:
-      213: -7747645841164725587
-    second: player_move_3
+      213: 2613385949907915464
+    second: Leg_Smash_3
   - first:
-      213: 6787443719386497838
-    second: player_move_4
+      213: 6809952410091084700
+    second: Leg_Smash_4
   - first:
-      213: 3105340001632321046
-    second: player_move_5
+      213: -8383409730712202000
+    second: Leg_Smash_5
   - first:
-      213: -9038080974893075049
-    second: player_move_6
+      213: -1885924888218605177
+    second: Leg_Smash_6
   - first:
-      213: -4461981064981020287
-    second: player_move_7
+      213: -6756288157474490209
+    second: Leg_Smash_7
+  - first:
+      213: 8072959082728559279
+    second: Leg_Smash_8
+  - first:
+      213: 1341403490021753659
+    second: Leg_Smash_9
+  - first:
+      213: -1567725411763898228
+    second: Leg_Smash_10
+  - first:
+      213: -3504988223737532435
+    second: Leg_Smash_11
+  - first:
+      213: 23637311558691612
+    second: Leg_Smash_12
+  - first:
+      213: -6616161490035205335
+    second: Leg_Smash_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,7 +107,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,19 +119,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -127,7 +133,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_move_0
+      name: Leg_Smash_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,14 +147,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 056b331233ee2e8d0800000000000000
-      internalID: -2818428513412729264
+      spriteID: e222c55434d1c4c00800000000000000
+      internalID: 886115401448825390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_1
+      name: Leg_Smash_1
       rect:
         serializedVersion: 2
         x: 64
@@ -162,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9021a105be4b10940800000000000000
-      internalID: 5260684762499650057
+      spriteID: 17c245aa301597360800000000000000
+      internalID: 7167849358121249905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_2
+      name: Leg_Smash_2
       rect:
         serializedVersion: 2
         x: 128
@@ -183,14 +189,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff2761682b21512d0800000000000000
-      internalID: -3308717793270664449
+      spriteID: ee0c201be7b59ef90800000000000000
+      internalID: -6923902352411672338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_3
+      name: Leg_Smash_3
       rect:
         serializedVersion: 2
         x: 192
@@ -204,14 +210,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da218dff725da7490800000000000000
-      internalID: -7747645841164725587
+      spriteID: 8c21245dcac944420800000000000000
+      internalID: 2613385949907915464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_4
+      name: Leg_Smash_4
       rect:
         serializedVersion: 2
         x: 256
@@ -225,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e230df2f918d13e50800000000000000
-      internalID: 6787443719386497838
+      spriteID: c9b5bc4e2afc18e50800000000000000
+      internalID: 6809952410091084700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_5
+      name: Leg_Smash_5
       rect:
         serializedVersion: 2
         x: 320
@@ -246,14 +252,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61efa185742681b20800000000000000
-      internalID: 3105340001632321046
+      spriteID: 0f49852644528ab80800000000000000
+      internalID: -8383409730712202000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_6
+      name: Leg_Smash_6
       rect:
         serializedVersion: 2
         x: 384
@@ -267,14 +273,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79538483d39429280800000000000000
-      internalID: -9038080974893075049
+      spriteID: 78969a46e49d3d5e0800000000000000
+      internalID: -1885924888218605177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_move_7
+      name: Leg_Smash_7
       rect:
         serializedVersion: 2
         x: 448
@@ -288,8 +294,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 181894bacdbd312c0800000000000000
-      internalID: -4461981064981020287
+      spriteID: f98fd8597b7dc32a0800000000000000
+      internalID: -6756288157474490209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Smash_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa29c4c6389e80070800000000000000
+      internalID: 8072959082728559279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Smash_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33473bfd5f9d9210800000000000000
+      internalID: 1341403490021753659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Smash_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88b57e4b025e3ae0800000000000000
+      internalID: -1567725411763898228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Smash_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def623ed7c7cb5fc0800000000000000
+      internalID: -3504988223737532435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Smash_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ba6e6720af35000800000000000000
+      internalID: 23637311558691612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Smash_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b15d1cd2cae24a0800000000000000
+      internalID: -6616161490035205335
       vertices: []
       indices: 
       edges: []

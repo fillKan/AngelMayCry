@@ -1,25 +1,43 @@
 fileFormatVersion: 2
-guid: 689baea7ba03bba47a79f79727c970a0
+guid: 59d2056c92d1a154a8e7bc3c7e47d951
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4223616554701942078
-    second: player-landing_0
+      213: -4953643863434875146
+    second: Leg_Airborne_0
   - first:
-      213: 3576838734011369444
-    second: player-landing_1
+      213: -4265781598184617599
+    second: Leg_Airborne_1
   - first:
-      213: 7330765431088541860
-    second: player-landing_2
+      213: -5139770123962393451
+    second: Leg_Airborne_2
   - first:
-      213: 1553976006478181856
-    second: player-landing_3
+      213: -1350824985139778616
+    second: Leg_Airborne_3
   - first:
-      213: 4136812756063932526
-    second: player-landing_4
+      213: -5811284562105887426
+    second: Leg_Airborne_4
   - first:
-      213: 2628788953255601703
-    second: player-landing_5
+      213: 2263551375563809722
+    second: Leg_Airborne_5
+  - first:
+      213: -9023072970258387408
+    second: Leg_Airborne_6
+  - first:
+      213: 7329072472883257450
+    second: Leg_Airborne_7
+  - first:
+      213: 6187181034961716606
+    second: Leg_Airborne_8
+  - first:
+      213: -603435716182479582
+    second: Leg_Airborne_9
+  - first:
+      213: 6696309849656260002
+    second: Leg_Airborne_10
+  - first:
+      213: -3815476565877943792
+    second: Leg_Airborne_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,23 +123,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player-landing_0
+      name: Leg_Airborne_0
       rect:
         serializedVersion: 2
         x: 0
@@ -135,14 +141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3de77af0ec4d9a30800000000000000
-      internalID: 4223616554701942078
+      spriteID: 6feab28d62f114bb0800000000000000
+      internalID: -4953643863434875146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing_1
+      name: Leg_Airborne_1
       rect:
         serializedVersion: 2
         x: 64
@@ -156,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e70b9fa0eb73a130800000000000000
-      internalID: 3576838734011369444
+      spriteID: 189cececc36ecc4c0800000000000000
+      internalID: -4265781598184617599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing_2
+      name: Leg_Airborne_2
       rect:
         serializedVersion: 2
         x: 128
@@ -177,14 +183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a0febbc15c1cb560800000000000000
-      internalID: 7330765431088541860
+      spriteID: 59c5e0ecd4edba8b0800000000000000
+      internalID: -5139770123962393451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing_3
+      name: Leg_Airborne_3
       rect:
         serializedVersion: 2
         x: 192
@@ -198,14 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e5bc9fc1f4d09510800000000000000
-      internalID: 1553976006478181856
+      spriteID: 8cb650f35d7e04de0800000000000000
+      internalID: -1350824985139778616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing_4
+      name: Leg_Airborne_4
       rect:
         serializedVersion: 2
         x: 256
@@ -219,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e60de7ba849e86930800000000000000
-      internalID: 4136812756063932526
+      spriteID: e3597f2fa7b2a5fa0800000000000000
+      internalID: -5811284562105887426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing_5
+      name: Leg_Airborne_5
       rect:
         serializedVersion: 2
         x: 320
@@ -240,8 +246,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 726654400a55b7420800000000000000
-      internalID: 2628788953255601703
+      spriteID: ab3e357bbffb96f10800000000000000
+      internalID: 2263551375563809722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03ee15990fa97c280800000000000000
+      internalID: -9023072970258387408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a60ec4f359816b560800000000000000
+      internalID: 7329072472883257450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e754de5ce584dd550800000000000000
+      internalID: 6187181034961716606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22de82cc96a20a7f0800000000000000
+      internalID: -603435716182479582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a5f5b664521eec50800000000000000
+      internalID: 6696309849656260002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leg_Airborne_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01294025744bc0bc0800000000000000
+      internalID: -3815476565877943792
       vertices: []
       indices: 
       edges: []

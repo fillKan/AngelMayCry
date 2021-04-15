@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: bc3c6260c2da7cb4f9480df9e91e43ad
+guid: 5414412dd7fa20646b3cb1e253cf5b8d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4369730389764039790
-    second: player-landing-loop_0
+      213: -4714882467981502061
+    second: Hand_WeakAttack_0
   - first:
-      213: -1367241583256516138
-    second: player-landing-loop_1
+      213: -8545026821199460011
+    second: Hand_WeakAttack_1
   - first:
-      213: -1775421054394109905
-    second: player-landing-loop_2
+      213: -8826231533109695242
+    second: Hand_WeakAttack_2
   - first:
-      213: -6100405274338109274
-    second: player-landing-loop_3
+      213: 9144139470896683527
+    second: Hand_WeakAttack_3
+  - first:
+      213: 2465854227437244876
+    second: Hand_WeakAttack_4
+  - first:
+      213: 1341328125385501926
+    second: Hand_WeakAttack_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,23 +105,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player-landing-loop_0
+      name: Hand_WeakAttack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +123,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e646d1e33a664ac30800000000000000
-      internalID: 4369730389764039790
+      spriteID: 399de3a306f519eb0800000000000000
+      internalID: -4714882467981502061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing-loop_1
+      name: Hand_WeakAttack_1
       rect:
         serializedVersion: 2
         x: 64
@@ -150,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d94ad32605960de0800000000000000
-      internalID: -1367241583256516138
+      spriteID: 559883e2167f96980800000000000000
+      internalID: -8545026821199460011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing-loop_2
+      name: Hand_WeakAttack_2
       rect:
         serializedVersion: 2
         x: 128
@@ -171,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f20f61625ff6c57e0800000000000000
-      internalID: -1775421054394109905
+      spriteID: 6fc25ab1f2de28580800000000000000
+      internalID: -8826231533109695242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-landing-loop_3
+      name: Hand_WeakAttack_3
       rect:
         serializedVersion: 2
         x: 192
@@ -192,8 +186,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a8582d69b1075ba0800000000000000
-      internalID: -6100405274338109274
+      spriteID: 70adc6ba66286ee70800000000000000
+      internalID: 9144139470896683527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_WeakAttack_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc1da4eea59783220800000000000000
+      internalID: 2465854227437244876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_WeakAttack_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ece7d8c2da5d9210800000000000000
+      internalID: 1341328125385501926
       vertices: []
       indices: 
       edges: []
