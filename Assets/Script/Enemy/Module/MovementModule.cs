@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementModule : MonoBehaviour
 {
     private static readonly Quaternion LookAtRight = 
-        Quaternion.Euler(0, 180, 0);
+        Quaternion.Euler(0, 0, 0);
 
     public event System.Action MoveBeginAction;
     public event System.Action MoveEndAction;
@@ -29,6 +29,9 @@ public class MovementModule : MonoBehaviour
     public float MoveSpeedMax;
     // =========== Inspector Vlew =========== //
     // =========== ============== =========== //
+
+    [HideInInspector]
+    public Vector2 NextMoveDirection = Vector2.zero;
 
     public bool RoutineEnable
     {
@@ -59,10 +62,14 @@ public class MovementModule : MonoBehaviour
 
     private IEnumerator _MoveCycleRoutine = null;
     private IEnumerator _MoveRoutine = null;
-    
+
     private void OnEnable()
     {
         RoutineEnable = _RoutineEnable;
+    }
+    public void MoveStop()
+    {
+        _MoveRoutine = null;
     }
     private float DeltaTime()
     {
@@ -84,11 +91,25 @@ public class MovementModule : MonoBehaviour
     {
         while (RoutineEnable)
         {
-            Vector2 dir = Random.value < 0.5f ? Vector2.left : Vector2.right;
+            Vector2 dir;
+            if (Mathf.Abs(NextMoveDirection.x) > 0) {
+                dir = NextMoveDirection;
+            }
+            else 
+                dir = Random.value < 0.5f ? Vector2.left : Vector2.right;
             transform.rotation = dir.x > 0 ? LookAtRight : Quaternion.identity;
+            
+            NextMoveDirection = Vector2.zero;
 
             float move = Random.Range(MoveTimeMin, MoveTimeMax);
-            yield return StartCoroutine(MoveRoutine(dir, move));
+            StartCoroutine(_MoveRoutine = MoveRoutine(dir, move));
+
+            while (_MoveRoutine != null) 
+                yield return null;
+
+            Sliping.Start();
+            while (Sliping.IsProceeding)
+                yield return null;
 
             float wait = Random.Range(WaitTimeMin, WaitTimeMax);
             for (float i = 0; i < wait; i += DeltaTime())
@@ -110,11 +131,6 @@ public class MovementModule : MonoBehaviour
             yield return null;
         }
         MoveEndAction?.Invoke();
-
-        Sliping.Start();
-        while (Sliping.IsProceeding)
-            yield return null;
-
-        yield break;
+        _MoveRoutine = null;
     }
 }
