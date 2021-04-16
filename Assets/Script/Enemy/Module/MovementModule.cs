@@ -15,6 +15,7 @@ public class MovementModule : MonoBehaviour
     public AnimatorUpdateMode TimeMode;
     public SlipingEffector Sliping;
     public Rigidbody2D Rigidbody;
+    public SecondaryCollider FrontBrake;
 
     [Header("WaitTime Property")]
     [Range(0f, 2f)] public float WaitTimeMin;
@@ -27,18 +28,11 @@ public class MovementModule : MonoBehaviour
     [Header("Movement Property")]
     public float MoveSpeed;
     public float MoveSpeedMax;
-
-    [Space()]
-    public float MoveRangeLeft;
-    public float MoveRangeRight;
     // =========== Inspector Vlew =========== //
     // =========== ============== =========== //
 
     [HideInInspector] public Vector2 NextMoveDirection = Vector2.zero;
-    [HideInInspector] public Vector2 OriginalPostion;
-
-    private float _RangeLeftX;
-    private float _RangeRightX;
+    [HideInInspector] public Vector2 LastMoveDirection = Vector2.zero;
 
     public bool RoutineEnable
     {
@@ -73,13 +67,21 @@ public class MovementModule : MonoBehaviour
     private void OnEnable()
     {
         RoutineEnable = _RoutineEnable;
-        OriginalPostion = transform.position;
 
-         _RangeLeftX = OriginalPostion.x - MoveRangeLeft;
-        _RangeRightX = OriginalPostion.x + MoveRangeRight;
+        FrontBrake.OnTriggerExit += o =>
+        {
+            if (o.CompareTag("Ground")) {
+                MoveStop();
+
+                NextMoveDirection = -LastMoveDirection;
+            }
+        };
     }
     public void MoveStop()
     {
+        if (_MoveRoutine!=null)
+            StopCoroutine(_MoveRoutine);
+
         _MoveRoutine = null;
     }
     private float DeltaTime()
@@ -110,6 +112,7 @@ public class MovementModule : MonoBehaviour
                 dir = Random.value < 0.5f ? Vector2.left : Vector2.right;
             transform.rotation = dir.x > 0 ? LookAtRight : Quaternion.identity;
             
+            LastMoveDirection = dir;
             NextMoveDirection = Vector2.zero;
 
             float move = Random.Range(MoveTimeMin, MoveTimeMax);
@@ -117,6 +120,7 @@ public class MovementModule : MonoBehaviour
 
             while (_MoveRoutine != null) 
                 yield return null;
+            MoveEndAction?.Invoke();
 
             Sliping.Start();
             while (Sliping.IsProceeding)
@@ -139,17 +143,8 @@ public class MovementModule : MonoBehaviour
             Rigidbody.velocity = 
                 new Vector2(Mathf.Clamp(vel.x, -MoveSpeedMax, MoveSpeedMax), vel.y);
 
-            if ((transform.position.x <=  _RangeLeftX && direction.x < 0) || 
-                (transform.position.x >= _RangeRightX && direction.x > 0)) {
-
-                float x = Mathf.Clamp(transform.position.x, _RangeLeftX, _RangeRightX);
-                transform.position = new Vector2(x, transform.position.y);
-
-                break;
-            }
             yield return null;
         }
-        MoveEndAction?.Invoke();
         _MoveRoutine = null;
     }
 }
