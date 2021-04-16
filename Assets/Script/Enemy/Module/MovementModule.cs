@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MovementModule : MonoBehaviour
 {
-    private static readonly Quaternion LookAtRight = 
-        Quaternion.Euler(0, 180, 0);
-
     public event System.Action MoveBeginAction;
     public event System.Action MoveEndAction;
 
@@ -110,7 +107,10 @@ public class MovementModule : MonoBehaviour
             }
             else 
                 dir = Random.value < 0.5f ? Vector2.left : Vector2.right;
-            transform.rotation = dir.x > 0 ? LookAtRight : Quaternion.identity;
+
+            Vector2 scale = transform.localScale;
+            scale.x = dir.x < 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+            transform.localScale = scale;  
             
             LastMoveDirection = dir;
             NextMoveDirection = Vector2.zero;

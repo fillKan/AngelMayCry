@@ -16,13 +16,13 @@ TextureImporter:
     second: Demon_Wonchul_move_3
   - first:
       213: 2102442257810606114
-    second: Demon_Wonchul_move_4
+    second: Demon_Wonchul_move_2
   - first:
       213: 5630684034487733534
-    second: Demon_Wonchul_move_5
+    second: Demon_Wonchul_move_1
   - first:
       213: -8880329846595488821
-    second: Demon_Wonchul_move_6
+    second: Demon_Wonchul_move_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demon_Wonchul_move_0
+      name: Demon_Wonchul_move_6
       rect:
         serializedVersion: 2
         x: 0
@@ -132,7 +132,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,7 +145,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_1
+      name: Demon_Wonchul_move_5
       rect:
         serializedVersion: 2
         x: 256
@@ -153,7 +153,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,7 +166,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_2
+      name: Demon_Wonchul_move_4
       rect:
         serializedVersion: 2
         x: 512
@@ -174,7 +174,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,7 +195,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,7 +208,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_4
+      name: Demon_Wonchul_move_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -216,7 +216,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,7 +229,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_5
+      name: Demon_Wonchul_move_1
       rect:
         serializedVersion: 2
         x: 1280
@@ -237,7 +237,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,7 +250,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_6
+      name: Demon_Wonchul_move_0
       rect:
         serializedVersion: 2
         x: 1536
@@ -258,7 +258,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

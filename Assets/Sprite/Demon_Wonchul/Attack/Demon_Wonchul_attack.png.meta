@@ -19,16 +19,16 @@ TextureImporter:
     second: Demon_Wonchul_attack_4
   - first:
       213: 3564856884668324006
-    second: Demon_Wonchul_attack_5
+    second: Demon_Wonchul_attack_3
   - first:
       213: -7111797576178295848
-    second: Demon_Wonchul_attack_6
+    second: Demon_Wonchul_attack_2
   - first:
       213: -7446965297238779953
-    second: Demon_Wonchul_attack_7
+    second: Demon_Wonchul_attack_1
   - first:
       213: 44039042688587996
-    second: Demon_Wonchul_attack_8
+    second: Demon_Wonchul_attack_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,7 +130,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_0
+      name: Demon_Wonchul_attack_8
       rect:
         serializedVersion: 2
         x: 0
@@ -151,7 +151,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_1
+      name: Demon_Wonchul_attack_7
       rect:
         serializedVersion: 2
         x: 512
@@ -172,7 +172,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_2
+      name: Demon_Wonchul_attack_6
       rect:
         serializedVersion: 2
         x: 1024
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_3
+      name: Demon_Wonchul_attack_5
       rect:
         serializedVersion: 2
         x: 1541
@@ -235,7 +235,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_5
+      name: Demon_Wonchul_attack_3
       rect:
         serializedVersion: 2
         x: 2560
@@ -256,7 +256,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_6
+      name: Demon_Wonchul_attack_2
       rect:
         serializedVersion: 2
         x: 3072
@@ -277,7 +277,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_7
+      name: Demon_Wonchul_attack_1
       rect:
         serializedVersion: 2
         x: 3584
@@ -298,7 +298,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_attack_8
+      name: Demon_Wonchul_attack_0
       rect:
         serializedVersion: 2
         x: 4096
