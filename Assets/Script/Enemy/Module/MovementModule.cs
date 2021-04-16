@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementModule : MonoBehaviour
 {
     private static readonly Quaternion LookAtRight = 
-        Quaternion.Euler(0, 0, 0);
+        Quaternion.Euler(0, 180, 0);
 
     public event System.Action MoveBeginAction;
     public event System.Action MoveEndAction;
@@ -27,11 +27,18 @@ public class MovementModule : MonoBehaviour
     [Header("Movement Property")]
     public float MoveSpeed;
     public float MoveSpeedMax;
+
+    [Space()]
+    public float MoveRangeLeft;
+    public float MoveRangeRight;
     // =========== Inspector Vlew =========== //
     // =========== ============== =========== //
 
-    [HideInInspector]
-    public Vector2 NextMoveDirection = Vector2.zero;
+    [HideInInspector] public Vector2 NextMoveDirection = Vector2.zero;
+    [HideInInspector] public Vector2 OriginalPostion;
+
+    private float _RangeLeftX;
+    private float _RangeRightX;
 
     public bool RoutineEnable
     {
@@ -66,6 +73,10 @@ public class MovementModule : MonoBehaviour
     private void OnEnable()
     {
         RoutineEnable = _RoutineEnable;
+        OriginalPostion = transform.position;
+
+         _RangeLeftX = OriginalPostion.x - MoveRangeLeft;
+        _RangeRightX = OriginalPostion.x + MoveRangeRight;
     }
     public void MoveStop()
     {
@@ -128,6 +139,14 @@ public class MovementModule : MonoBehaviour
             Rigidbody.velocity = 
                 new Vector2(Mathf.Clamp(vel.x, -MoveSpeedMax, MoveSpeedMax), vel.y);
 
+            if ((transform.position.x <=  _RangeLeftX && direction.x < 0) || 
+                (transform.position.x >= _RangeRightX && direction.x > 0)) {
+
+                float x = Mathf.Clamp(transform.position.x, _RangeLeftX, _RangeRightX);
+                transform.position = new Vector2(x, transform.position.y);
+
+                break;
+            }
             yield return null;
         }
         MoveEndAction?.Invoke();

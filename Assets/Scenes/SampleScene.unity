@@ -890,6 +890,7 @@ GameObject:
   - component: {fileID: 1330829051}
   - component: {fileID: 1330829052}
   - component: {fileID: 1330829053}
+  - component: {fileID: 1330829054}
   m_Layer: 0
   m_Name: Demon_Wonchul
   m_TagString: Untagged
@@ -994,15 +995,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155b73fecf3f0114fa8f767a1c198acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeMode: 0
   Sliping: {fileID: 1330829051}
-  MoveSpeed: 1000
-  MoveSpeedMax: 5
+  Rigidbody: {fileID: 1330829053}
   WaitTimeMin: 0.5
   WaitTimeMax: 1
   MoveTimeMin: 0.4
   MoveTimeMax: 0.6
-  TimeUpdateMode: 0
-  Rigidbody: {fileID: 1330829053}
+  MoveSpeed: 1000
+  MoveSpeedMax: 5
+  MoveRangeLeft: 2
+  MoveRangeRight: 2
+  NextMoveDirection: {x: 0, y: 0}
+  OriginalPostion: {x: 0, y: 0}
 --- !u!114 &1330829051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,6 +1103,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1330829054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330829046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fdfc9ca45c7574a9ecaab1f07cf8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MovementModule: {fileID: 1330829050}
+  _LeftBrake: {fileID: 0}
+  _RightBrake: {fileID: 0}
 --- !u!1 &1529504681
 GameObject:
   m_ObjectHideFlags: 0
