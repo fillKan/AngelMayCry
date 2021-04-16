@@ -10,6 +10,8 @@ public class DemonWonchul : MonoBehaviour
     [SerializeField] private MovementModule _MovementModule;
     [SerializeField] private Animator _Animator;
 
+    [SerializeField] private SecondaryCollider _DetectionRange;
+
     private bool _IsAlreadyInit = false;
     private int _AnimHash;
 
@@ -26,6 +28,20 @@ public class DemonWonchul : MonoBehaviour
             _MovementModule.MoveEndAction += () =>
             {
                 _Animator.SetInteger(_AnimHash, Idle);
+            };
+            _DetectionRange.OnTriggerAction = (other, enter) =>
+            {
+                if (other.CompareTag("Player"))
+                {
+                    if (enter)
+                    {
+                        _MovementModule.TargetTrace(other.transform);
+                    }
+                    else
+                    {
+                        _MovementModule.TracingTarget = null;
+                    }
+                }
             };
             _IsAlreadyInit = true;
 
