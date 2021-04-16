@@ -142,8 +142,9 @@ public class Player : MonoBehaviour
         {
             if (State == StateBase.eState.Move)
             {
-                transform.rotation = direction.x < 0 ?
-                  Quaternion.identity : Quaternion.Euler(0, 180, 0);
+				Vector3 Scale = transform.localScale;
+				Scale.x = Mathf.Sign(direction.x) * Mathf.Abs(Scale.x);
+				transform.localScale = Scale;
                 if (_Animator.GetInteger(_AnimatorHash) == Idle)
                 {
                     _Animator.SetInteger(_AnimatorHash, Move);
