@@ -65,9 +65,9 @@ public class MovementModule : MonoBehaviour
     {
         RoutineEnable = _RoutineEnable;
 
-        FrontBrake.OnTriggerExit += o =>
+        FrontBrake.OnTriggerAction = (o, enter) =>
         {
-            if (o.CompareTag("Ground")) {
+            if (o.CompareTag("Ground") && !enter) {
                 MoveStop();
 
                 NextMoveDirection = -LastMoveDirection;
