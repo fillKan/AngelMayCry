@@ -25,11 +25,16 @@ public class MovementModule : MonoBehaviour
     [Header("Movement Property")]
     public float MoveSpeed;
     public float MoveSpeedMax;
+
+    [Header("Tracing Property")]
+    public float TracingDistance;
     // =========== Inspector Vlew =========== //
     // =========== ============== =========== //
 
     [HideInInspector] public Vector2 NextMoveDirection = Vector2.zero;
     [HideInInspector] public Vector2 LastMoveDirection = Vector2.zero;
+
+    [HideInInspector] public Transform TracingTarget;
 
     public bool RoutineEnable
     {
@@ -73,6 +78,15 @@ public class MovementModule : MonoBehaviour
                 NextMoveDirection = -LastMoveDirection;
             }
         };
+    }
+    public void TargetTrace(Transform target)
+    {
+        TracingTarget = target;
+
+        if (_MoveRoutine != null)
+            StopCoroutine(_MoveRoutine);
+
+        StartCoroutine(_MoveRoutine = TargetTraceRoutine());
     }
     public void MoveStop()
     {
@@ -141,6 +155,31 @@ public class MovementModule : MonoBehaviour
             Vector2 vel = Rigidbody.velocity;
 
             Rigidbody.velocity = 
+                new Vector2(Mathf.Clamp(vel.x, -MoveSpeedMax, MoveSpeedMax), vel.y);
+
+            yield return null;
+        }
+        _MoveRoutine = null;
+    }
+    private IEnumerator TargetTraceRoutine()
+    {
+        MoveBeginAction?.Invoke();
+
+        while (TracingTarget != null)
+        {
+            var tracerX = transform.position.x;
+            var targetX = TracingTarget.position.x;
+
+            if (Mathf.Abs(targetX - tracerX) <= TracingDistance)
+            {
+                break;
+            }
+            var direction = new Vector2(Mathf.Sign(targetX - tracerX), 0);
+
+            Rigidbody.AddForce(direction * MoveSpeed * DeltaTime());
+            Vector2 vel = Rigidbody.velocity;
+
+            Rigidbody.velocity =
                 new Vector2(Mathf.Clamp(vel.x, -MoveSpeedMax, MoveSpeedMax), vel.y);
 
             yield return null;
