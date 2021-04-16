@@ -28,6 +28,8 @@ public class DemonWonchul : MonoBehaviour
                 _Animator.SetInteger(_AnimHash, Idle);
             };
             _IsAlreadyInit = true;
+
+            _MovementModule.Operation();
         }
     }
 }

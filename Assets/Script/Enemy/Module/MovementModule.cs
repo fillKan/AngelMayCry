@@ -61,7 +61,7 @@ public class MovementModule : MonoBehaviour
     private IEnumerator _MoveCycleRoutine = null;
     private IEnumerator _MoveRoutine = null;
 
-    private void OnEnable()
+    public void Operation()
     {
         RoutineEnable = _RoutineEnable;
 
