@@ -376,7 +376,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.5, y: -0.4}
+  m_Offset: {x: -1.7, y: -0.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1072,13 +1072,12 @@ MonoBehaviour:
   FrontBrake: {fileID: 412656441}
   WaitTimeMin: 0.5
   WaitTimeMax: 1
-  MoveTimeMin: 0.4
-  MoveTimeMax: 0.6
-  MoveSpeed: 1000
-  MoveSpeedMax: 5
-  MoveRangeLeft: 2
-  MoveRangeRight: 2
+  MoveTimeMin: 0.8
+  MoveTimeMax: 1.6
+  MoveSpeed: 900
+  MoveSpeedMax: 4.5
   NextMoveDirection: {x: 0, y: 0}
+  LastMoveDirection: {x: 0, y: 0}
 --- !u!114 &1330829051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1091,7 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3829ce7fffcccb948b42024e34562a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlipingTime: 0.55
+  SlipingTime: 0.47
   SlipingCurve:
     serializedVersion: 2
     m_Curve:
@@ -1187,6 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MovementModule: {fileID: 1330829050}
+  _Animator: {fileID: 1330829049}
 --- !u!1 &1529504681
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,32 +4,28 @@ using UnityEngine;
 
 public class DemonWonchul : MonoBehaviour
 {
-    [SerializeField] private MovementModule _MovementModule;
+    private const int Idle = 0;
+    private const int Move = 1;
 
-    [SerializeField] private SecondaryCollider _LeftBrake;
-    [SerializeField] private SecondaryCollider _RightBrake;
+    [SerializeField] private MovementModule _MovementModule;
+    [SerializeField] private Animator _Animator;
 
     private bool _IsAlreadyInit = false;
+    private int _AnimHash;
 
     private void OnEnable()
     {
         if (!_IsAlreadyInit)
         {
-            _LeftBrake.OnTriggerExit += o =>
+            _AnimHash = _Animator.GetParameter(0).nameHash;
+
+            _MovementModule.MoveBeginAction += () =>
             {
-                if (o.CompareTag("Ground"))
-                {
-                    _MovementModule.MoveStop();
-                    _MovementModule.NextMoveDirection = Vector2.right;
-                }
+                _Animator.SetInteger(_AnimHash, Move);
             };
-            _RightBrake.OnTriggerExit += o =>
+            _MovementModule.MoveEndAction += () =>
             {
-                if (o.CompareTag("Ground"))
-                {
-                    _MovementModule.MoveStop();
-                    _MovementModule.NextMoveDirection = Vector2.left;
-                }
+                _Animator.SetInteger(_AnimHash, Idle);
             };
             _IsAlreadyInit = true;
         }
