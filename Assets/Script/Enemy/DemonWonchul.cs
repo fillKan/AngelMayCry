@@ -29,17 +29,22 @@ public class DemonWonchul : MonoBehaviour
             {
                 _Animator.SetInteger(_AnimHash, Idle);
             };
+            _MovementModule.TrackingEndAction += () =>
+            {
+                _Animator.SetInteger(_AnimHash, Idle);
+            };
             _DetectionRange.OnTriggerAction = (other, enter) =>
             {
                 if (other.CompareTag("Player"))
                 {
                     if (enter)
                     {
-                        _MovementModule.TargetTrace(other.transform);
+                        _MovementModule.TrackingComplete = AttackRoutine();
+                        _MovementModule.TrackingStart(other.transform);
                     }
                     else
                     {
-                        _MovementModule.TracingTarget = null;
+                        _MovementModule.TrackingStop();
                     }
                 }
             };
@@ -47,5 +52,14 @@ public class DemonWonchul : MonoBehaviour
 
             _MovementModule.Operation();
         }
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        _Animator.SetInteger(_AnimHash, 2);
+        yield return new WaitForSeconds(0.9f);
+
+        _Animator.SetInteger(_AnimHash, 0);
+        yield return new WaitForSeconds(0.4f);
     }
 }

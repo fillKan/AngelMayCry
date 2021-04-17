@@ -7,6 +7,8 @@ public class MovementModule : MonoBehaviour
     public event System.Action MoveBeginAction;
     public event System.Action MoveEndAction;
 
+    public event System.Action TrackingEndAction;
+
     // =========== ============== =========== //
     // =========== Inspector Vlew =========== //
     public AnimatorUpdateMode TimeMode;
@@ -27,14 +29,17 @@ public class MovementModule : MonoBehaviour
     public float MoveSpeedMax;
 
     [Header("Tracing Property")]
-    public float TracingDistance;
+    public float TrackingDistance;
     // =========== Inspector Vlew =========== //
     // =========== ============== =========== //
 
     [HideInInspector] public Vector2 NextMoveDirection = Vector2.zero;
     [HideInInspector] public Vector2 LastMoveDirection = Vector2.zero;
 
-    [HideInInspector] public Transform TracingTarget;
+    [HideInInspector] public Transform TrackingTarget;
+
+    public IEnumerator TrackingComplete;
+    private IEnumerator _TrackingRoutine = null;
 
     public bool RoutineEnable
     {
@@ -79,14 +84,23 @@ public class MovementModule : MonoBehaviour
             }
         };
     }
-    public void TargetTrace(Transform target)
+    public void TrackingStart(Transform target)
     {
-        TracingTarget = target;
+        TrackingTarget = target;
 
-        if (_MoveRoutine != null)
-            StopCoroutine(_MoveRoutine);
+        if (_TrackingRoutine != null)
+            StopCoroutine(_TrackingRoutine);
 
-        StartCoroutine(_MoveRoutine = TargetTraceRoutine());
+        _TrackingRoutine = TrackingRoutine();
+        MoveStop();
+    }
+    public void TrackingStop()
+    {
+        if (_TrackingRoutine != null)
+            StopCoroutine(_TrackingRoutine);
+
+        _TrackingRoutine = null;
+        TrackingComplete = null;
     }
     public void MoveStop()
     {
@@ -136,6 +150,16 @@ public class MovementModule : MonoBehaviour
                 yield return null;
             MoveEndAction?.Invoke();
 
+            if (_TrackingRoutine != null)
+            {
+                StartCoroutine(_TrackingRoutine = TrackingRoutine());
+
+                while (_TrackingRoutine != null)
+                    yield return null;
+
+                yield return TrackingComplete;
+                TrackingEndAction?.Invoke();
+            }
             Sliping.Start();
             while (Sliping.IsProceeding)
                 yield return null;
@@ -161,16 +185,16 @@ public class MovementModule : MonoBehaviour
         }
         _MoveRoutine = null;
     }
-    private IEnumerator TargetTraceRoutine()
+    private IEnumerator TrackingRoutine()
     {
         MoveBeginAction?.Invoke();
 
-        while (TracingTarget != null)
+        while (TrackingTarget != null)
         {
             var tracerX = transform.position.x;
-            var targetX = TracingTarget.position.x;
+            var targetX = TrackingTarget.position.x;
 
-            if (Mathf.Abs(targetX - tracerX) <= TracingDistance)
+            if (Mathf.Abs(targetX - tracerX) <= TrackingDistance)
             {
                 break;
             }
@@ -184,6 +208,6 @@ public class MovementModule : MonoBehaviour
 
             yield return null;
         }
-        _MoveRoutine = null;
+        _TrackingRoutine = null;
     }
 }
