@@ -4,13 +4,13 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -4257399019111568121
-    second: Demon_Wonchul_move_0
+    second: Demon_Wonchul_move_6
   - first:
       213: 3532061172980811071
-    second: Demon_Wonchul_move_1
+    second: Demon_Wonchul_move_5
   - first:
       213: 4776739598937493054
-    second: Demon_Wonchul_move_2
+    second: Demon_Wonchul_move_4
   - first:
       213: 7337335879332548928
     second: Demon_Wonchul_move_3
@@ -67,7 +67,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -124,15 +124,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demon_Wonchul_move_6
+      name: Demon_Wonchul_move_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,15 +145,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_5
+      name: Demon_Wonchul_move_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 64
         y: 0
-        width: 256
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,15 +166,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_4
+      name: Demon_Wonchul_move_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 128
         y: 0
-        width: 256
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: Demon_Wonchul_move_3
       rect:
         serializedVersion: 2
-        x: 768
+        x: 192
         y: 0
-        width: 256
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,15 +208,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_2
+      name: Demon_Wonchul_move_4
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 256
         y: 0
-        width: 256
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,15 +229,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_1
+      name: Demon_Wonchul_move_5
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 320
         y: 0
-        width: 256
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,15 +250,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_move_0
+      name: Demon_Wonchul_move_6
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 384
         y: 0
-        width: 256
-        height: 256
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
