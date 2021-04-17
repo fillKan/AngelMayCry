@@ -6,6 +6,7 @@ public class DemonWonchul : MonoBehaviour
 {
     private const int Idle = 0;
     private const int Move = 1;
+    private const int Attack = 2;
 
     [SerializeField] private MovementModule _MovementModule;
     [SerializeField] private Animator _Animator;
@@ -21,15 +22,11 @@ public class DemonWonchul : MonoBehaviour
         {
             _AnimHash = _Animator.GetParameter(0).nameHash;
 
-            _MovementModule.MoveBeginAction += () =>
+            _MovementModule.BehaviourBegin += behaviour =>
             {
                 _Animator.SetInteger(_AnimHash, Move);
             };
-            _MovementModule.MoveEndAction += () =>
-            {
-                _Animator.SetInteger(_AnimHash, Idle);
-            };
-            _MovementModule.TrackingEndAction += () =>
+            _MovementModule.BehaviourEnd += behaviour =>
             {
                 _Animator.SetInteger(_AnimHash, Idle);
             };

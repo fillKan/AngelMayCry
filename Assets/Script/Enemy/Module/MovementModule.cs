@@ -8,10 +8,8 @@ public class MovementModule : MonoBehaviour
     {
         Default, Tracking
     }
-    public event System.Action MoveBeginAction;
-    public event System.Action MoveEndAction;
-
-    public event System.Action TrackingEndAction;
+    public event System.Action<BehaviourIndex> BehaviourBegin;
+    public event System.Action<BehaviourIndex> BehaviourEnd;
 
     // =========== ============== =========== //
     // =========== Inspector Vlew =========== //
@@ -187,7 +185,7 @@ public class MovementModule : MonoBehaviour
 
         while (_MoveBehaviour != null)
             yield return null;
-        MoveEndAction?.Invoke();
+        BehaviourEnd?.Invoke(BehaviourIndex.Default);
 
         Sliping.Start();
         while (Sliping.IsProceeding)
@@ -195,7 +193,7 @@ public class MovementModule : MonoBehaviour
     }
     private IEnumerator MoveBehaviour(Vector2 direction, float moveTime)
     {
-        MoveBeginAction?.Invoke();
+        BehaviourBegin?.Invoke(BehaviourIndex.Default);
 
         for (float i = 0; i < moveTime; i += DeltaTime())
         {
@@ -221,7 +219,7 @@ public class MovementModule : MonoBehaviour
         Sliping.Start();
 
         yield return TrackingComplete;
-        TrackingEndAction?.Invoke();
+        BehaviourEnd?.Invoke(BehaviourIndex.Tracking);
 
         while (Sliping.IsProceeding)
             yield return null;
@@ -233,17 +231,10 @@ public class MovementModule : MonoBehaviour
 
         if (Mathf.Abs(targetX - tracerX) > TrackingDistance)
         {
-            MoveBeginAction?.Invoke();
+            BehaviourBegin?.Invoke(BehaviourIndex.Tracking);
         }
         while (TrackingTarget != null)
         {
-            tracerX = transform.position.x;
-            targetX = TrackingTarget.position.x;
-
-            if (Mathf.Abs(targetX - tracerX) <= TrackingDistance)
-            {
-                break;
-            }
             var direction = new Vector2(Mathf.Sign(targetX - tracerX), 0);
 
             Rigidbody.AddForce(direction * MoveSpeed * DeltaTime());
@@ -252,6 +243,12 @@ public class MovementModule : MonoBehaviour
             Rigidbody.velocity =
                 new Vector2(Mathf.Clamp(vel.x, -MoveSpeedMax, MoveSpeedMax), vel.y);
 
+            tracerX = transform.position.x;
+            targetX = TrackingTarget.position.x;
+            
+            if (Mathf.Abs(targetX - tracerX) <= TrackingDistance) {
+                break;
+            }
             yield return null;
         }
         _TrackingBehaviour = null;
