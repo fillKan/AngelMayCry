@@ -57,9 +57,13 @@ public class DemonWonchul : MonoBehaviour
     private IEnumerator AttackRoutine()
     {
         _Animator.SetInteger(_AnimHash, 2);
-        yield return new WaitForSeconds(0.9f);
+        for (float i = 0f; i < 0.9f; i += Time.deltaTime * Time.timeScale)
+            yield return null;
 
         _Animator.SetInteger(_AnimHash, 0);
-        yield return new WaitForSeconds(0.4f);
+        for (float i = 0f; i < 0.4f; i += Time.deltaTime * Time.timeScale)
+            yield return null;
+
+        _MovementModule.TrackingComplete = AttackRoutine();
     }
 }

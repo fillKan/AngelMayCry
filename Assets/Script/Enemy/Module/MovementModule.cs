@@ -101,6 +101,7 @@ public class MovementModule : MonoBehaviour
 
         _TrackingRoutine = null;
         TrackingComplete = null;
+        TrackingTarget = null;
     }
     public void MoveStop()
     {
@@ -129,41 +130,48 @@ public class MovementModule : MonoBehaviour
     {
         while (RoutineEnable)
         {
-            Vector2 dir;
-            if (Mathf.Abs(NextMoveDirection.x) > 0) {
-                dir = NextMoveDirection;
-            }
-            else 
-                dir = Random.value < 0.5f ? Vector2.left : Vector2.right;
-
-            Vector2 scale = transform.localScale;
-            scale.x = dir.x < 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
-            transform.localScale = scale;  
-            
-            LastMoveDirection = dir;
-            NextMoveDirection = Vector2.zero;
-
-            float move = Random.Range(MoveTimeMin, MoveTimeMax);
-            StartCoroutine(_MoveRoutine = MoveRoutine(dir, move));
-
-            while (_MoveRoutine != null) 
-                yield return null;
-            MoveEndAction?.Invoke();
-
-            if (_TrackingRoutine != null)
+            if (TrackingTarget != null)
             {
                 StartCoroutine(_TrackingRoutine = TrackingRoutine());
 
                 while (_TrackingRoutine != null)
                     yield return null;
+                Sliping.Start();
 
                 yield return TrackingComplete;
                 TrackingEndAction?.Invoke();
-            }
-            Sliping.Start();
-            while (Sliping.IsProceeding)
-                yield return null;
 
+                while (Sliping.IsProceeding)
+                    yield return null;
+            }
+            else
+            {
+                Vector2 dir;
+                if (Mathf.Abs(NextMoveDirection.x) > 0)
+                {
+                    dir = NextMoveDirection;
+                }
+                else
+                    dir = Random.value < 0.5f ? Vector2.left : Vector2.right;
+
+                Vector2 scale = transform.localScale;
+                scale.x = dir.x < 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+                transform.localScale = scale;
+
+                LastMoveDirection = dir;
+                NextMoveDirection = Vector2.zero;
+
+                float move = Random.Range(MoveTimeMin, MoveTimeMax);
+                StartCoroutine(_MoveRoutine = MoveRoutine(dir, move));
+
+                while (_MoveRoutine != null)
+                    yield return null;
+                MoveEndAction?.Invoke();
+
+                Sliping.Start();
+                while (Sliping.IsProceeding)
+                    yield return null;
+            }
             float wait = Random.Range(WaitTimeMin, WaitTimeMax);
             for (float i = 0; i < wait; i += DeltaTime())
                 yield return null;
@@ -187,12 +195,17 @@ public class MovementModule : MonoBehaviour
     }
     private IEnumerator TrackingRoutine()
     {
-        MoveBeginAction?.Invoke();
+        var tracerX = transform.position.x;
+        var targetX = TrackingTarget.position.x;
 
+        if (Mathf.Abs(targetX - tracerX) > TrackingDistance)
+        {
+            MoveBeginAction?.Invoke();
+        }
         while (TrackingTarget != null)
         {
-            var tracerX = transform.position.x;
-            var targetX = TrackingTarget.position.x;
+            tracerX = transform.position.x;
+            targetX = TrackingTarget.position.x;
 
             if (Mathf.Abs(targetX - tracerX) <= TrackingDistance)
             {
