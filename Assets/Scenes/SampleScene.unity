@@ -458,7 +458,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.75, y: 0.2}
+  m_Offset: {x: 2.75, y: 0.20000005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -469,7 +469,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.5, y: 2}
+  m_Size: {x: 6.5, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &668839671
 GameObject:
@@ -1147,10 +1147,10 @@ MonoBehaviour:
   MoveTimeMax: 1.6
   MoveSpeed: 900
   MoveSpeedMax: 4.5
-  TracingDistance: 2
+  TrackingDistance: 2
   NextMoveDirection: {x: 0, y: 0}
   LastMoveDirection: {x: 0, y: 0}
-  TracingTarget: {fileID: 0}
+  TrackingTarget: {fileID: 0}
 --- !u!114 &1330829051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3829ce7fffcccb948b42024e34562a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlipingTime: 0.47
+  SlipingTime: 0.2
   SlipingCurve:
     serializedVersion: 2
     m_Curve:
@@ -1177,14 +1177,14 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.45393112
-      value: 0.4310922
-      inSlope: 3.2635827
-      outSlope: 3.2635827
+      time: 0.49634966
+      value: 0.4945246
+      inSlope: 2.5235856
+      outSlope: 2.5235856
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.06910401
+      outWeight: 0.09825008
     - serializedVersion: 3
       time: 1
       value: 1
@@ -1261,7 +1261,6 @@ MonoBehaviour:
   _MovementModule: {fileID: 1330829050}
   _Animator: {fileID: 1330829049}
   _DetectionRange: {fileID: 617037879}
-  _AttackableRange: {fileID: 0}
 --- !u!1 &1529504681
 GameObject:
   m_ObjectHideFlags: 0
