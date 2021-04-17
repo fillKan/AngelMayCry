@@ -63,4 +63,16 @@ public class DemonWonchul : MonoBehaviour
 
         _MovementModule.TrackingComplete = AttackRoutine();
     }
+    private void AnimEvnt_Attack(int strokeCount)
+    {
+        switch (strokeCount)
+        {
+            case 1:
+                MainCamera.Instance.CameraShake(0.15f, 0.03f);
+                break;
+            case 2:
+                MainCamera.Instance.CameraShake(0.2f, 0.05f);
+                break;
+        }
+    }
 }

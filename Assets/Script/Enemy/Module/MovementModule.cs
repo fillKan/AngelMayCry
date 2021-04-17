@@ -30,7 +30,7 @@ public class MovementModule : MonoBehaviour
     public float MoveSpeed;
     public float MoveSpeedMax;
 
-    [Header("Tracing Property")]
+    [Header("Tracking Property")]
     public float TrackingDistance;
     // =========== Inspector Vlew =========== //
     // =========== ============== =========== //
