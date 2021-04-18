@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 State = StateBase.eState.Move;
-                if (transform.localEulerAngles.y == 0)
+                if (Mathf.Sign(transform.localScale.x) == -1)
                     Direction = WeaponBase.eCommands.Front;
                 else
                     Direction = WeaponBase.eCommands.Back;
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
             else if (Input.GetKey(KeyCode.D))
             {
                 State = StateBase.eState.Move;
-                if (transform.localEulerAngles.y != 0)
+                if (Mathf.Sign(transform.localScale.x) == 1)
                     Direction = WeaponBase.eCommands.Front;
                 else
                     Direction = WeaponBase.eCommands.Back;
@@ -193,8 +193,7 @@ public class Player : MonoBehaviour
     }
     public void AddForceX(float x)
     {
-        x = transform.localEulerAngles.y == 0 ? -x : x;
-        _Rigidbody.velocity = new Vector2(x, _Rigidbody.velocity.y);
+        _Rigidbody.velocity = new Vector2(x * Mathf.Sign(transform.localScale.x), _Rigidbody.velocity.y);
     }
     public void AddForceY(float y)
     {

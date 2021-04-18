@@ -170,15 +170,15 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 123.19999694824219,
-            "y": -81.5999984741211
+            "x": 188.0,
+            "y": -86.99999237060547
         },
         "m_Blocks": [
             {
-                "m_Id": "5219d56d92d741c2aceb45e55681003b"
+                "m_Id": "ef6437811a7a4758a5cc690886e07a2c"
             },
             {
-                "m_Id": "ef6437811a7a4758a5cc690886e07a2c"
+                "m_Id": "5219d56d92d741c2aceb45e55681003b"
             },
             {
                 "m_Id": "055d6fdc5c4f4ea78d148db40c9f9476"
@@ -187,8 +187,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 123.20000457763672,
-            "y": 179.1999969482422
+            "x": 246.0,
+            "y": 170.00001525878907
         },
         "m_Blocks": [
             {
@@ -207,7 +207,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10210,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10200,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
             "m_Guid": ""
         }
     },
@@ -600,10 +600,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 0.0,
-            "y": 0.0,
-            "width": 0.0,
-            "height": 0.0
+            "x": 198.99996948242188,
+            "y": -51.99997329711914,
+            "width": 200.00001525878907,
+            "height": 41.000003814697269
         }
     },
     "m_Slots": [
@@ -1135,7 +1135,7 @@
     },
     "m_Name": "isBlinking",
     "m_DefaultReferenceName": "Boolean_cfaae3eeef3040aa8eff8319f7c43a0c",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_isBlinking",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

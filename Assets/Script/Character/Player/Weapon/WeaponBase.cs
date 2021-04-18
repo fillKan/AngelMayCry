@@ -87,4 +87,9 @@ public abstract class WeaponBase
         yield return new WaitForSecondsRealtime(0.1f);
         _isQuickSwapable = false;
     }
+	protected void PlayAnimation(string key, out bool isAttacked)
+	{
+		_Animator.Play(key);
+		isAttacked = true;
+	}
 }

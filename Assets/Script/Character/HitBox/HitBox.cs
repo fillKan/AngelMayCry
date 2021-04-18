@@ -37,13 +37,12 @@ public class HitBox : MonoBehaviour
 
 	List<GameObject> _CollidedObjects = new List<GameObject>();
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (gameObject.tag == "PlayerHitBox" && collision.tag == "PlayerHurtBox")
 			return;
 		if (gameObject.tag == "EnemyHitBox" && collision.tag == "EnemyHurtBox")
 			return;
-
 		GameObject Other = collision.transform.root.gameObject; 
 		for(int i = 0; i < _CollidedObjects.Count; i++) // 한 오브젝트가 두 번 충돌하는걸 방지
 		{
@@ -51,9 +50,15 @@ public class HitBox : MonoBehaviour
 				return;
 		}
 		_CollidedObjects.Add(Other);
-
-		Other.GetComponent<SpriteRenderer>().material.SetInt("isBlinking", 1);
-		_Knockback.x = Mathf.Sign(transform.localScale.x) * _Knockback.x;
+		
+		Other.GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
+		_Knockback.x = Mathf.Sign(transform.root.localScale.x) * _Knockback.x;
 		Other.GetComponent<Rigidbody2D>().AddForce(_Knockback);
+		MainCamera.Instance.CameraShake(_CameraShakeTime == -1 ? _HitStop : _CameraShakeTime, _CameraShakeForce);
+	}
+
+	private void OnDisable()
+	{
+		_CollidedObjects.Clear();
 	}
 }

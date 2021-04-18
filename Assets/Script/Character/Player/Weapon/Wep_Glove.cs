@@ -29,27 +29,33 @@ public class Wep_Glove : WeaponBase
 
         base.Attack(direction, key);
 
-        switch(direction)
+		bool isAttacked = false;
+		switch (direction)
         {
             case eCommands.None:
                 if (key == eCommands.Left)
                 {
-                    _Animator.Play(_AttackPhase % 2 == 0 ? "Player_Glove_WeakAttack" : "Player_Glove_StrongAttack");
+					PlayAnimation(_AttackPhase % 2 == 0 ? "Player_Glove_WeakAttack" : "Player_Glove_StrongAttack", out isAttacked);
                     _AttackPhase++;
                 }
                 break;
 
             case eCommands.Front:
                 if(key == eCommands.Left)
-                   _Animator.Play("Player_Glove_Smash");
+					PlayAnimation("Player_Glove_Smash", out isAttacked);
                 else if(key == eCommands.Right)
-                    _Animator.Play("Player_Glove_Special");
+					PlayAnimation("Player_Glove_Special", out isAttacked);
                 break;
 
             case eCommands.Up:
                 if (key == eCommands.Left)
-                    _Animator.Play("Player_Glove_Airborne");
+					PlayAnimation("Player_Glove_Airborne", out isAttacked);
                 break;
+        }
+
+        if(isAttacked == false) // 입력한 키에 맞는 공격이 없을 때
+        {
+            _Player.State = StateBase.eState.Idle;
         }
     }
     public override void HandleAnimationEvents(eWeaponEvents weaponEvent)
