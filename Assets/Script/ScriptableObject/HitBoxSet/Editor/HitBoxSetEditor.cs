@@ -6,9 +6,6 @@ using UnityEditor;
 [CustomEditor(typeof(HitBoxSet))]
 public class HitBoxSetEditor : Editor
 {
-    [TextArea(1, 1)] public string FileName;
-    [TextArea(1, 1)] public string TableName;
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
