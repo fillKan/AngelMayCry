@@ -1316,8 +1316,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32fdfc9ca45c7574a9ecaab1f07cf8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _MaxHp: 100
+  _MaxSuperArmor: 50
+  _KnockBackMultiplier: 1
+  _DamageMultiplier: 1
   _MovementModule: {fileID: 1330829050}
-  _Animator: {fileID: 1330829049}
   _DetectionRange: {fileID: 617037879}
 --- !u!1 &1529504681
 GameObject:

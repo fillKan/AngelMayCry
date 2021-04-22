@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator _Animator;
     private int _AnimatorHash;
 
-    public StateBase.eState State { get; set; }
+    public CharacterBase.eState State { get; set; }
 
     // ¹«±â
     private WeaponBase _CurWeapon;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     {
         _CanJump = true;
         _AnimatorHash = _Animator.GetParameter(0).nameHash;
-        State = StateBase.eState.Idle;
+        State = CharacterBase.eState.Idle;
         InitWeapons();
     }
     private void Update()
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             MoveOrder(Vector2.right,() => Input.GetKeyUp(KeyCode.D));
         }
 
-        if (State == StateBase.eState.Idle || State == StateBase.eState.Move)
+        if (State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
         {
             if (Input.GetKeyDown(KeyCode.Space) && _CanJump)
             {
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetKey(KeyCode.A))
             {
-                State = StateBase.eState.Move;
+                State = CharacterBase.eState.Move;
                 if (Mathf.Sign(transform.localScale.x) == -1)
                     Direction = WeaponBase.eCommands.Front;
                 else
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                State = StateBase.eState.Move;
+                State = CharacterBase.eState.Move;
                 if (Mathf.Sign(transform.localScale.x) == 1)
                     Direction = WeaponBase.eCommands.Front;
                 else
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
     }
     private void SetNatualAnimation()
     {
-        if (State != StateBase.eState.Idle)
+        if (State != CharacterBase.eState.Idle)
             return;
 
         if (_Rigidbody.velocity.y < 0)
@@ -136,11 +136,11 @@ public class Player : MonoBehaviour
     }
     private IEnumerator MoveRoutine(Vector3 direction, Func<bool> moveStop)
     {
-        if(State == StateBase.eState.Idle || State == StateBase.eState.Move)
-            State = StateBase.eState.Move;
+        if(State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
+            State = CharacterBase.eState.Move;
         do
         {
-            if (State == StateBase.eState.Move)
+            if (State == CharacterBase.eState.Move)
             {
 				Vector3 Scale = transform.localScale;
 				Scale.x = Mathf.Sign(direction.x) * Mathf.Abs(Scale.x);
@@ -178,8 +178,8 @@ public class Player : MonoBehaviour
         }
         // ========== Slip Routine ========== //
         _MoveRoutine = null;
-        if(State == StateBase.eState.Move)
-          State = StateBase.eState.Idle;
+        if(State == CharacterBase.eState.Move)
+          State = CharacterBase.eState.Idle;
     }
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
     {

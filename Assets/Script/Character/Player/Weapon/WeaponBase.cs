@@ -56,7 +56,7 @@ public abstract class WeaponBase
     {
         _isCancelable = false;
         _isQuickSwapable = false;
-        _Player.State = StateBase.eState.Attack;
+        _Player.State = CharacterBase.eState.Attack;
     }
     public virtual void HandleAnimationEvents(eWeaponEvents weaponEvent)
     {
@@ -77,7 +77,7 @@ public abstract class WeaponBase
             case eWeaponEvents.AttackEnd:
                 _Animator.Play("Player_Idle");
                 _isCancelable = false;
-                _Player.State = StateBase.eState.Idle;
+                _Player.State = CharacterBase.eState.Idle;
                 break;
         }
     }

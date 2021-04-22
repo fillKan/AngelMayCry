@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemonWonchul : MonoBehaviour
+public class DemonWonchul : EnemyBase
 {
     private const int Idle = 0;
     private const int Move = 1;
     private const int Attack = 2;
 
     [SerializeField] private MovementModule _MovementModule;
-    [SerializeField] private Animator _Animator;
 
     [SerializeField] private SecondaryCollider _DetectionRange;
 
     private bool _IsAlreadyInit = false;
     private int _AnimHash;
 
-    private void OnEnable()
+	private new void  OnEnable()
     {
+		base.OnEnable();
         if (!_IsAlreadyInit)
         {
             _AnimHash = _Animator.GetParameter(0).nameHash;

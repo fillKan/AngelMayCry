@@ -51,10 +51,9 @@ public class HitBox : MonoBehaviour
 		}
 		_CollidedObjects.Add(Other);
 		
-		Other.GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
-		_Knockback.x = Mathf.Sign(transform.root.localScale.x) * _Knockback.x;
-		Other.GetComponent<Rigidbody2D>().AddForce(_Knockback);
 		MainCamera.Instance.CameraShake(_CameraShakeTime == -1 ? _HitStop : _CameraShakeTime, _CameraShakeForce);
+		TimeManager.Instance.HitStop(_HitStop);
+		Other.GetComponent<CharacterBase>().DealDamage(_Damage, _StunTime, _Knockback, gameObject);
 	}
 
 	private void OnDisable()
