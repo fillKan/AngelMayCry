@@ -111,7 +111,13 @@ public class DataManager : Singleton<DataManager>
 
         foreach (Sheet sheet in request.Sheets)
         {
-            dataSet.Tables.Add(SendRequest(service, sheet.Properties.Title));
+            string sheetName = sheet.Properties.Title;
+            if (dataSet.Tables.Contains(sheetName))
+            {
+                // 이미 있다면
+                dataSet.Tables.Remove(sheetName);
+            }
+            dataSet.Tables.Add(SendRequest(service, sheetName));
         }
     }
     private DataTable SendRequest(SheetsService service, string sheetName)
