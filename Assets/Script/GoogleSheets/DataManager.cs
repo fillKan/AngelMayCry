@@ -23,18 +23,18 @@ public class DataManager : Singleton<DataManager>
     //========= Inspecter Vlew =========//
     [Space(3)][Header("QAuth Info")]
 
-    [SerializeField][TextArea(1, 1)]
+    [ReadOnly][SerializeField][TextArea(1, 1)]
     private string ClientName;
-    [SerializeField][TextArea(1, 1)]
+    [ReadOnly][SerializeField][TextArea(1, 1)]
     private string ClientID;
-    [SerializeField][TextArea(1, 1)]
+    [ReadOnly][SerializeField][TextArea(1, 1)]
     private string ClientPW;
 
     [Space(3)][Header("Google Cloud Platform")]
 
-    [SerializeField][TextArea(1, 1)]
+    [ReadOnly][SerializeField][TextArea(1, 1)]
     private string ProjectName;
-    [SerializeField][TextArea(1, 1)]
+    [ReadOnly][SerializeField][TextArea(1, 1)]
     private string GoogleSheetTableKey;
 
     [Space(3)] [Header("Google Sheets Property")]
