@@ -1405,7 +1405,8 @@ MonoBehaviour:
   ClientPW: 0dnLe54N545KsbRi5Bqfu2bH
   ProjectName: AngelMayCry
   GoogleSheetTableKey: 1UFQ4FOhS7u15qv9Bf7NFZmizXtYa0AlOGEBBHfIwgVE
-  LoadSheetsIndex: B1:J
+  LoadSheetsIndex: 0
+  LoadSheetsRange: B1:J
 --- !u!4 &1580980460
 Transform:
   m_ObjectHideFlags: 0

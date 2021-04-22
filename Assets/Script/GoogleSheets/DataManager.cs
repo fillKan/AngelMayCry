@@ -37,8 +37,9 @@ public class DataManager : Singleton<DataManager>
     [ReadOnly][SerializeField][TextArea(1, 1)]
     private string GoogleSheetTableKey;
 
-    [Space(3)] [Header("Google Sheets Property")]
-    [SerializeField] private string LoadSheetsIndex;
+    [Space(3)] [Header("Load Sheets Property")]
+    [SerializeField, Min(0)] private int LoadSheetsIndex;
+    [SerializeField] private string LoadSheetsRange;
     //========= Inspecter Vlew =========//
 
     public  DataSet  DataBase
@@ -107,11 +108,11 @@ public class DataManager : Singleton<DataManager>
             ApplicationName = ProjectName, HttpClientInitializer = credential
         });
 
-        var request = service.Spreadsheets.Get(GoogleSheetTableKey).Execute();
+        var sheets = service.Spreadsheets.Get(GoogleSheetTableKey).Execute().Sheets;
 
-        foreach (Sheet sheet in request.Sheets)
+        if (sheets.Count > LoadSheetsIndex)
         {
-            string sheetName = sheet.Properties.Title;
+            string sheetName = sheets[LoadSheetsIndex].Properties.Title;
             if (dataSet.Tables.Contains(sheetName))
             {
                 // 이미 있다면
@@ -119,13 +120,15 @@ public class DataManager : Singleton<DataManager>
             }
             dataSet.Tables.Add(SendRequest(service, sheetName));
         }
+        else
+            throw new IndexOutOfRangeException();
     }
     private DataTable SendRequest(SheetsService service, string sheetName)
     {
         DataTable result = null;
         try
         {
-            var request = service.Spreadsheets.Values.Get(GoogleSheetTableKey, $"{sheetName}!{LoadSheetsIndex}");
+            var request = service.Spreadsheets.Values.Get(GoogleSheetTableKey, $"{sheetName}!{LoadSheetsRange}");
 
             var    jsonObject = request.Execute().Values;
             string jsonString = ParseSheetData(jsonObject);
