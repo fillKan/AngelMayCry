@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SecondaryCollider : MonoBehaviour
 {
-    public event Action<Collider2D> OnTriggerEnter;
-    public event Action<Collider2D> OnTriggerExit;
+    public delegate void TriggerAction(Collider2D other, bool isEnter);
+    public TriggerAction OnTriggerAction;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        OnTriggerEnter?.Invoke(collision);
+        OnTriggerAction?.Invoke(collision, true);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        OnTriggerExit?.Invoke(collision);
+        OnTriggerAction?.Invoke(collision, false);
     }
 }

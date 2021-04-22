@@ -4,13 +4,22 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -1203761201534796319
-    second: Demon_Wonchul_wake_0
+    second: Demon_Wonchul_wake_2
   - first:
       213: 1150150980300992290
     second: Demon_Wonchul_wake_1
   - first:
       213: -8280147703310447596
     second: Demon_Wonchul_wake_2
+  - first:
+      213: -6486553932735525209
+    second: Demon_Wonchul_wake_3
+  - first:
+      213: -6734296603974798058
+    second: Demon_Wonchul_wake_4
+  - first:
+      213: -6428164197752497288
+    second: Demon_Wonchul_wake_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demon_Wonchul_wake_0
+      name: Demon_Wonchul_wake_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 256
+        width: 128
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,10 +145,10 @@ TextureImporter:
       name: Demon_Wonchul_wake_1
       rect:
         serializedVersion: 2
-        x: 512
+        x: 128
         y: 0
-        width: 512
-        height: 256
+        width: 128
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,13 +163,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Wonchul_wake_2
+      name: Demon_Wonchul_wake_0
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 256
         y: 0
-        width: 512
-        height: 256
+        width: 128
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
