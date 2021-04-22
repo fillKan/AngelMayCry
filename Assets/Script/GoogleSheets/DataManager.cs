@@ -18,6 +18,10 @@ using System.Linq;
 
 public class DataManager : Singleton<DataManager>
 {
+    public enum SheetIndex
+    {
+        P_Attack
+    }
     private string JsonDataPath;
 
     //========= Inspecter Vlew =========//
@@ -38,7 +42,7 @@ public class DataManager : Singleton<DataManager>
     private string GoogleSheetTableKey;
 
     [Space(3)] [Header("Load Sheets Property")]
-    [SerializeField, Min(0)] private int LoadSheetsIndex;
+    [SerializeField] private SheetIndex LoadSheetsIndex;
     [SerializeField] private string LoadSheetsRange;
     //========= Inspecter Vlew =========//
 
@@ -110,9 +114,9 @@ public class DataManager : Singleton<DataManager>
 
         var sheets = service.Spreadsheets.Get(GoogleSheetTableKey).Execute().Sheets;
 
-        if (sheets.Count > LoadSheetsIndex)
+        if (sheets.Count > (int)LoadSheetsIndex)
         {
-            string sheetName = sheets[LoadSheetsIndex].Properties.Title;
+            string sheetName = sheets[(int)LoadSheetsIndex].Properties.Title;
             if (dataSet.Tables.Contains(sheetName))
             {
                 // 이미 있다면
