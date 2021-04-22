@@ -50,6 +50,10 @@ public class HitBoxSet : ScriptableObject
     [SerializeField, Min(0)] private float _CameraShakingTime;
     [SerializeField, Min(0)] private float _CameraShakingForce;
 
+    [Space(3)][Header("Json Data Property")]
+    [Obsolete] public string FileName;
+    [Obsolete] public string ID;
+
     // ========== public property ========== //
     #region public property
     public float Damage 
@@ -69,14 +73,15 @@ public class HitBoxSet : ScriptableObject
     #endregion
     // ========== public property ========== //
 
-    [System.Obsolete]
-    public void Set(float damage, float duration, float stun, Vector2 push, float shakingTime, float shakingForce)
+    [Obsolete]
+    public void Set(float damage, float duration, float stun, Vector2 push, float shakingForce, float hitStop)
     {
         _Damage = damage;
         _Duration = duration;
         _Stun = stun;
         _PushForce = push;
         _CameraShakingForce = shakingForce;
-        _CameraShakingTime = shakingTime;
+        _CameraShakingTime = hitStop * 1.1f;
+        _HitStop = hitStop;
     }
 }
