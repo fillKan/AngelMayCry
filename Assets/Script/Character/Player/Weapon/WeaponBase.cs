@@ -19,6 +19,7 @@ public abstract class WeaponBase
         Front,
         Back,
         Up,
+        Down,
         Left,
         Middle,
         Right

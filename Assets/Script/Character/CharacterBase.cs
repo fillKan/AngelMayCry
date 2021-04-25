@@ -23,14 +23,20 @@ public class CharacterBase : MonoBehaviour
 	[SerializeField] protected float _MaxSuperArmor = 0;
 	protected float _SuperArmor;
 
+	[Tooltip("0.5보다 작으면 y축 넉백 무시")]
 	[SerializeField] protected float _KnockBackMultiplier = 1;
 	[SerializeField] protected float _DamageMultiplier = 1;
 
 	protected Rigidbody2D _Rigidbody;
 	protected Animator _Animator;
 	protected eState _State = eState.Idle;
+	protected bool _isInAir = true;
 
-	public virtual void OnEnable()
+	protected delegate void OnStateEnter();
+	protected OnStateEnter _OnIdle;
+	protected OnStateEnter _OnHit;
+
+	protected virtual void OnEnable()
 	{
 		_Hp = _MaxHp;
 		_SuperArmor = _MaxSuperArmor;
@@ -39,6 +45,51 @@ public class CharacterBase : MonoBehaviour
 		_KnockBackMultiplier = 1;
 		_DamageMultiplier = 1;
 		_State = eState.Idle;
+		_isInAir = true;
+	}
+
+	protected virtual void Update()
+	{
+		if(_Rigidbody.velocity.y <= -10 && _State == eState.Hit)
+		{
+			_Animator.Play("Fall");
+		}
+	}
+
+	protected virtual void OnCollisionStay2D(Collision2D collision)
+	{
+		switch(collision.gameObject.tag)
+		{
+			case "Ground":
+				{
+					if (_isInAir == false || (_isInAir == true && _Rigidbody.velocity.y > 0))
+						break;
+
+					var contacts = collision.contacts;
+					foreach (var contactPoint in contacts)
+					{
+						if (contactPoint.normal.y > 0)
+						{
+							if (_Rigidbody.velocity.y > -10)
+							{
+								_isInAir = false;
+								if (_State == eState.Hit)
+									SetState(eState.Down);
+								else
+									SetState(eState.Idle);
+							}
+							else
+							{
+								Debug.Log("Bounce");
+								_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, _Rigidbody.velocity.y * -0.6f);
+							}
+
+							break;
+						}
+					}
+					break;
+				}
+		}
 	}
 
 	public virtual void DealDamage(float damage, float stunTime, Vector2 knockBack, GameObject from)
@@ -49,12 +100,20 @@ public class CharacterBase : MonoBehaviour
 			Death();
 		}
 		_SuperArmor -= damage;
-		if(_SuperArmor <= 0)
+		if(_SuperArmor <= 0 && _MaxSuperArmor != 0)
 		{
 			OnSuperArmorBreak();
 			return;
 		}
+
 		knockBack.x *= _KnockBackMultiplier;
+		if (_KnockBackMultiplier <= 0.5)
+			knockBack.y = 0;
+		if (knockBack.y != 0)
+		{
+			_isInAir = true;
+			_Rigidbody.velocity = new Vector2(0, 0.1f);
+		}
 		_Rigidbody.AddForce(knockBack);
 		GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
 
@@ -64,7 +123,10 @@ public class CharacterBase : MonoBehaviour
 			return;
 
 		SetState(eState.Hit);
-		StartCoroutine(StunTimeRoutine(stunTime));
+		Vector2 scale = transform.localScale;
+		scale.x = Mathf.Abs(scale.x) * -Mathf.Sign(from.transform.localScale.x);
+		transform.localScale = scale;
+		StartCoroutine(StunTimeRoutine(knockBack.y == 0 ? stunTime : 0.01f));
 	}
 
 	public virtual void Death()
@@ -83,9 +145,12 @@ public class CharacterBase : MonoBehaviour
 	private IEnumerator StunTimeRoutine(float time)
 	{
 		yield return new WaitForSeconds(time);
-
+		yield return new WaitUntil(() => { return GetIsInAir() == false; });
 		_SuperArmor = _MaxSuperArmor;
-		SetState(eState.Idle);
+		if (_State == eState.Hit)
+			SetState(eState.Idle);
+		else if (_State == eState.Down)
+			SetState(eState.Wake);
 	}
 
 	private IEnumerator HitBlinkingRoutine(float time = 0.075f)
@@ -97,7 +162,7 @@ public class CharacterBase : MonoBehaviour
 
 	public bool GetIsInAir()
 	{
-		return _Rigidbody.velocity.y != 0;
+		return _isInAir;
 	}
 
 	public void SetState(eState state)
@@ -108,11 +173,23 @@ public class CharacterBase : MonoBehaviour
 			case eState.Idle:
 				_Animator.Play("Idle");
 				_Animator.speed = 1;
+				_OnIdle?.Invoke();
 				break;
 
 			case eState.Hit:
 				_Animator.Play("Hit");
 				_Animator.speed = 0;
+				_OnHit?.Invoke();
+				break;
+
+			case eState.Down:
+				_Animator.Play("Down");
+				_Animator.speed = 0.1f;
+				break;
+
+			case eState.Wake:
+				_Animator.Play("Wake");
+				_Animator.speed = 1;
 				break;
 		}
 	}

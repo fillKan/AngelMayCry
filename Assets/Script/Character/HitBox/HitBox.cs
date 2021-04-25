@@ -53,10 +53,11 @@ public class HitBox : MonoBehaviour
 		
 		MainCamera.Instance.CameraShake(_CameraShakeTime == -1 ? _HitStop : _CameraShakeTime, _CameraShakeForce);
 		TimeManager.Instance.HitStop(_HitStop);
-		Other.GetComponent<CharacterBase>().DealDamage(_Damage, _StunTime, _Knockback, gameObject);
+		_Knockback.x *= Mathf.Sign(transform.root.localScale.x);
+		Other.GetComponent<CharacterBase>().DealDamage(_Damage, _StunTime, _Knockback, transform.root.gameObject);
 	}
 
-	private void OnDisable()
+	private void OnEnable()
 	{
 		_CollidedObjects.Clear();
 	}

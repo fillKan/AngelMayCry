@@ -86,8 +86,12 @@ public class Player : MonoBehaviour
             {
                 Direction = WeaponBase.eCommands.Up;
             }
+			else if (Input.GetKey(KeyCode.S))
+			{
+				Direction = WeaponBase.eCommands.Down;
+			}
 
-            if (Input.GetKey(KeyCode.Mouse0))
+			if (Input.GetKey(KeyCode.Mouse0))
                 _CurWeapon.Attack(Direction, WeaponBase.eCommands.Left);
             else if (Input.GetKey(KeyCode.Mouse1))
                 _CurWeapon.Attack(Direction, WeaponBase.eCommands.Right);
@@ -188,8 +192,9 @@ public class Player : MonoBehaviour
     private void InitWeapons()
     {
         _WeaponDatas[(int)WeaponBase.eWeapons.Glove] = new Wep_Glove(this, _Animator);
+        _WeaponDatas[(int)WeaponBase.eWeapons.Sword] = new Wep_Sword(this, _Animator);
 
-        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Glove];
+        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Sword];
     }
     public void AddForceX(float x)
     {

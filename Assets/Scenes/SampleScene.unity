@@ -990,8 +990,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.19}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    pivot: {x: 0.336, y: 0.4266667}
+    oldSize: {x: 5, y: 3}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxHp: 100
-  _MaxSuperArmor: 50
+  _MaxSuperArmor: 0
   _KnockBackMultiplier: 1
   _DamageMultiplier: 1
   _MovementModule: {fileID: 1330829050}

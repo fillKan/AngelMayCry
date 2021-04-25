@@ -8,14 +8,9 @@ public class DemonWonchul : EnemyBase
     private const int Move = 1;
     private const int Attack = 2;
 
-    [SerializeField] private MovementModule _MovementModule;
-
-    [SerializeField] private SecondaryCollider _DetectionRange;
-
-    private bool _IsAlreadyInit = false;
     private int _AnimHash;
 
-	private new void  OnEnable()
+	protected override void OnEnable()
     {
 		base.OnEnable();
         if (!_IsAlreadyInit)
