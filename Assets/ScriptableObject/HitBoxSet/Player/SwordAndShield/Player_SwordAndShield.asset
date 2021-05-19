@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805a807ee41d1e24ba3ff4721214028d, type: 3}
+  m_Name: Player_SwordAndShield
+  m_EditorClassIdentifier: 
+  _HitBoxList:
+  - {fileID: 11400000, guid: 73792d5e11340c642bb4d4dab666a828, type: 2}
+  - {fileID: 11400000, guid: 44fd9a1b384c5a74a9f23fc2dc5c296b, type: 2}
+  - {fileID: 11400000, guid: c0c013d66b0b2544cb9c415e1afff4c8, type: 2}
+  - {fileID: 11400000, guid: 108a27bfe874e6349a242095689b45fa, type: 2}
+  - {fileID: 11400000, guid: a6770e1fc3cd7f2489d2aa5007c515c9, type: 2}
+  - {fileID: 11400000, guid: 951baec9125a2e048ba9434469dac0ed, type: 2}
+  - {fileID: 11400000, guid: e305eb2eb421a874ca14bcd1914a4081, type: 2}
