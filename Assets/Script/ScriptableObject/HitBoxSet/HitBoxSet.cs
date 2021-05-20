@@ -3,35 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum HitBox
+public enum HitBoxDatas
 {
     Damage, Duration, Stun, CameraShakingTime, CameraShakingForce, HitStop
 }
 [CreateAssetMenu(fileName = "HitBox_", menuName = "Scriptable Object/HitBoxSet")]
 public class HitBoxSet : ScriptableObject
 {
-    public float this[HitBox hitBox]
+    public float this[HitBoxDatas hitBox]
     {
         get
         {
             switch (hitBox)
             {
-                case HitBox.Damage:
+                case HitBoxDatas.Damage:
                     return _Damage;
 
-                case HitBox.Duration:
+                case HitBoxDatas.Duration:
                     return _Duration;
 
-                case HitBox.Stun:
+                case HitBoxDatas.Stun:
                     return _Stun;
 
-                case HitBox.CameraShakingTime:
+                case HitBoxDatas.CameraShakingTime:
                     return _CameraShakingTime;
 
-                case HitBox.CameraShakingForce:
+                case HitBoxDatas.CameraShakingForce:
                     return _CameraShakingForce;
 
-                case HitBox.HitStop:
+                case HitBoxDatas.HitStop:
                     return _HitStop;
             }
             return 0;
