@@ -47,6 +47,16 @@ public class Wep_Sword : WeaponBase
 			case eCommands.Front:
 				if (key == eCommands.Right)
 					PlayAnimation("Player_Sword_ShieldSlam", out isAttacked);
+				else if (key == eCommands.Left)
+				{
+					switch (_AttackPhase)
+					{
+						case 0: PlayAnimation("Player_Sword_Swing1", out isAttacked); break;
+						case 1: PlayAnimation("Player_Sword_Swing2", out isAttacked); break;
+						case 2: PlayAnimation("Player_Sword_Swing3", out isAttacked); break;
+					}
+					_AttackPhase = (_AttackPhase + 1) % 3;
+				}
 				break;
 
 			case eCommands.Down:
