@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
             }
             SetNatualAnimation();
         }
-		if((State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move) || _CurWeapon.isQuickSwapable)
+		if((State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move) || _CurWeapon.isCancelable)
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 				SwapWeapon(0);

@@ -10,7 +10,6 @@ public class Wep_Glove : WeaponBase
         _Player = player;
         _Animator = animator;
         _isCancelable = false;
-        _isQuickSwapable = false;
 
         _Property.Name = "Glove";
         _Property.Type = eWeaponType.Melee;

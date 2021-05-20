@@ -9,7 +9,6 @@ public class Wep_Sword : WeaponBase
 		_Player = player;
 		_Animator = animator;
 		_isCancelable = false;
-		_isQuickSwapable = false;
 
 		_Property.Name = "Sword";
 		_Property.Type = eWeaponType.Melee;

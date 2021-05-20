@@ -898,6 +898,20 @@ AnimationClip:
     floatParameter: 3
     intParameter: 0
     messageOptions: 0
+  - time: 0.25
+    functionName: HandleAnimationEventsToWeapon
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.41666666
+    functionName: HandleAnimationEventsToWeapon
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
   - time: 0.5833333
     functionName: HandleAnimationEventsToWeapon
     data: 

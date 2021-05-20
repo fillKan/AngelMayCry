@@ -29,7 +29,6 @@ public abstract class WeaponBase
     {
         Cancelable,
         UnCancelable,
-        QuickSwapable,
         AttackEnd
     }
 
@@ -48,22 +47,19 @@ public abstract class WeaponBase
 
     protected WeaponProperty _Property = new WeaponProperty();
     protected bool _isCancelable = false;
-    protected bool _isQuickSwapable = false;
 	protected int _ComboCounter = 0;
-    public bool isQuickSwapable { get => _isQuickSwapable; }
+    public bool isCancelable { get => _isCancelable; }
     protected Animator _Animator;
     protected Player _Player;
 
 	public void OnSwap()
 	{
 		_isCancelable = false;
-		_isQuickSwapable = false;
 		_ComboCounter = 0;
 	}
     public virtual void Attack(eCommands direction, eCommands key)
     {
         _isCancelable = false;
-        _isQuickSwapable = false;
         _Player.State = CharacterBase.eState.Attack;
     }
     public virtual void HandleAnimationEvents(eWeaponEvents weaponEvent)
@@ -78,10 +74,6 @@ public abstract class WeaponBase
                 _isCancelable = false;
                 break;
 
-            case eWeaponEvents.QuickSwapable:
-                _Player.StartCoroutine(QuickSwapableTimerRoutine());
-                break;
-
             case eWeaponEvents.AttackEnd:
                 _Animator.Play("Player_Idle");
                 _isCancelable = false;
@@ -89,12 +81,6 @@ public abstract class WeaponBase
 				_Player.State = CharacterBase.eState.Idle;
                 break;
         }
-    }
-    private IEnumerator QuickSwapableTimerRoutine()
-    {
-        _isQuickSwapable = true;
-        yield return new WaitForSecondsRealtime(0.1f);
-        _isQuickSwapable = false;
     }
 	private IEnumerator ComboCounterResetRoutine()
 	{
