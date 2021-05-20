@@ -207,7 +207,7 @@ public class Player : MonoBehaviour
         _WeaponDatas[(int)WeaponBase.eWeapons.Glove] = new Wep_Glove(this, _Animator);
         _WeaponDatas[(int)WeaponBase.eWeapons.Sword] = new Wep_Sword(this, _Animator);
 
-        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Glove];
+        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Sword];
     }
     public void AddForceX(float x)
     {

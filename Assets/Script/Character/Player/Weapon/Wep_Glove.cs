@@ -5,8 +5,6 @@ using UnityEngine;
 public class Wep_Glove : WeaponBase
 {
 
-    private int _AttackPhase = 0;
-
     public Wep_Glove(Player player, Animator animator)
     {
         _Player = player;
@@ -35,8 +33,8 @@ public class Wep_Glove : WeaponBase
             case eCommands.None:
                 if (key == eCommands.Left)
                 {
-					PlayAnimation(_AttackPhase % 2 == 0 ? "Player_Glove_WeakAttack" : "Player_Glove_StrongAttack", out isAttacked);
-                    _AttackPhase++;
+					PlayAnimation(_ComboCounter % 2 == 0 ? "Player_Glove_WeakAttack" : "Player_Glove_StrongAttack", out isAttacked);
+					_ComboCounter++;
                 }
                 break;
 

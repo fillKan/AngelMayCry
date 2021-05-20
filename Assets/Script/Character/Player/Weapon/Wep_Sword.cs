@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Wep_Sword : WeaponBase
 {
-	private int _AttackPhase = 0;
-
 	public Wep_Sword(Player player, Animator animator)
 	{
 		_Player = player;
@@ -34,13 +32,13 @@ public class Wep_Sword : WeaponBase
 			case eCommands.None:
 				if (key == eCommands.Left)
 				{
-					switch(_AttackPhase)
+					switch(_ComboCounter)
 					{
 						case 0: PlayAnimation("Player_Sword_Swing1", out isAttacked); break;
 						case 1: PlayAnimation("Player_Sword_Swing2", out isAttacked); break;
 						case 2: PlayAnimation("Player_Sword_Swing3", out isAttacked); break;
 					}
-					_AttackPhase = (_AttackPhase + 1) % 3;
+					_ComboCounter = (_ComboCounter + 1) % 3;
 				}
 				break;
 
@@ -49,13 +47,13 @@ public class Wep_Sword : WeaponBase
 					PlayAnimation("Player_Sword_ShieldSlam", out isAttacked);
 				else if (key == eCommands.Left)
 				{
-					switch (_AttackPhase)
+					switch (_ComboCounter)
 					{
 						case 0: PlayAnimation("Player_Sword_Swing1", out isAttacked); break;
 						case 1: PlayAnimation("Player_Sword_Swing2", out isAttacked); break;
 						case 2: PlayAnimation("Player_Sword_Swing3", out isAttacked); break;
 					}
-					_AttackPhase = (_AttackPhase + 1) % 3;
+					_ComboCounter = (_ComboCounter + 1) % 3;
 				}
 				break;
 

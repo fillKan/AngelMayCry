@@ -49,6 +49,7 @@ public abstract class WeaponBase
     protected WeaponProperty _Property = new WeaponProperty();
     protected bool _isCancelable = false;
     protected bool _isQuickSwapable = false;
+	protected int _ComboCounter = 0;
     public bool isQuickSwapable { get => _isQuickSwapable; }
     protected Animator _Animator;
     protected Player _Player;
@@ -78,7 +79,8 @@ public abstract class WeaponBase
             case eWeaponEvents.AttackEnd:
                 _Animator.Play("Player_Idle");
                 _isCancelable = false;
-                _Player.State = CharacterBase.eState.Idle;
+				_Player.StartCoroutine(ComboCounterResetRoutine());
+				_Player.State = CharacterBase.eState.Idle;
                 break;
         }
     }
@@ -88,6 +90,12 @@ public abstract class WeaponBase
         yield return new WaitForSecondsRealtime(0.1f);
         _isQuickSwapable = false;
     }
+	private IEnumerator ComboCounterResetRoutine()
+	{
+		yield return new WaitForSecondsRealtime(0.1f);
+		if (_Player.State != CharacterBase.eState.Attack)
+			_ComboCounter = 0;
+	}
 	protected void PlayAnimation(string key, out bool isAttacked)
 	{
 		_Animator.Play(key);

@@ -27,7 +27,9 @@ public class DemonWonchul : EnemyBase
             };
             _DetectionRange.OnTriggerAction = (other, enter) =>
             {
-                if (other.CompareTag("Player"))
+				if (_State == eState.Hit || _State == eState.Down || _State == eState.Wake)
+					return;
+				if (other.CompareTag("Player"))
                 {
                     if (enter)
                     {
