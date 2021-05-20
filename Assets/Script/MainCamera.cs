@@ -13,7 +13,7 @@ public class MainCamera : Singleton<MainCamera>
 
     public void CameraShake(float time, float force)
     {
-        float forcePerFrame = force / time;
+        float forcePerFrame = force;
         float ratio = 1f - Mathf.Min(_RestShakeTime / _ShakeTime, 1f);
 
         if (forcePerFrame > _ShakeForcePerFrame * _ShakeCurve.Evaluate(ratio))
@@ -30,7 +30,7 @@ public class MainCamera : Singleton<MainCamera>
     {
         if (_RestShakeTime > 0)
         {
-            _RestShakeTime -= Time.deltaTime * Time.timeScale;
+            _RestShakeTime -= Time.unscaledDeltaTime;
 
             float ratio = 1f - _RestShakeTime / _ShakeTime;
             transform.position = Random.onUnitSphere * _ShakeForcePerFrame * _ShakeCurve.Evaluate(ratio);

@@ -6,7 +6,7 @@ public class TimeManager : Singleton<TimeManager>
 {
 	float _RestHitStopTime = 100000;
 	
-    public void HitStop(float time, float speed = 0.1f)
+    public void HitStop(float time, float speed = 0)
 	{
 		Time.timeScale = speed;
 		_RestHitStopTime = time;

@@ -46,59 +46,64 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            MoveOrder(Vector2.left, () => Input.GetKeyUp(KeyCode.A));
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            MoveOrder(Vector2.right,() => Input.GetKeyUp(KeyCode.D));
-        }
-
         if (State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _CanJump)
+			if (Input.GetKey(KeyCode.A))
+			{
+				if (_MoveRoutine == null)
+				{
+					State = CharacterBase.eState.Move;
+					MoveOrder(Vector2.left, () => Input.GetKeyUp(KeyCode.A));
+				}
+			}
+			else if (Input.GetKey(KeyCode.D))
+			{
+				if (_MoveRoutine == null)
+				{
+					State = CharacterBase.eState.Move;
+					MoveOrder(Vector2.right, () => Input.GetKeyUp(KeyCode.D));
+				}
+			}
+
+			if (Input.GetKeyDown(KeyCode.Space) && _CanJump)
             {
                 _Rigidbody.AddForce(Vector2.up * _JumpForce, ForceMode2D.Impulse);
                 _CanJump = false;
             }
             SetNatualAnimation();
-
-            WeaponBase.eCommands Direction = WeaponBase.eCommands.None;
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                State = CharacterBase.eState.Move;
-                if (Mathf.Sign(transform.localScale.x) == -1)
-                    Direction = WeaponBase.eCommands.Front;
-                else
-                    Direction = WeaponBase.eCommands.Back;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                State = CharacterBase.eState.Move;
-                if (Mathf.Sign(transform.localScale.x) == 1)
-                    Direction = WeaponBase.eCommands.Front;
-                else
-                    Direction = WeaponBase.eCommands.Back;
-            }
-            else if (Input.GetKey(KeyCode.W))
-            {
-                Direction = WeaponBase.eCommands.Up;
-            }
-			else if (Input.GetKey(KeyCode.S))
-			{
-				Direction = WeaponBase.eCommands.Down;
-			}
-
-			if (Input.GetKey(KeyCode.Mouse0))
-                _CurWeapon.Attack(Direction, WeaponBase.eCommands.Left);
-            else if (Input.GetKey(KeyCode.Mouse1))
-                _CurWeapon.Attack(Direction, WeaponBase.eCommands.Right);
-            else if (Input.GetKey(KeyCode.Mouse2))
-                _CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
         }
-    }
+
+        WeaponBase.eCommands Direction = WeaponBase.eCommands.None;
+		if (Input.GetKey(KeyCode.A))
+		{
+			if (Mathf.Sign(transform.localScale.x) == -1)
+				Direction = WeaponBase.eCommands.Front;
+			else
+				Direction = WeaponBase.eCommands.Back;
+		}
+		else if (Input.GetKey(KeyCode.D))
+		{
+			if (Mathf.Sign(transform.localScale.x) == 1)
+				Direction = WeaponBase.eCommands.Front;
+			else
+				Direction = WeaponBase.eCommands.Back;
+		}
+		else if (Input.GetKey(KeyCode.W))
+		{
+			Direction = WeaponBase.eCommands.Up;
+		}
+		else if (Input.GetKey(KeyCode.S))
+		{
+			Direction = WeaponBase.eCommands.Down;
+		}
+
+		if (Input.GetKey(KeyCode.Mouse0))
+			_CurWeapon.Attack(Direction, WeaponBase.eCommands.Left);
+		else if (Input.GetKey(KeyCode.Mouse1))
+			_CurWeapon.Attack(Direction, WeaponBase.eCommands.Right);
+		else if (Input.GetKey(KeyCode.Mouse2))
+			_CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
+	}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
@@ -119,9 +124,6 @@ public class Player : MonoBehaviour
     }
     private void SetNatualAnimation()
     {
-        if (State != CharacterBase.eState.Idle)
-            return;
-
         if (_Rigidbody.velocity.y < 0)
         {
             _Animator.SetInteger(_AnimatorHash, Landing);
@@ -144,23 +146,32 @@ public class Player : MonoBehaviour
             State = CharacterBase.eState.Move;
         do
         {
-            if (State == CharacterBase.eState.Move)
-            {
+			if (State == CharacterBase.eState.Move)
+			{
 				Vector3 Scale = transform.localScale;
 				Scale.x = Mathf.Sign(direction.x) * Mathf.Abs(Scale.x);
 				transform.localScale = Scale;
-                if (_Animator.GetInteger(_AnimatorHash) == Idle)
-                {
-                    _Animator.SetInteger(_AnimatorHash, Move);
-                }
-                _Rigidbody.AddForce(direction * _MoveSpeed * Time.deltaTime * Time.timeScale);
-                {
-                    Vector2 velocity = _Rigidbody.velocity;
+				if (_Animator.GetInteger(_AnimatorHash) == Idle && _Rigidbody.velocity.y == 0)
+				{
+					_Animator.SetInteger(_AnimatorHash, Move);
+				}
+				_Rigidbody.AddForce(direction * _MoveSpeed * Time.deltaTime * Time.timeScale);
+				{
+					Vector2 velocity = _Rigidbody.velocity;
 
-                    _Rigidbody.velocity = new Vector2
-                        (Mathf.Clamp(velocity.x, -_MoveSpeedMax, _MoveSpeedMax), velocity.y);
-                }
-            }
+					_Rigidbody.velocity = new Vector2
+						(Mathf.Clamp(velocity.x, -_MoveSpeedMax, _MoveSpeedMax), velocity.y);
+				}
+			}
+			else
+			{
+				if (_Animator.GetInteger(_AnimatorHash) == Move && _Rigidbody.velocity.y == 0)
+				{
+					_Animator.SetInteger(_AnimatorHash, Idle);
+				}
+				_MoveRoutine = null;
+				yield break;
+			}
             yield return null;
         }
         while (!moveStop.Invoke());
@@ -168,6 +179,7 @@ public class Player : MonoBehaviour
         if (_Animator.GetInteger(_AnimatorHash) == Move) {
             _Animator.SetInteger(_AnimatorHash, Idle);
         }
+        _MoveRoutine = null;
         // ========== Slip Routine ========== //
         float velX = _Rigidbody.velocity.x;
 
@@ -181,9 +193,10 @@ public class Player : MonoBehaviour
             yield return null;
         }
         // ========== Slip Routine ========== //
-        _MoveRoutine = null;
-        if(State == CharacterBase.eState.Move)
-          State = CharacterBase.eState.Idle;
+		if (State == CharacterBase.eState.Move)
+		{
+			State = CharacterBase.eState.Idle;
+		}
     }
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
     {
@@ -194,7 +207,7 @@ public class Player : MonoBehaviour
         _WeaponDatas[(int)WeaponBase.eWeapons.Glove] = new Wep_Glove(this, _Animator);
         _WeaponDatas[(int)WeaponBase.eWeapons.Sword] = new Wep_Sword(this, _Animator);
 
-        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Sword];
+        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Glove];
     }
     public void AddForceX(float x)
     {
