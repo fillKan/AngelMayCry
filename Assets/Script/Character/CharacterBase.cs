@@ -36,6 +36,8 @@ public class CharacterBase : MonoBehaviour
 	protected OnStateEnter _OnIdle;
 	protected OnStateEnter _OnHit;
 
+	private IEnumerator _StunTimeRoutine = null;
+
 	protected virtual void OnEnable()
 	{
 		_Hp = _MaxHp;
@@ -126,7 +128,9 @@ public class CharacterBase : MonoBehaviour
 		Vector2 scale = transform.localScale;
 		scale.x = Mathf.Abs(scale.x) * -Mathf.Sign(from.transform.localScale.x);
 		transform.localScale = scale;
-		StartCoroutine(StunTimeRoutine(knockBack.y == 0 ? stunTime : 0.01f));
+		if (_StunTimeRoutine != null)
+			StopCoroutine(_StunTimeRoutine);
+		StartCoroutine(_StunTimeRoutine = StunTimeRoutine(knockBack.y == 0 ? stunTime : 0.01f));
 	}
 
 	public virtual void Death()
@@ -151,6 +155,7 @@ public class CharacterBase : MonoBehaviour
 			SetState(eState.Idle);
 		else if (_State == eState.Down)
 			SetState(eState.Wake);
+		_StunTimeRoutine = null;
 	}
 
 	private IEnumerator HitBlinkingRoutine(float time = 0.075f)

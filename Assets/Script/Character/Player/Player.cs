@@ -72,6 +72,19 @@ public class Player : MonoBehaviour
             }
             SetNatualAnimation();
         }
+		if((State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move) || _CurWeapon.isQuickSwapable)
+		{
+			if (Input.GetKeyDown(KeyCode.Alpha1))
+				SwapWeapon(0);
+			else if (Input.GetKeyDown(KeyCode.Alpha2))
+				SwapWeapon(1);
+			else if (Input.GetKeyDown(KeyCode.Alpha3))
+				SwapWeapon(2);
+			else if (Input.GetKeyDown(KeyCode.Alpha4))
+				SwapWeapon(3);
+			else if (Input.GetKeyDown(KeyCode.Alpha5))
+				SwapWeapon(4);
+		}
 
         WeaponBase.eCommands Direction = WeaponBase.eCommands.None;
 		if (Input.GetKey(KeyCode.A))
@@ -207,8 +220,22 @@ public class Player : MonoBehaviour
         _WeaponDatas[(int)WeaponBase.eWeapons.Glove] = new Wep_Glove(this, _Animator);
         _WeaponDatas[(int)WeaponBase.eWeapons.Sword] = new Wep_Sword(this, _Animator);
 
+		_EqiupedWeapons[0] = WeaponBase.eWeapons.Glove;
+		_EqiupedWeapons[1] = WeaponBase.eWeapons.Sword;
+		_EqiupedWeapons[2] = WeaponBase.eWeapons.None;
+		_EqiupedWeapons[3] = WeaponBase.eWeapons.None;
+		_EqiupedWeapons[4] = WeaponBase.eWeapons.None;
+
         _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Sword];
     }
+	private void SwapWeapon(int index)
+	{
+		if (_EqiupedWeapons[index] == WeaponBase.eWeapons.None)
+			return;
+		_CurWeapon = _WeaponDatas[(int)_EqiupedWeapons[index]];
+		_CurWeapon.OnSwap();
+		State = CharacterBase.eState.Idle;
+	}
     public void AddForceX(float x)
     {
         _Rigidbody.velocity = new Vector2(x * Mathf.Sign(transform.localScale.x), _Rigidbody.velocity.y);

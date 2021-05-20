@@ -54,6 +54,12 @@ public abstract class WeaponBase
     protected Animator _Animator;
     protected Player _Player;
 
+	public void OnSwap()
+	{
+		_isCancelable = false;
+		_isQuickSwapable = false;
+		_ComboCounter = 0;
+	}
     public virtual void Attack(eCommands direction, eCommands key)
     {
         _isCancelable = false;
