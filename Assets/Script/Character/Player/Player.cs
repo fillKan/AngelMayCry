@@ -232,9 +232,13 @@ public class Player : MonoBehaviour
 	{
 		if (_EqiupedWeapons[index] == WeaponBase.eWeapons.None)
 			return;
+		if (_CurWeapon == _WeaponDatas[(int)_EqiupedWeapons[index]])
+			return;
 		_CurWeapon = _WeaponDatas[(int)_EqiupedWeapons[index]];
 		_CurWeapon.OnSwap();
 		State = CharacterBase.eState.Idle;
+		_Animator.Play("Player_Idle");
+		_Animator.SetInteger(_AnimatorHash, Idle);
 	}
     public void AddForceX(float x)
     {
