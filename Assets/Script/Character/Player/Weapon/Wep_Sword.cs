@@ -20,10 +20,8 @@ public class Wep_Sword : WeaponBase
 			return;
 		if (_Player.GetComponent<Rigidbody2D>().velocity.y != 0) // 공중에 있을 때
 			return;
-		if (_isCancelable && direction == eCommands.None) // 캔슬이 가능하지만 입력한 커맨드가 평타일 때
+		if (_isCancelable && ((direction == eCommands.None) || (direction == eCommands.Front && key == eCommands.Left))) // 캔슬이 가능하지만 입력한 커맨드가 평타일 때
 			return;
-
-		base.Attack(direction, key);
 
 		bool isAttacked = false;
 		switch (direction)
@@ -62,10 +60,12 @@ public class Wep_Sword : WeaponBase
 				break;
 		}
 
-		if (isAttacked == false) // 입력한 키에 맞는 공격이 없을 때
+		if (isAttacked == false && _isCancelable == false) // 입력한 키에 맞는 공격이 없을 때
 		{
 			_Player.State = CharacterBase.eState.Idle;
+			return;
 		}
+		base.Attack(direction, key);
 	}
 	public override void HandleAnimationEvents(eWeaponEvents weaponEvent)
 	{

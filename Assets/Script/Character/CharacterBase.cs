@@ -37,6 +37,7 @@ public class CharacterBase : MonoBehaviour
 	protected OnStateEnter _OnHit;
 
 	private IEnumerator _StunTimeRoutine = null;
+	public float _CurYVel = 0;
 
 	protected virtual void OnEnable()
 	{
@@ -58,13 +59,19 @@ public class CharacterBase : MonoBehaviour
 		}
 	}
 
+	public void FixedUpdate()
+	{
+		if(_Rigidbody.velocity.y != 0)
+			_CurYVel = _Rigidbody.velocity.y;
+	}
+
 	protected virtual void OnCollisionStay2D(Collision2D collision)
 	{
 		switch(collision.gameObject.tag)
 		{
 			case "Ground":
 				{
-					if (_isInAir == false || (_isInAir == true && _Rigidbody.velocity.y > 0))
+					if (_isInAir == false || (_isInAir == true && _CurYVel > 0))
 						break;
 
 					var contacts = collision.contacts;
@@ -72,7 +79,7 @@ public class CharacterBase : MonoBehaviour
 					{
 						if (contactPoint.normal.y > 0)
 						{
-							if (_Rigidbody.velocity.y > -10)
+							if (_CurYVel > -10)
 							{
 								_isInAir = false;
 								if (_State == eState.Hit)
@@ -82,8 +89,9 @@ public class CharacterBase : MonoBehaviour
 							}
 							else
 							{
-								Debug.Log("Bounce");
-								_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, _Rigidbody.velocity.y * -0.6f);
+								_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, _CurYVel * -20f * Time.unscaledDeltaTime);
+								transform.Translate(0, 0.01f, 0);
+								_CurYVel = 0;
 							}
 
 							break;
@@ -113,10 +121,11 @@ public class CharacterBase : MonoBehaviour
 			knockBack.y = 0;
 		if (knockBack.y != 0)
 		{
+			_CurYVel = knockBack.y * Time.unscaledDeltaTime;
 			_isInAir = true;
-			_Rigidbody.velocity = new Vector2(0, 0.1f);
 		}
 		_Rigidbody.AddForce(knockBack);
+		
 		GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
 
 		StartCoroutine(HitBlinkingRoutine());
