@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
 
     [Header("Other Property")]
     [SerializeField] private Animator _Animator;
-    private int _AnimatorHash;
+	private int _AnimatorHash;
+	public string NextAnimation { get; set; }
 
     public CharacterBase.eState State { get; set; }
 
@@ -46,6 +47,11 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+		if(NextAnimation != "")
+		{
+			_Animator.Play(NextAnimation);
+			NextAnimation = "";
+		}
         if (State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
         {
 			if (Input.GetKey(KeyCode.A))
@@ -84,38 +90,38 @@ public class Player : MonoBehaviour
 				SwapWeapon(3);
 			else if (Input.GetKeyDown(KeyCode.Alpha5))
 				SwapWeapon(4);
-		}
 
-        WeaponBase.eCommands Direction = WeaponBase.eCommands.None;
-		if (Input.GetKey(KeyCode.A))
-		{
-			if (Mathf.Sign(transform.localScale.x) == -1)
-				Direction = WeaponBase.eCommands.Front;
-			else
-				Direction = WeaponBase.eCommands.Back;
-		}
-		else if (Input.GetKey(KeyCode.D))
-		{
-			if (Mathf.Sign(transform.localScale.x) == 1)
-				Direction = WeaponBase.eCommands.Front;
-			else
-				Direction = WeaponBase.eCommands.Back;
-		}
-		else if (Input.GetKey(KeyCode.W))
-		{
-			Direction = WeaponBase.eCommands.Up;
-		}
-		else if (Input.GetKey(KeyCode.S))
-		{
-			Direction = WeaponBase.eCommands.Down;
-		}
+			WeaponBase.eCommands Direction = WeaponBase.eCommands.None;
+			if (Input.GetKey(KeyCode.A))
+			{
+				if (Mathf.Sign(transform.localScale.x) == -1)
+					Direction = WeaponBase.eCommands.Front;
+				else
+					Direction = WeaponBase.eCommands.Back;
+			}
+			else if (Input.GetKey(KeyCode.D))
+			{
+				if (Mathf.Sign(transform.localScale.x) == 1)
+					Direction = WeaponBase.eCommands.Front;
+				else
+					Direction = WeaponBase.eCommands.Back;
+			}
+			else if (Input.GetKey(KeyCode.W))
+			{
+				Direction = WeaponBase.eCommands.Up;
+			}
+			else if (Input.GetKey(KeyCode.S))
+			{
+				Direction = WeaponBase.eCommands.Down;
+			}
 
-		if (Input.GetKey(KeyCode.Mouse0))
-			_CurWeapon.Attack(Direction, WeaponBase.eCommands.Left);
-		else if (Input.GetKey(KeyCode.Mouse1))
-			_CurWeapon.Attack(Direction, WeaponBase.eCommands.Right);
-		else if (Input.GetKey(KeyCode.Mouse2))
-			_CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
+			if (Input.GetKey(KeyCode.Mouse0))
+				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Left);
+			else if (Input.GetKey(KeyCode.Mouse1))
+				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Right);
+			else if (Input.GetKey(KeyCode.Mouse2))
+				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
+		}
 	}
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -237,7 +243,7 @@ public class Player : MonoBehaviour
 		_CurWeapon = _WeaponDatas[(int)_EqiupedWeapons[index]];
 		_CurWeapon.OnSwap();
 		State = CharacterBase.eState.Idle;
-		_Animator.Play("Player_Idle");
+		NextAnimation = "Player_Idle";
 		_Animator.SetInteger(_AnimatorHash, Idle);
 	}
     public void AddForceX(float x)

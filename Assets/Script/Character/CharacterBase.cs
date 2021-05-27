@@ -37,7 +37,7 @@ public class CharacterBase : MonoBehaviour
 	protected OnStateEnter _OnHit;
 
 	private IEnumerator _StunTimeRoutine = null;
-	public float _CurYVel = 0;
+	protected float _CurYVel = 0;
 
 	protected virtual void OnEnable()
 	{

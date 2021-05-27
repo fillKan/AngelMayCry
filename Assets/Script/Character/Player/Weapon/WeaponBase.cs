@@ -75,7 +75,7 @@ public abstract class WeaponBase
                 break;
 
             case eWeaponEvents.AttackEnd:
-                _Animator.Play("Player_Idle");
+				_Player.NextAnimation = "Player_Idle";
                 _isCancelable = false;
 				_Player.StartCoroutine(ComboCounterResetRoutine());
 				_Player.State = CharacterBase.eState.Idle;
@@ -90,7 +90,7 @@ public abstract class WeaponBase
 	}
 	protected void PlayAnimation(string key, out bool isAttacked)
 	{
-		_Animator.Play(key);
+		_Player.NextAnimation = key;
 		isAttacked = true;
 	}
 }
