@@ -53,7 +53,7 @@ public class CharacterBase : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		if(_Rigidbody.velocity.y <= -10 && _State == eState.Hit)
+		if(_Rigidbody.velocity.y <= -8 && _State == eState.Hit)
 		{
 			_Animator.Play("Fall");
 		}
@@ -89,7 +89,7 @@ public class CharacterBase : MonoBehaviour
 							}
 							else
 							{
-								_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, _CurYVel * -20f * Time.unscaledDeltaTime);
+								_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, _CurYVel * -25f * Time.unscaledDeltaTime);
 								transform.Translate(0, 0.01f, 0);
 								_CurYVel = 0;
 							}
