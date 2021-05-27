@@ -1348,14 +1348,14 @@ AnimationClip:
     floatParameter: 5
     intParameter: 0
     messageOptions: 0
-  - time: 0.5833333
+  - time: 0.75
     functionName: HandleAnimationEventsToWeapon
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
+  - time: 0.9166667
     functionName: HandleAnimationEventsToWeapon
     data: 
     objectReferenceParameter: {fileID: 0}
