@@ -20,11 +20,6 @@ public class TheKingWonchul : MonoBehaviour
     {
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
     }
-    [ContextMenu("Appears Order")]
-    private void AppearsOrder()
-    {
-        _Animator.SetInteger(_AnimControlKey, Appears);
-    }
     private IEnumerator PatternTimer()
     {
         while (gameObject.activeSelf)
