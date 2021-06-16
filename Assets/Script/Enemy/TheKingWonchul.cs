@@ -38,6 +38,7 @@ public class TheKingWonchul : MonoBehaviour
                 yield return null;
         }
     }
+
     private void AE_Appears_SlowTime()
     {
         StartCoroutine(Appears_SlowTime(_SlowScale));
@@ -51,6 +52,12 @@ public class TheKingWonchul : MonoBehaviour
         StartCoroutine(PatternTimer());
         _Animator.SetInteger(_AnimControlKey, Idle);
     }
+
+    private void AE_Slash_End()
+    {
+        _Animator.SetInteger(_AnimControlKey, Idle);
+    }
+
     private IEnumerator Appears_SlowTime(float scale)
     {
         float time = FrameTime * 3.5f;
