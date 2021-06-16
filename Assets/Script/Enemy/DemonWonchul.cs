@@ -2,22 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemonWonchul : MonoBehaviour
+public class DemonWonchul : EnemyBase
 {
     private const int Idle = 0;
     private const int Move = 1;
     private const int Attack = 2;
 
-    [SerializeField] private MovementModule _MovementModule;
-    [SerializeField] private Animator _Animator;
-
-    [SerializeField] private SecondaryCollider _DetectionRange;
-
-    private bool _IsAlreadyInit = false;
     private int _AnimHash;
 
-    private void OnEnable()
+	protected override void OnEnable()
     {
+		base.OnEnable();
         if (!_IsAlreadyInit)
         {
             _AnimHash = _Animator.GetParameter(0).nameHash;
@@ -32,7 +27,9 @@ public class DemonWonchul : MonoBehaviour
             };
             _DetectionRange.OnTriggerAction = (other, enter) =>
             {
-                if (other.CompareTag("Player"))
+				if (_State == eState.Hit || _State == eState.Down || _State == eState.Wake)
+					return;
+				if (other.CompareTag("Player"))
                 {
                     if (enter)
                     {

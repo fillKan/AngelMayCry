@@ -10,6 +10,7 @@ public abstract class WeaponBase
         None,
         Glove,
         Sword,
+		Akimbo_Pistol,
         End
     }
 
@@ -19,6 +20,7 @@ public abstract class WeaponBase
         Front,
         Back,
         Up,
+        Down,
         Left,
         Middle,
         Right
@@ -28,8 +30,8 @@ public abstract class WeaponBase
     {
         Cancelable,
         UnCancelable,
-        QuickSwapable,
-        AttackEnd
+        AttackEnd,
+		Akimbo_Pistol_SpinMoveEnd
     }
 
     public enum eWeaponType
@@ -47,16 +49,20 @@ public abstract class WeaponBase
 
     protected WeaponProperty _Property = new WeaponProperty();
     protected bool _isCancelable = false;
-    protected bool _isQuickSwapable = false;
-    public bool isQuickSwapable { get => _isQuickSwapable; }
+	protected int _ComboCounter = 0;
+    public bool isCancelable { get => _isCancelable; }
     protected Animator _Animator;
     protected Player _Player;
 
+	public void OnSwap()
+	{
+		_isCancelable = false;
+		_ComboCounter = 0;
+	}
     public virtual void Attack(eCommands direction, eCommands key)
     {
         _isCancelable = false;
-        _isQuickSwapable = false;
-        _Player.State = StateBase.eState.Attack;
+        _Player.State = CharacterBase.eState.Attack;
     }
     public virtual void HandleAnimationEvents(eWeaponEvents weaponEvent)
     {
@@ -70,21 +76,23 @@ public abstract class WeaponBase
                 _isCancelable = false;
                 break;
 
-            case eWeaponEvents.QuickSwapable:
-                _Player.StartCoroutine(QuickSwapableTimerRoutine());
-                break;
-
             case eWeaponEvents.AttackEnd:
-                _Animator.Play("Player_Idle");
+				_Player.NextAnimation = "Player_Idle";
                 _isCancelable = false;
-                _Player.State = StateBase.eState.Idle;
+				_Player.StartCoroutine(ComboCounterResetRoutine());
+				_Player.State = CharacterBase.eState.Idle;
                 break;
         }
     }
-    private IEnumerator QuickSwapableTimerRoutine()
-    {
-        _isQuickSwapable = true;
-        yield return new WaitForSecondsRealtime(0.1f);
-        _isQuickSwapable = false;
-    }
+	private IEnumerator ComboCounterResetRoutine()
+	{
+		yield return new WaitForSecondsRealtime(0.1f);
+		if (_Player.State != CharacterBase.eState.Attack)
+			_ComboCounter = 0;
+	}
+	protected void PlayAnimation(string key, out bool isAttacked)
+	{
+		_Player.NextAnimation = key;
+		isAttacked = true;
+	}
 }

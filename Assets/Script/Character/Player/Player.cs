@@ -28,9 +28,10 @@ public class Player : MonoBehaviour
 
     [Header("Other Property")]
     [SerializeField] private Animator _Animator;
-    private int _AnimatorHash;
+	private int _AnimatorHash;
+	public string NextAnimation { get; set; }
 
-    public StateBase.eState State { get; set; }
+    public CharacterBase.eState State { get; set; }
 
     // ¹«±â
     private WeaponBase _CurWeapon;
@@ -41,60 +42,87 @@ public class Player : MonoBehaviour
     {
         _CanJump = true;
         _AnimatorHash = _Animator.GetParameter(0).nameHash;
-        State = StateBase.eState.Idle;
+        State = CharacterBase.eState.Idle;
         InitWeapons();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+		if(NextAnimation != "")
+		{
+			_Animator.Play(NextAnimation);
+			NextAnimation = "";
+		}
+        if (State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
         {
-            MoveOrder(Vector2.left, () => Input.GetKeyUp(KeyCode.A));
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            MoveOrder(Vector2.right,() => Input.GetKeyUp(KeyCode.D));
-        }
+			if (Input.GetKey(KeyCode.A))
+			{
+				if (_MoveRoutine == null)
+				{
+					State = CharacterBase.eState.Move;
+					MoveOrder(Vector2.left, () => Input.GetKeyUp(KeyCode.A));
+				}
+			}
+			else if (Input.GetKey(KeyCode.D))
+			{
+				if (_MoveRoutine == null)
+				{
+					State = CharacterBase.eState.Move;
+					MoveOrder(Vector2.right, () => Input.GetKeyUp(KeyCode.D));
+				}
+			}
 
-        if (State == StateBase.eState.Idle || State == StateBase.eState.Move)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && _CanJump)
+			if (Input.GetKeyDown(KeyCode.Space) && _CanJump)
             {
                 _Rigidbody.AddForce(Vector2.up * _JumpForce, ForceMode2D.Impulse);
                 _CanJump = false;
             }
             SetNatualAnimation();
-
-            WeaponBase.eCommands Direction = WeaponBase.eCommands.None;
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                State = StateBase.eState.Move;
-                if (transform.localEulerAngles.y == 0)
-                    Direction = WeaponBase.eCommands.Front;
-                else
-                    Direction = WeaponBase.eCommands.Back;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                State = StateBase.eState.Move;
-                if (transform.localEulerAngles.y != 0)
-                    Direction = WeaponBase.eCommands.Front;
-                else
-                    Direction = WeaponBase.eCommands.Back;
-            }
-            else if (Input.GetKey(KeyCode.W))
-            {
-                Direction = WeaponBase.eCommands.Up;
-            }
-
-            if (Input.GetKey(KeyCode.Mouse0))
-                _CurWeapon.Attack(Direction, WeaponBase.eCommands.Left);
-            else if (Input.GetKey(KeyCode.Mouse1))
-                _CurWeapon.Attack(Direction, WeaponBase.eCommands.Right);
-            else if (Input.GetKey(KeyCode.Mouse2))
-                _CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
         }
-    }
+		if((State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move) || _CurWeapon.isCancelable)
+		{
+			if (Input.GetKeyDown(KeyCode.Alpha1))
+				SwapWeapon(0);
+			else if (Input.GetKeyDown(KeyCode.Alpha2))
+				SwapWeapon(1);
+			else if (Input.GetKeyDown(KeyCode.Alpha3))
+				SwapWeapon(2);
+			else if (Input.GetKeyDown(KeyCode.Alpha4))
+				SwapWeapon(3);
+			else if (Input.GetKeyDown(KeyCode.Alpha5))
+				SwapWeapon(4);
+
+			WeaponBase.eCommands Direction = WeaponBase.eCommands.None;
+			if (Input.GetKey(KeyCode.A))
+			{
+				if (Mathf.Sign(transform.localScale.x) == -1)
+					Direction = WeaponBase.eCommands.Front;
+				else
+					Direction = WeaponBase.eCommands.Back;
+			}
+			else if (Input.GetKey(KeyCode.D))
+			{
+				if (Mathf.Sign(transform.localScale.x) == 1)
+					Direction = WeaponBase.eCommands.Front;
+				else
+					Direction = WeaponBase.eCommands.Back;
+			}
+			else if (Input.GetKey(KeyCode.W))
+			{
+				Direction = WeaponBase.eCommands.Up;
+			}
+			else if (Input.GetKey(KeyCode.S))
+			{
+				Direction = WeaponBase.eCommands.Down;
+			}
+
+			if (Input.GetKey(KeyCode.Mouse0))
+				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Left);
+			else if (Input.GetKey(KeyCode.Mouse1))
+				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Right);
+			else if (Input.GetKey(KeyCode.Mouse2))
+				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
+		}
+	}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
@@ -115,9 +143,6 @@ public class Player : MonoBehaviour
     }
     private void SetNatualAnimation()
     {
-        if (State != StateBase.eState.Idle)
-            return;
-
         if (_Rigidbody.velocity.y < 0)
         {
             _Animator.SetInteger(_AnimatorHash, Landing);
@@ -136,26 +161,36 @@ public class Player : MonoBehaviour
     }
     private IEnumerator MoveRoutine(Vector3 direction, Func<bool> moveStop)
     {
-        if(State == StateBase.eState.Idle || State == StateBase.eState.Move)
-            State = StateBase.eState.Move;
+        if(State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
+            State = CharacterBase.eState.Move;
         do
         {
-            if (State == StateBase.eState.Move)
-            {
-                transform.rotation = direction.x < 0 ?
-                  Quaternion.identity : Quaternion.Euler(0, 180, 0);
-                if (_Animator.GetInteger(_AnimatorHash) == Idle)
-                {
-                    _Animator.SetInteger(_AnimatorHash, Move);
-                }
-                _Rigidbody.AddForce(direction * _MoveSpeed * Time.deltaTime * Time.timeScale);
-                {
-                    Vector2 velocity = _Rigidbody.velocity;
+			if (State == CharacterBase.eState.Move)
+			{
+				Vector3 Scale = transform.localScale;
+				Scale.x = Mathf.Sign(direction.x) * Mathf.Abs(Scale.x);
+				transform.localScale = Scale;
+				if (_Animator.GetInteger(_AnimatorHash) == Idle && _Rigidbody.velocity.y == 0)
+				{
+					_Animator.SetInteger(_AnimatorHash, Move);
+				}
+				_Rigidbody.AddForce(direction * _MoveSpeed * Time.deltaTime * Time.timeScale);
+				{
+					Vector2 velocity = _Rigidbody.velocity;
 
-                    _Rigidbody.velocity = new Vector2
-                        (Mathf.Clamp(velocity.x, -_MoveSpeedMax, _MoveSpeedMax), velocity.y);
-                }
-            }
+					_Rigidbody.velocity = new Vector2
+						(Mathf.Clamp(velocity.x, -_MoveSpeedMax, _MoveSpeedMax), velocity.y);
+				}
+			}
+			else
+			{
+				if (_Animator.GetInteger(_AnimatorHash) == Move && _Rigidbody.velocity.y == 0)
+				{
+					_Animator.SetInteger(_AnimatorHash, Idle);
+				}
+				_MoveRoutine = null;
+				yield break;
+			}
             yield return null;
         }
         while (!moveStop.Invoke());
@@ -163,22 +198,26 @@ public class Player : MonoBehaviour
         if (_Animator.GetInteger(_AnimatorHash) == Move) {
             _Animator.SetInteger(_AnimatorHash, Idle);
         }
+        _MoveRoutine = null;
         // ========== Slip Routine ========== //
         float velX = _Rigidbody.velocity.x;
 
         for (float i = 0f; i < _SlipTime; i += Time.deltaTime * Time.timeScale)
         {
             float ratio = _SlipCurve.Evaluate(Mathf.Min(i / _SlipTime, 1f));
-
             Vector2 velocity = _Rigidbody.velocity;
+
             _Rigidbody.velocity = new Vector2(Mathf.Lerp(velX, 0f, ratio), velocity.y);
 
+			if (State != CharacterBase.eState.Move)
+				break;
             yield return null;
         }
         // ========== Slip Routine ========== //
-        _MoveRoutine = null;
-        if(State == StateBase.eState.Move)
-          State = StateBase.eState.Idle;
+		if (State == CharacterBase.eState.Move)
+		{
+			State = CharacterBase.eState.Idle;
+		}
     }
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
     {
@@ -187,16 +226,39 @@ public class Player : MonoBehaviour
     private void InitWeapons()
     {
         _WeaponDatas[(int)WeaponBase.eWeapons.Glove] = new Wep_Glove(this, _Animator);
+        _WeaponDatas[(int)WeaponBase.eWeapons.Sword] = new Wep_Sword(this, _Animator);
+        _WeaponDatas[(int)WeaponBase.eWeapons.Akimbo_Pistol] = new Wep_Akimbo_Pistol(this, _Animator);
 
-        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Glove];
+		_EqiupedWeapons[0] = WeaponBase.eWeapons.Glove;
+		_EqiupedWeapons[1] = WeaponBase.eWeapons.Sword;
+		_EqiupedWeapons[2] = WeaponBase.eWeapons.Akimbo_Pistol;
+		_EqiupedWeapons[3] = WeaponBase.eWeapons.None;
+		_EqiupedWeapons[4] = WeaponBase.eWeapons.None;
+
+        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Sword];
     }
+	private void SwapWeapon(int index)
+	{
+		if (_EqiupedWeapons[index] == WeaponBase.eWeapons.None)
+			return;
+		if (_CurWeapon == _WeaponDatas[(int)_EqiupedWeapons[index]])
+			return;
+		_CurWeapon = _WeaponDatas[(int)_EqiupedWeapons[index]];
+		_CurWeapon.OnSwap();
+		State = CharacterBase.eState.Idle;
+		NextAnimation = "Player_Idle";
+		_Animator.SetInteger(_AnimatorHash, Idle);
+	}
     public void AddForceX(float x)
     {
-        x = transform.localEulerAngles.y == 0 ? -x : x;
-        _Rigidbody.velocity = new Vector2(x, _Rigidbody.velocity.y);
+        _Rigidbody.velocity = new Vector2(x * Mathf.Sign(transform.localScale.x), _Rigidbody.velocity.y);
     }
     public void AddForceY(float y)
     {
         _Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, y);
-    }
+		if (y > 0)
+		{
+			_CanJump = false;
+		}
+	}
 }
