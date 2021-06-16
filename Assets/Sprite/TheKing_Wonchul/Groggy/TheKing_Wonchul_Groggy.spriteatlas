@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TheKing_Wonchul_Groggy
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2e0e8ed86f809d247a5469ecb6a378dc, type: 3}
+    totalSpriteSurfaceArea: 18060800
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: be9fb0c19393b864da74dac68f69f585, type: 3}
+  - {fileID: 21300000, guid: 0fae6eb2f77af554f904af89fec9712a, type: 3}
+  - {fileID: 21300000, guid: 7e5fe7f2d1b64924495c786f13114d59, type: 3}
+  - {fileID: 21300000, guid: bccbba44161719e43a685168fde65b74, type: 3}
+  - {fileID: 21300000, guid: eda20657146045c4dbe44a703a30b6e9, type: 3}
+  - {fileID: 21300000, guid: 8dea1af747cddff498562afafe4057b4, type: 3}
+  - {fileID: 21300000, guid: c2491168f2e5eca4e825daf4ce8d97b1, type: 3}
+  - {fileID: 21300000, guid: bc4c16699286ca14e9add405cd962c1b, type: 3}
+  - {fileID: 21300000, guid: aa7b577ad8e0ad44a9fcf9b074e14f86, type: 3}
+  - {fileID: 21300000, guid: e902d6caaad54d348874e825947a02c0, type: 3}
+  - {fileID: 21300000, guid: e3be479b774444349987379225c69c35, type: 3}
+  - {fileID: 21300000, guid: 183473cbf0fc21547ba4f7ad649fd198, type: 3}
+  - {fileID: 21300000, guid: 3f50b58cde538b94281e9e44be60bc71, type: 3}
+  - {fileID: 21300000, guid: 6dabbc4e91abf2c4d9392e3248948911, type: 3}
+  - {fileID: 21300000, guid: 5503165f6e4d67140a7fb00c1dab82e1, type: 3}
+  - {fileID: 21300000, guid: 813b1fff534c2924ab30a3fd5d7c630c, type: 3}
+  - {fileID: 21300000, guid: f83b3fffec8a8e94581883eef3f7862a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Boss-Groggy-5
+  - Boss-Groggy-4
+  - Boss-Groggy-Start-3
+  - Boss-Groggy-Start-9
+  - Boss-Groggy-Start-8
+  - Boss-Groggy-7
+  - Boss-Groggy-Start-2
+  - Boss-Groggy-Start-7
+  - Boss-Groggy-1
+  - Boss-Groggy-Start-6
+  - Boss-Groggy-Start-5
+  - Boss-Groggy-Start-1
+  - Boss-Groggy-6
+  - Boss-Groggy-Start-4
+  - Boss-Groggy-8
+  - Boss-Groggy-3
+  - Boss-Groggy-2
+  m_RenderDataMap: {}
+  m_Tag: TheKing_Wonchul_Groggy
+  m_IsVariant: 0
