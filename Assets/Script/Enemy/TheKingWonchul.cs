@@ -7,6 +7,7 @@ public class TheKingWonchul : MonoBehaviour
     private const int Idle = 0;
     private const int Appears = 1;
     private const int Slash = 2;
+    private const int Groggy = 3;
 
     private const float FrameTime = 0.083f;
     [SerializeField, Range(0f, 1f)] private float _SlowScale;
@@ -15,10 +16,15 @@ public class TheKingWonchul : MonoBehaviour
     private int _AnimControlKey;
 
     [SerializeField] private float _PatternWait;
-
+    [SerializeField] private float _GroggyTime;
     private void Awake()
     {
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
+    }
+    [ContextMenu("GroggyOrder")]
+    private void GroggyOrder()
+    {
+        _Animator.SetInteger(_AnimControlKey, Groggy);
     }
     private IEnumerator PatternTimer()
     {
@@ -60,6 +66,12 @@ public class TheKingWonchul : MonoBehaviour
     {
         MainCamera.Instance.CameraShake(0.9f, 0.15f);
     }
+
+    private void AE_Groggy_LoopBegin()
+    {
+        MainCamera.Instance.CameraShake(1f, 0.2f);
+        StartCoroutine(Groggy_Looping());
+    }
     private IEnumerator Appears_SlowTime(float scale)
     {
         float time = FrameTime * 3.5f;
@@ -74,5 +86,11 @@ public class TheKingWonchul : MonoBehaviour
             Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, i / time);
             yield return null;
         }
+    }
+    private IEnumerator Groggy_Looping()
+    {
+        for (float i = 0f; i < _GroggyTime; i += Time.deltaTime * Time.timeScale)
+            yield return null;
+        _Animator.SetInteger(_AnimControlKey, Idle);
     }
 }
