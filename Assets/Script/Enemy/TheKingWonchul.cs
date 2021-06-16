@@ -57,7 +57,14 @@ public class TheKingWonchul : MonoBehaviour
     {
         _Animator.SetInteger(_AnimControlKey, Idle);
     }
-
+    private void AE_Slash_Shake1()
+    {
+        MainCamera.Instance.CameraShake(0.4f, 0.2f);
+    }
+    private void AE_Slash_Shake2()
+    {
+        MainCamera.Instance.CameraShake(0.9f, 0.15f);
+    }
     private IEnumerator Appears_SlowTime(float scale)
     {
         float time = FrameTime * 3.5f;
