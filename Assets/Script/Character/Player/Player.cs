@@ -205,10 +205,12 @@ public class Player : MonoBehaviour
         for (float i = 0f; i < _SlipTime; i += Time.deltaTime * Time.timeScale)
         {
             float ratio = _SlipCurve.Evaluate(Mathf.Min(i / _SlipTime, 1f));
-
             Vector2 velocity = _Rigidbody.velocity;
+
             _Rigidbody.velocity = new Vector2(Mathf.Lerp(velX, 0f, ratio), velocity.y);
 
+			if (State != CharacterBase.eState.Move)
+				break;
             yield return null;
         }
         // ========== Slip Routine ========== //
@@ -225,10 +227,11 @@ public class Player : MonoBehaviour
     {
         _WeaponDatas[(int)WeaponBase.eWeapons.Glove] = new Wep_Glove(this, _Animator);
         _WeaponDatas[(int)WeaponBase.eWeapons.Sword] = new Wep_Sword(this, _Animator);
+        _WeaponDatas[(int)WeaponBase.eWeapons.Akimbo_Pistol] = new Wep_Akimbo_Pistol(this, _Animator);
 
 		_EqiupedWeapons[0] = WeaponBase.eWeapons.Glove;
 		_EqiupedWeapons[1] = WeaponBase.eWeapons.Sword;
-		_EqiupedWeapons[2] = WeaponBase.eWeapons.None;
+		_EqiupedWeapons[2] = WeaponBase.eWeapons.Akimbo_Pistol;
 		_EqiupedWeapons[3] = WeaponBase.eWeapons.None;
 		_EqiupedWeapons[4] = WeaponBase.eWeapons.None;
 
@@ -253,5 +256,9 @@ public class Player : MonoBehaviour
     public void AddForceY(float y)
     {
         _Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, y);
-    }
+		if (y > 0)
+		{
+			_CanJump = false;
+		}
+	}
 }

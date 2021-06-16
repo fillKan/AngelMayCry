@@ -10,6 +10,7 @@ public abstract class WeaponBase
         None,
         Glove,
         Sword,
+		Akimbo_Pistol,
         End
     }
 
@@ -29,7 +30,8 @@ public abstract class WeaponBase
     {
         Cancelable,
         UnCancelable,
-        AttackEnd
+        AttackEnd,
+		Akimbo_Pistol_SpinMoveEnd
     }
 
     public enum eWeaponType
