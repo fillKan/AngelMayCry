@@ -6,12 +6,15 @@ public class TheKingWonchul : MonoBehaviour
 {
     private const int Idle = 0;
     private const int Appears = 1;
+    private const int Slash = 2;
 
     private const float FrameTime = 0.083f;
     [SerializeField, Range(0f, 1f)] private float _SlowScale;
 
     [SerializeField] private Animator _Animator;
     private int _AnimControlKey;
+
+    [SerializeField] private float _PatternWait;
 
     private void Awake()
     {
@@ -22,6 +25,19 @@ public class TheKingWonchul : MonoBehaviour
     {
         _Animator.SetInteger(_AnimControlKey, Appears);
     }
+    private IEnumerator PatternTimer()
+    {
+        while (gameObject.activeSelf)
+        {
+            for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
+                yield return null;
+
+            _Animator.SetInteger(_AnimControlKey, Slash);
+
+            while (_Animator.GetInteger(_AnimControlKey) != Idle)
+                yield return null;
+        }
+    }
     private void AE_Appears_SlowTime()
     {
         StartCoroutine(Appears_SlowTime(_SlowScale));
@@ -29,6 +45,11 @@ public class TheKingWonchul : MonoBehaviour
     private void AE_Appears_Strike()
     {
         MainCamera.Instance.CameraShake(0.27f, 0.12f);
+    }
+    private void AE_Appears_End()
+    {
+        StartCoroutine(PatternTimer());
+        _Animator.SetInteger(_AnimControlKey, Idle);
     }
     private IEnumerator Appears_SlowTime(float scale)
     {
