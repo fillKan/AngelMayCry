@@ -130,7 +130,7 @@ public class CharacterBase : MonoBehaviour
 
 		StartCoroutine(HitBlinkingRoutine());
 
-		if (_SuperArmor > 0)
+		if (_SuperArmor > 0 || stunTime == 0)
 			return;
 
 		SetState(eState.Hit);
