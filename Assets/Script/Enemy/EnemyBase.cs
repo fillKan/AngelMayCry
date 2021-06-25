@@ -9,19 +9,18 @@ public class EnemyBase : CharacterBase
 
 	protected bool _IsAlreadyInit = false;
 
-	protected virtual void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
 		if (!_IsAlreadyInit)
 		{
 			_OnIdle = () =>
 			{
-				Debug.Log("Idle");
 				_MovementModule.RoutineEnable = true;
 			};
 
 			_OnHit = () =>
 			{
-				Debug.Log("Hit");
 				_MovementModule.RoutineEnable = false;
 				_MovementModule.MoveStop();
 				_MovementModule.StopAllCoroutines();

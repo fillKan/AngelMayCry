@@ -44,7 +44,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: ca1430d540a199547be8f1f234c98bc7, type: 3}
-    totalSpriteSurfaceArea: 865884
+    totalSpriteSurfaceArea: 898652
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -54,6 +54,7 @@ SpriteAtlas:
   - {fileID: -1367241583256516138, guid: bc3c6260c2da7cb4f9480df9e91e43ad, type: 3}
   - {fileID: -1775421054394109905, guid: bc3c6260c2da7cb4f9480df9e91e43ad, type: 3}
   - {fileID: -6100405274338109274, guid: bc3c6260c2da7cb4f9480df9e91e43ad, type: 3}
+  - {fileID: 21300000, guid: f9a388a0e0236574d8c2bc96699c24bc, type: 3}
   - {fileID: 507402298279335370, guid: 7fedf012db26e1c48a1cf6fb7b4864c2, type: 3}
   - {fileID: -6607526001108866705, guid: 7fedf012db26e1c48a1cf6fb7b4864c2, type: 3}
   - {fileID: 2188269438399778748, guid: 7fedf012db26e1c48a1cf6fb7b4864c2, type: 3}
@@ -147,6 +148,12 @@ SpriteAtlas:
   - {fileID: 3376703043815347387, guid: 99f3c93a71522294fa2b2355dbfd05d6, type: 3}
   - {fileID: -5033690004203985943, guid: 99f3c93a71522294fa2b2355dbfd05d6, type: 3}
   - {fileID: 1800687253437507571, guid: 99f3c93a71522294fa2b2355dbfd05d6, type: 3}
+  - {fileID: 3294251763911881509, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+  - {fileID: 290321359660561948, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+  - {fileID: -1419351108618194176, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+  - {fileID: -8801153835515332456, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+  - {fileID: 716000375551825152, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+  - {fileID: 837357345672442315, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
   - {fileID: -3007571782317897665, guid: 02771aeab7630f940a4cbc2109728c51, type: 3}
   - {fileID: -321112132726242987, guid: 02771aeab7630f940a4cbc2109728c51, type: 3}
   - {fileID: -1910887771316429231, guid: 02771aeab7630f940a4cbc2109728c51, type: 3}
@@ -206,11 +213,13 @@ SpriteAtlas:
   - {fileID: -6116600596914026563, guid: be09aead19d4eb343b965059dd0a3dd8, type: 3}
   - {fileID: -5056731696112902730, guid: be09aead19d4eb343b965059dd0a3dd8, type: 3}
   - {fileID: -8018824286966426947, guid: be09aead19d4eb343b965059dd0a3dd8, type: 3}
+  - {fileID: 21300000, guid: 9f5e288eb917dcd40b03f850b856dc1b, type: 3}
   m_PackedSpriteNamesToIndex:
   - player-landing-loop_0
   - player-landing-loop_1
   - player-landing-loop_2
   - player-landing-loop_3
+  - player_Down
   - Player_Akimbo_Pistol_Spin_15
   - Player_Akimbo_Pistol_Spin_14
   - Player_Akimbo_Pistol_Spin_13
@@ -304,6 +313,12 @@ SpriteAtlas:
   - Player_Sword_Swing2_1
   - Player_Sword_Swing2_2
   - Player_Sword_Swing2_3
+  - player_Wake_4
+  - player_Wake_5
+  - player_Wake_2
+  - player_Wake_3
+  - player_Wake_0
+  - player_Wake_1
   - Player_Sword_Swing3_5
   - Player_Sword_Swing3_4
   - Player_Sword_Swing3_6
@@ -363,6 +378,7 @@ SpriteAtlas:
   - Hand_StrongAttack_6
   - Hand_StrongAttack_5
   - Hand_StrongAttack_4
+  - player_Hit
   m_RenderDataMap: {}
   m_Tag: PlayerAtlas
   m_IsVariant: 0

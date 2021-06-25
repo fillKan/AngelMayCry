@@ -39,12 +39,16 @@ public class CharacterBase : MonoBehaviour
 	private IEnumerator _StunTimeRoutine = null;
 	protected float _CurYVel = 0;
 
+	protected virtual void Awake()
+	{
+		_Rigidbody = GetComponent<Rigidbody2D>();
+		_Animator = GetComponent<Animator>();
+	}
+
 	protected virtual void OnEnable()
 	{
 		_Hp = _MaxHp;
 		_SuperArmor = _MaxSuperArmor;
-		_Rigidbody = GetComponent<Rigidbody2D>();
-		_Animator = GetComponent<Animator>();
 		_KnockBackMultiplier = 1;
 		_DamageMultiplier = 1;
 		_State = eState.Idle;
@@ -104,6 +108,8 @@ public class CharacterBase : MonoBehaviour
 
 	public virtual void DealDamage(float damage, float stunTime, Vector2 knockBack, GameObject from)
 	{
+		if (_State == eState.Down || _State == eState.Dead || _State == eState.Wake)
+			return;
 		_Hp -= damage * _DamageMultiplier;
 		if(_Hp <= 0)
 		{

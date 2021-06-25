@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : CharacterBase
 {
     // Animation Transition //
     private const int Idle    = 0;
@@ -11,54 +11,66 @@ public class Player : MonoBehaviour
     private const int Jump    = 2;
     private const int Landing = 3;
 
-    [Header("Move Property")]
-    [SerializeField] private Rigidbody2D _Rigidbody;
     public Rigidbody2D Rigidbody => _Rigidbody;
 
+    [Header("Move Property")]
     [SerializeField] private float _JumpForce;
     private bool _CanJump;
 
     [SerializeField] private float _MoveSpeed;
     [SerializeField] private float _MoveSpeedMax;
-    private IEnumerator _MoveRoutine;
+    private IEnumerator _MoveRoutine = null;
 
     [Header("Slip Property")] // 이동이 끝난 후 미끄러지는거
     [SerializeField, Range(0f, 3f)] private float _SlipTime;
     [SerializeField] private AnimationCurve _SlipCurve;
 
     [Header("Other Property")]
-    [SerializeField] private Animator _Animator;
 	private int _AnimatorHash;
 	public string NextAnimation { get; set; }
-
-    public CharacterBase.eState State { get; set; }
 
     // 무기
     private WeaponBase _CurWeapon;
     private WeaponBase.eWeapons[] _EqiupedWeapons = new WeaponBase.eWeapons[5];
     private WeaponBase[] _WeaponDatas = new WeaponBase[(int)WeaponBase.eWeapons.End];
 
-    private void Awake()
+	protected override void Awake()
     {
+		base.Awake();
         _CanJump = true;
         _AnimatorHash = _Animator.GetParameter(0).nameHash;
-        State = CharacterBase.eState.Idle;
+		_State = CharacterBase.eState.Idle;
         InitWeapons();
-    }
-    private void Update()
+
+		_OnIdle = () =>
+		{
+			
+		};
+
+		_OnHit = () =>
+		{
+			if (_MoveRoutine != null)
+			{
+				StopCoroutine(_MoveRoutine);
+				_MoveRoutine = null;
+			}
+		};
+	}
+	protected override void Update()
     {
+		base.Update();
 		if(NextAnimation != "")
 		{
 			_Animator.Play(NextAnimation);
 			NextAnimation = "";
 		}
-        if (State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
+        if (_State == CharacterBase.eState.Idle || _State == CharacterBase.eState.Move)
         {
 			if (Input.GetKey(KeyCode.A))
 			{
 				if (_MoveRoutine == null)
 				{
-					State = CharacterBase.eState.Move;
+					_State = CharacterBase.eState.Move;
 					MoveOrder(Vector2.left, () => Input.GetKeyUp(KeyCode.A));
 				}
 			}
@@ -66,7 +78,7 @@ public class Player : MonoBehaviour
 			{
 				if (_MoveRoutine == null)
 				{
-					State = CharacterBase.eState.Move;
+					_State = CharacterBase.eState.Move;
 					MoveOrder(Vector2.right, () => Input.GetKeyUp(KeyCode.D));
 				}
 			}
@@ -78,7 +90,7 @@ public class Player : MonoBehaviour
             }
             SetNatualAnimation();
         }
-		if((State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move) || _CurWeapon.isCancelable)
+		if((_State == CharacterBase.eState.Idle || _State == CharacterBase.eState.Move) || _CurWeapon.isCancelable)
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 				SwapWeapon(0);
@@ -161,11 +173,11 @@ public class Player : MonoBehaviour
     }
     private IEnumerator MoveRoutine(Vector3 direction, Func<bool> moveStop)
     {
-        if(State == CharacterBase.eState.Idle || State == CharacterBase.eState.Move)
-            State = CharacterBase.eState.Move;
+        if(_State == CharacterBase.eState.Idle || _State == CharacterBase.eState.Move)
+			_State = CharacterBase.eState.Move;
         do
         {
-			if (State == CharacterBase.eState.Move)
+			if (_State == CharacterBase.eState.Move)
 			{
 				Vector3 Scale = transform.localScale;
 				Scale.x = Mathf.Sign(direction.x) * Mathf.Abs(Scale.x);
@@ -205,18 +217,16 @@ public class Player : MonoBehaviour
         for (float i = 0f; i < _SlipTime; i += Time.deltaTime * Time.timeScale)
         {
             float ratio = _SlipCurve.Evaluate(Mathf.Min(i / _SlipTime, 1f));
-            Vector2 velocity = _Rigidbody.velocity;
 
+            Vector2 velocity = _Rigidbody.velocity;
             _Rigidbody.velocity = new Vector2(Mathf.Lerp(velX, 0f, ratio), velocity.y);
 
-			if (State != CharacterBase.eState.Move)
-				break;
             yield return null;
         }
         // ========== Slip Routine ========== //
-		if (State == CharacterBase.eState.Move)
+		if (_State == CharacterBase.eState.Move)
 		{
-			State = CharacterBase.eState.Idle;
+			_State = CharacterBase.eState.Idle;
 		}
     }
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
@@ -245,8 +255,8 @@ public class Player : MonoBehaviour
 			return;
 		_CurWeapon = _WeaponDatas[(int)_EqiupedWeapons[index]];
 		_CurWeapon.OnSwap();
-		State = CharacterBase.eState.Idle;
-		NextAnimation = "Player_Idle";
+		_State = CharacterBase.eState.Idle;
+		NextAnimation = "Idle";
 		_Animator.SetInteger(_AnimatorHash, Idle);
 	}
     public void AddForceX(float x)
@@ -256,9 +266,5 @@ public class Player : MonoBehaviour
     public void AddForceY(float y)
     {
         _Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, y);
-		if (y > 0)
-		{
-			_CanJump = false;
-		}
-	}
+    }
 }

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Sword_Parrying_Ready
+  m_Name: Player_Wake
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,34 +20,31 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 4713564839115741377, guid: 49607365ec2fab644a1c77c38b6f22a1,
-        type: 3}
-    - time: 0.033333335
-      value: {fileID: 4385598319702456484, guid: 49607365ec2fab644a1c77c38b6f22a1,
-        type: 3}
-    - time: 0.06666667
-      value: {fileID: -8869479845450030926, guid: 49607365ec2fab644a1c77c38b6f22a1,
+      value: {fileID: 716000375551825152, guid: 641c127adce18a64aaa9bdbb8e4c35e7,
         type: 3}
     - time: 0.1
-      value: {fileID: -4214351743821764106, guid: 49607365ec2fab644a1c77c38b6f22a1,
+      value: {fileID: 837357345672442315, guid: 641c127adce18a64aaa9bdbb8e4c35e7,
+        type: 3}
+    - time: 0.2
+      value: {fileID: -1419351108618194176, guid: 641c127adce18a64aaa9bdbb8e4c35e7,
+        type: 3}
+    - time: 0.36666667
+      value: {fileID: -8801153835515332456, guid: 641c127adce18a64aaa9bdbb8e4c35e7,
         type: 3}
     - time: 0.46666667
-      value: {fileID: -8869479845450030926, guid: 49607365ec2fab644a1c77c38b6f22a1,
+      value: {fileID: 3294251763911881509, guid: 641c127adce18a64aaa9bdbb8e4c35e7,
         type: 3}
-    - time: 0.6
-      value: {fileID: 4385598319702456484, guid: 49607365ec2fab644a1c77c38b6f22a1,
+    - time: 0.55
+      value: {fileID: 290321359660561948, guid: 641c127adce18a64aaa9bdbb8e4c35e7,
         type: 3}
-    - time: 0.73333335
-      value: {fileID: 4713564839115741377, guid: 49607365ec2fab644a1c77c38b6f22a1,
-        type: 3}
-    - time: 0.8333333
-      value: {fileID: 4713564839115741377, guid: 49607365ec2fab644a1c77c38b6f22a1,
+    - time: 0.6166667
+      value: {fileID: 290321359660561948, guid: 641c127adce18a64aaa9bdbb8e4c35e7,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 30
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -62,20 +59,19 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 4713564839115741377, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
-    - {fileID: 4385598319702456484, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
-    - {fileID: -8869479845450030926, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
-    - {fileID: -4214351743821764106, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
-    - {fileID: -8869479845450030926, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
-    - {fileID: 4385598319702456484, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
-    - {fileID: 4713564839115741377, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
-    - {fileID: 4713564839115741377, guid: 49607365ec2fab644a1c77c38b6f22a1, type: 3}
+    - {fileID: 716000375551825152, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+    - {fileID: 837357345672442315, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+    - {fileID: -1419351108618194176, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+    - {fileID: -8801153835515332456, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+    - {fileID: 3294251763911881509, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+    - {fileID: 290321359660561948, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
+    - {fileID: 290321359660561948, guid: 641c127adce18a64aaa9bdbb8e4c35e7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8666667
+    m_StopTime: 0.6333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -95,10 +91,10 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.8666667
-    functionName: HandleAnimationEventsToWeapon
+  - time: 0.6333333
+    functionName: SetState
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
     messageOptions: 0

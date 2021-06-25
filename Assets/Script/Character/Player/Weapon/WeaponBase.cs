@@ -31,7 +31,9 @@ public abstract class WeaponBase
         Cancelable,
         UnCancelable,
         AttackEnd,
-		Akimbo_Pistol_SpinMoveEnd
+		Akimbo_Pistol_SpinMoveEnd,
+		Player_Sword_Parrying_Start,
+		Player_Sword_Parrying_End
     }
 
     public enum eWeaponType
@@ -62,7 +64,7 @@ public abstract class WeaponBase
     public virtual void Attack(eCommands direction, eCommands key)
     {
         _isCancelable = false;
-        _Player.State = CharacterBase.eState.Attack;
+        _Player.SetState(CharacterBase.eState.Attack);
     }
     public virtual void HandleAnimationEvents(eWeaponEvents weaponEvent)
     {
@@ -77,17 +79,17 @@ public abstract class WeaponBase
                 break;
 
             case eWeaponEvents.AttackEnd:
-				_Player.NextAnimation = "Player_Idle";
+				_Player.NextAnimation = "Idle";
                 _isCancelable = false;
 				_Player.StartCoroutine(ComboCounterResetRoutine());
-				_Player.State = CharacterBase.eState.Idle;
+				_Player.SetState(CharacterBase.eState.Idle);
                 break;
         }
     }
 	private IEnumerator ComboCounterResetRoutine()
 	{
 		yield return new WaitForSecondsRealtime(0.1f);
-		if (_Player.State != CharacterBase.eState.Attack)
+		if (_Player.GetState() != CharacterBase.eState.Attack)
 			_ComboCounter = 0;
 	}
 	protected void PlayAnimation(string key, out bool isAttacked)

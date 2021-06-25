@@ -17,7 +17,7 @@ public class Wep_Glove : WeaponBase
 
     public override void Attack(eCommands direction, eCommands key)
     {
-        if (_Player.State != CharacterBase.eState.Idle && _Player.State != CharacterBase.eState.Move && !_isCancelable) // 서있거나 이동중이 아니고 캔슬이 불가능할 때
+        if (_Player.GetState() != CharacterBase.eState.Idle && _Player.GetState() != CharacterBase.eState.Move && !_isCancelable) // 서있거나 이동중이 아니고 캔슬이 불가능할 때
             return;
         if (_Player.GetComponent<Rigidbody2D>().velocity.y != 0) // 공중에 있을 때
             return;
@@ -52,7 +52,7 @@ public class Wep_Glove : WeaponBase
 
         if(isAttacked == false) // 입력한 키에 맞는 공격이 없을 때
         {
-            _Player.State = CharacterBase.eState.Idle;
+            _Player.SetState(CharacterBase.eState.Idle);
         }
     }
     public override void HandleAnimationEvents(eWeaponEvents weaponEvent)
