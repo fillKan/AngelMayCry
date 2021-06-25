@@ -55,6 +55,17 @@ public class Player : CharacterBase
 				_MoveRoutine = null;
 			}
 		};
+
+		_OnAttackCountered = (float damage, float stunTime, Vector2 knockback, GameObject from) =>
+		{
+			switch(_CounterAttackState)
+			{
+				case eCounterAttackState.Player_Sword_Parrying:
+					NextAnimation = "Player_Sword_Parrying_Counter";
+					_CounterAttackState = eCounterAttackState.None;
+					break;
+			}
+		};
 	}
 	protected override void Update()
     {

@@ -16,6 +16,12 @@ public class CharacterBase : MonoBehaviour
 		End
 	}
 
+	public enum eCounterAttackState
+	{
+		None,
+		Player_Sword_Parrying
+	}
+
 	[SerializeField] protected float _MaxHp = 100;
 	protected float _Hp;
 
@@ -30,11 +36,13 @@ public class CharacterBase : MonoBehaviour
 	protected Rigidbody2D _Rigidbody;
 	protected Animator _Animator;
 	protected eState _State = eState.Idle;
+	protected eCounterAttackState _CounterAttackState = eCounterAttackState.None;
 	protected bool _isInAir = true;
 
 	protected delegate void OnStateEnter();
 	protected OnStateEnter _OnIdle;
 	protected OnStateEnter _OnHit;
+	protected System.Action<float, float, Vector2, GameObject> _OnAttackCountered;
 
 	private IEnumerator _StunTimeRoutine = null;
 	protected float _CurYVel = 0;
@@ -110,6 +118,11 @@ public class CharacterBase : MonoBehaviour
 	{
 		if (_State == eState.Down || _State == eState.Dead || _State == eState.Wake)
 			return;
+		if (_CounterAttackState != eCounterAttackState.None)
+		{
+			_OnAttackCountered(damage, stunTime, knockBack, from);
+			return;
+		}
 		_Hp -= damage * _DamageMultiplier;
 		if(_Hp <= 0)
 		{
@@ -187,6 +200,7 @@ public class CharacterBase : MonoBehaviour
 
 	public void SetState(eState state)
 	{
+		_CounterAttackState = eCounterAttackState.None;
 		_State = state;
 		switch(_State)
 		{
@@ -212,6 +226,11 @@ public class CharacterBase : MonoBehaviour
 				_Animator.speed = 1;
 				break;
 		}
+	}
+
+	public void SetCounterAttackState(eCounterAttackState state)
+	{
+		_CounterAttackState = state;
 	}
 
 	public eState GetState()
