@@ -13,6 +13,7 @@ public class TheKingWonchul : MonoBehaviour
 
     private const float Shouting_Short = 1.267f;
     private const float Shouting_Long = 1.967f;
+    private const float Shouting_Effect = 1.3f;
 
     private const float FrameTime = 0.083f;
     [SerializeField, Range(0f, 1f)] private float _SlowScale;
@@ -25,6 +26,7 @@ public class TheKingWonchul : MonoBehaviour
 
     [Space()]
     [SerializeField] private ParticleSystem _ShoutingEffect;
+    [SerializeField] private CircleCollider2D _ShoutingHitBox;
 
     private void Awake()
     {
@@ -103,7 +105,7 @@ public class TheKingWonchul : MonoBehaviour
     private void AE_Shouting_End()
     {
         MainCamera.Instance.CameraShake(0.8f, 0.15f);
-        _ShoutingEffect.Play();
+        StartCoroutine(Shouting_PlayEffect());
     }
 
     private IEnumerator Appears_SlowTime(float scale)
@@ -132,5 +134,17 @@ public class TheKingWonchul : MonoBehaviour
         for (float i = 0f; i < time; i += Time.deltaTime * Time.timeScale)
             yield return null;
         _Animator.SetInteger(_AnimControlKey, Idle);
+    }
+    private IEnumerator Shouting_PlayEffect()
+    {
+        _ShoutingHitBox.gameObject.SetActive(true);
+        _ShoutingEffect.Play();
+
+        for (float i = 0f; i < Shouting_Effect; i += Time.deltaTime * Time.timeScale)
+        {
+            _ShoutingHitBox.radius = Mathf.Lerp(0.5f, 10f, Mathf.Min(i / Shouting_Effect, 1f));
+            yield return null;
+        }
+        _ShoutingHitBox.gameObject.SetActive(false);
     }
 }
