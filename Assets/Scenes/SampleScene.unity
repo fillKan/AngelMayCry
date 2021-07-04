@@ -264,11 +264,14 @@ GameObject:
   - component: {fileID: 128450094}
   - component: {fileID: 128450093}
   - component: {fileID: 128450095}
+  - component: {fileID: 128450101}
+  - component: {fileID: 128450102}
   - component: {fileID: 128450096}
   - component: {fileID: 128450097}
   - component: {fileID: 128450098}
   - component: {fileID: 128450099}
-  m_Layer: 0
+  - component: {fileID: 128450100}
+  m_Layer: 10
   m_Name: TheKing_Wonchul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128450092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.42, y: 0, z: 0}
+  m_LocalPosition: {x: 17, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1780092660}
@@ -375,6 +378,7 @@ MonoBehaviour:
   _SlowScale: 0.1
   _Animator: {fileID: 128450095}
   _PatternWait: 3
+  _Appears: {fileID: 128450100}
   _Groggy: {fileID: 128450099}
   _ShoutingShort: {fileID: 128450097}
   _ShoutingLong: {fileID: 128450098}
@@ -425,6 +429,113 @@ MonoBehaviour:
   _DefaultAnimationCode: 0
   _Animator: {fileID: 128450095}
   GroggyTime: 5
+--- !u!114 &128450100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128450092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1889818d03e83498389503484f73f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DefaultAnimationCode: 0
+  _Animator: {fileID: 128450095}
+  _Owner: {fileID: 128450096}
+  _Rigidbody: {fileID: 128450101}
+  _DashForce: 1250
+  _Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.021867597
+      outSlope: 0.021867597
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.4170279
+      value: 0.7603536
+      inSlope: -0.24710928
+      outSlope: -0.24710928
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.43006888
+    - serializedVersion: 3
+      time: 0.73928267
+      value: 0.76050776
+      inSlope: 0.3590355
+      outSlope: 0.3590355
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.415891
+      outWeight: 0.38638204
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.056103494
+      outSlope: -0.056103494
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.40112817
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _CurveTime: 0.9
+--- !u!50 &128450101
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128450092}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1.2
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &128450102
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128450092}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.15, y: -1.9237511}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 13.28, y: 8}
+    newSize: {x: 13.28, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0.07509804}
+  m_EdgeRadius: 0
 --- !u!1 &172498630
 GameObject:
   m_ObjectHideFlags: 0
@@ -6060,7 +6171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137496763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1977054983}

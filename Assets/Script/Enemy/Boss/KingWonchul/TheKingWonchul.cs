@@ -25,6 +25,7 @@ public class TheKingWonchul : MonoBehaviour
     [SerializeField] private float _PatternWait;
 
     [Space()]
+    [SerializeField] private BossPattern _Appears;
     [SerializeField] private BossPattern _Groggy;
     [SerializeField] private BossPattern _ShoutingShort;
     [SerializeField] private BossPattern _ShoutingLong;
@@ -33,9 +34,17 @@ public class TheKingWonchul : MonoBehaviour
     {
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
 
+        _Appears.Init();
         _Groggy.Init();
         _ShoutingShort.Init();
         _ShoutingLong.Init();
+
+        _Appears.Action();
+    }
+    public void Awaken()
+    {
+        _ShoutingLong.Action();
+        StartCoroutine(PatternTimer());
     }
     [ContextMenu("GroggyOrder")]
     private void GroggyOrder()
@@ -45,6 +54,9 @@ public class TheKingWonchul : MonoBehaviour
 
     private IEnumerator PatternTimer()
     {
+        while (_Animator.GetInteger(_AnimControlKey) != Idle)
+            yield return null;
+
         while (gameObject.activeSelf)
         {
             for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
@@ -69,20 +81,6 @@ public class TheKingWonchul : MonoBehaviour
         _Animator.SetInteger(_AnimControlKey, Idle);
     }
 
-    private void AE_Appears_SlowTime()
-    {
-        StartCoroutine(Appears_SlowTime(_SlowScale));
-    }
-    private void AE_Appears_Strike()
-    {
-        MainCamera.Instance.CameraShake(0.27f, 0.12f);
-    }
-    private void AE_Appears_End()
-    {
-        StartCoroutine(PatternTimer());
-        _Animator.SetInteger(_AnimControlKey, Idle);
-    }
-
     private void AE_Slash_End()
     {
         _Animator.SetInteger(_AnimControlKey, Idle);
@@ -94,20 +92,5 @@ public class TheKingWonchul : MonoBehaviour
     private void AE_Slash_Shake2()
     {
         MainCamera.Instance.CameraShake(0.9f, 0.15f);
-    }
-    private IEnumerator Appears_SlowTime(float scale)
-    {
-        float time = FrameTime * 3.5f;
-        for (float i = 0f; i < time; i += Time.deltaTime * Time.timeScale)
-        {
-            Time.timeScale = Mathf.Lerp(1f, scale, i / time);
-            yield return null;
-        }
-        time = FrameTime * 2;
-        for (float i = 0f; i < 0.15f; i += Time.deltaTime * Time.timeScale)
-        {
-            Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, i / time);
-            yield return null;
-        }
     }
 }
