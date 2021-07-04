@@ -6,11 +6,13 @@ public class TheKingWonchul : MonoBehaviour
 {
     private const int Idle = 0;
     private const int Appears = 1;
-    private const int Slash = 2;
+    private const int SlashSlash = 2;
     private const int Groggy = 3;
     private const int Shouting = 4;
     private const int Shouting_Long = 5;
     private const int Ghost = 6;
+    private const int Slash_Inner = 7;
+    private const int Slash_Outter = 8;
 
     private const float Shouting_Duration = 3.3f;
 
@@ -60,7 +62,7 @@ public class TheKingWonchul : MonoBehaviour
                     ShortShouting();
                     break;
                 case 1:
-                    LongShouting();
+                    _Animator.SetInteger(_AnimControlKey, SlashSlash);
                     break;
             }
             while (_Animator.GetInteger(_AnimControlKey) != Idle)

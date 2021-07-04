@@ -6157,7 +6157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1330829047
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6435,7 +6435,7 @@ MonoBehaviour:
   _Event: 0
   _CameraShakeForce: 0.1
   _CameraShakeTime: -1
-  _HitStop: 0.1
+  _HitStop: 0
   _HitParticle: {fileID: 0}
   _HitSound: PlaceHolder
 --- !u!58 &1465897454
