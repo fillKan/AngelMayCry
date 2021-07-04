@@ -12,7 +12,7 @@ public class TheKingWonchul : MonoBehaviour
     private const int Shouting_Long = 5;
     private const int Ghost = 6;
 
-    private const float Shouting_Duration = 3.4f;
+    private const float Shouting_Duration = 3.3f;
 
     private const float FrameTime = 0.083f;
     [SerializeField, Range(0f, 1f)] private float _SlowScale;
@@ -161,9 +161,9 @@ public class TheKingWonchul : MonoBehaviour
         _ShoutingHitBox.gameObject.SetActive(true);
         _ShoutingEffect_Long.Play();
 
-        float duration = _ShoutingEffect_Long.main.duration;
+        float duration = _ShoutingEffect_Long.main.duration + 0.3f;
 
-        MainCamera.Instance.CameraShake(duration, duration * 0.1f);
+        MainCamera.Instance.CameraShake(duration, (duration - 0.3f) * 0.1f, ShakeStyle.Cliff);
         for (float i = 0f; i < duration; i += Time.deltaTime * Time.timeScale)
         {
             _ShoutingHitBox.radius = Mathf.Lerp(0.5f, 10f, Mathf.Min(i / duration, 1f));
