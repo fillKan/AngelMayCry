@@ -27,24 +27,19 @@ public class TheKingWonchul : MonoBehaviour
 
     [Space()]
     [SerializeField] private BossPattern _ShoutingShort;
-    [SerializeField] private ParticleSystem _ShoutingEffect_Long;
-    [SerializeField] private CircleCollider2D _ShoutingHitBox;
+    [SerializeField] private BossPattern _ShoutingLong;
 
     private void Awake()
     {
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
 
         _ShoutingShort.Init();
+        _ShoutingLong.Init();
     }
     [ContextMenu("GroggyOrder")]
     private void GroggyOrder()
     {
         _Animator.SetInteger(_AnimControlKey, Groggy);
-    }
-    private void LongShouting()
-    {
-        _Animator.SetInteger(_AnimControlKey, Shouting_Long);
-        StartCoroutine(Shouting_Holding(Shouting_Duration));
     }
 
     private IEnumerator PatternTimer()
@@ -60,7 +55,7 @@ public class TheKingWonchul : MonoBehaviour
                     _ShoutingShort.Action();
                     break;
                 case 1:
-                    _Animator.SetInteger(_AnimControlKey, SlashSlash);
+                    _ShoutingLong.Action();
                     break;
             }
             while (_Animator.GetInteger(_AnimControlKey) != Idle)
@@ -105,11 +100,6 @@ public class TheKingWonchul : MonoBehaviour
         MainCamera.Instance.CameraShake(1f, 0.2f);
         StartCoroutine(Groggy_Looping());
     }
-
-    private void AE_Shouting_Long_End()
-    {
-        StartCoroutine(Shouting_Long_PlayEffect());
-    }
     private IEnumerator Appears_SlowTime(float scale)
     {
         float time = FrameTime * 3.5f;
@@ -136,20 +126,5 @@ public class TheKingWonchul : MonoBehaviour
         for (float i = 0f; i < time; i += Time.deltaTime * Time.timeScale)
             yield return null;
         _Animator.SetInteger(_AnimControlKey, Idle);
-    }
-    private IEnumerator Shouting_Long_PlayEffect()
-    {
-        _ShoutingHitBox.gameObject.SetActive(true);
-        _ShoutingEffect_Long.Play();
-
-        float duration = _ShoutingEffect_Long.main.duration + 0.3f;
-
-        MainCamera.Instance.CameraShake(duration, (duration - 0.3f) * 0.1f, ShakeStyle.Cliff);
-        for (float i = 0f; i < duration; i += Time.deltaTime * Time.timeScale)
-        {
-            _ShoutingHitBox.radius = Mathf.Lerp(0.5f, 10f, Mathf.Min(i / duration, 1f));
-            yield return null;
-        }
-        _ShoutingHitBox.gameObject.SetActive(false);
     }
 }
