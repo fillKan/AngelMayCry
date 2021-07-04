@@ -19,6 +19,10 @@ public class TheKingWonchul : MonoBehaviour
 
     [SerializeField] private float _PatternWait;
     [SerializeField] private float _GroggyTime;
+
+    [Space()]
+    [SerializeField] private ParticleSystem _ShoutingEffect;
+
     private void Awake()
     {
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
@@ -79,6 +83,13 @@ public class TheKingWonchul : MonoBehaviour
         MainCamera.Instance.CameraShake(1f, 0.2f);
         StartCoroutine(Groggy_Looping());
     }
+
+    private void AE_Shouting_End()
+    {
+        MainCamera.Instance.CameraShake(0.8f, 0.15f);
+        _ShoutingEffect.Play();
+    }
+
     private IEnumerator Appears_SlowTime(float scale)
     {
         float time = FrameTime * 3.5f;
