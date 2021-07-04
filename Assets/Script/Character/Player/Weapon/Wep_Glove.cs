@@ -38,9 +38,9 @@ public class Wep_Glove : WeaponBase
                 break;
 
             case eCommands.Front:
-                if(key == eCommands.Left)
+                if(key == eCommands.Right)
 					PlayAnimation("Player_Glove_Smash", out isAttacked);
-                else if(key == eCommands.Right)
+                else if(key == eCommands.Left)
 					PlayAnimation("Player_Glove_Special", out isAttacked);
                 break;
 

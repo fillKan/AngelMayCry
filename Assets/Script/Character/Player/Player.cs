@@ -29,6 +29,7 @@ public class Player : CharacterBase
 	[SerializeField] private Particle_WeaponSwap _WeaponSwapParticle;
 	private int _AnimatorHash;
 	public string NextAnimation { get; set; }
+	[SerializeField]private GameObject _HurtBox;
 
     // ¹«±â
     private WeaponBase _CurWeapon;
@@ -55,6 +56,7 @@ public class Player : CharacterBase
 				StopCoroutine(_MoveRoutine);
 				_MoveRoutine = null;
 			}
+			StartCoroutine(OnHitInvincibleRoutine());
 		};
 
 		_OnAttackCountered = (float damage, float stunTime, Vector2 knockback, GameObject from) =>
@@ -241,6 +243,19 @@ public class Player : CharacterBase
 			_State = CharacterBase.eState.Idle;
 		}
     }
+	private IEnumerator OnHitInvincibleRoutine()
+	{
+		_HurtBox.SetActive(false);
+
+		Color colorTemp = Color.white;
+		colorTemp.a = 0.5f;
+
+		GetComponent<SpriteRenderer>().color = colorTemp;
+		yield return new WaitForSeconds(0.5f);
+		GetComponent<SpriteRenderer>().color = Color.white;
+	
+		_HurtBox.SetActive(true);
+	}
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
     {
         _CurWeapon.HandleAnimationEvents(weaponEvent);
@@ -267,10 +282,15 @@ public class Player : CharacterBase
 			return;
 		_CurWeapon = _WeaponDatas[(int)_EqiupedWeapons[index]];
 		_CurWeapon.OnSwap();
+
+		_WeaponSwapParticle.Play(_EqiupedWeapons[index]);
+		if (_State == eState.Attack)
+		{
+			//TimeManager.Instance.HitStop(1, 0.05f);
+		}
 		_State = CharacterBase.eState.Idle;
 		NextAnimation = "Idle";
 		_Animator.SetInteger(_AnimatorHash, Idle);
-		_WeaponSwapParticle.Play(_EqiupedWeapons[index]);
 	}
     public void AddForceX(float x)
     {

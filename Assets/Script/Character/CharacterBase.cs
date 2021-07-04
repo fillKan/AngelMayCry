@@ -186,7 +186,7 @@ public class CharacterBase : MonoBehaviour
 		_StunTimeRoutine = null;
 	}
 
-	private IEnumerator HitBlinkingRoutine(float time = 0.075f)
+	private IEnumerator HitBlinkingRoutine(float time = 0.01f)
 	{
 		yield return new WaitForSecondsRealtime(time);
 
