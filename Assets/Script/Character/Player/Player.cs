@@ -26,6 +26,7 @@ public class Player : CharacterBase
     [SerializeField] private AnimationCurve _SlipCurve;
 
     [Header("Other Property")]
+	[SerializeField] private Particle_WeaponSwap _WeaponSwapParticle;
 	private int _AnimatorHash;
 	public string NextAnimation { get; set; }
 
@@ -269,6 +270,7 @@ public class Player : CharacterBase
 		_State = CharacterBase.eState.Idle;
 		NextAnimation = "Idle";
 		_Animator.SetInteger(_AnimatorHash, Idle);
+		_WeaponSwapParticle.Play(_EqiupedWeapons[index]);
 	}
     public void AddForceX(float x)
     {
