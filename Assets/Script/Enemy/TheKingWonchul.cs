@@ -35,12 +35,17 @@ public class TheKingWonchul : MonoBehaviour
     {
         _Animator.SetInteger(_AnimControlKey, Groggy);
     }
-    [ContextMenu("ShoutingOrder")]
-    private void ShoutingOrder()
+    private void ShortShouting()
     {
         _Animator.SetInteger(_AnimControlKey, Shouting);
         StartCoroutine(Shouting_Duration(Shouting_Short));
     }
+    private void LongShouting()
+    {
+        _Animator.SetInteger(_AnimControlKey, Shouting);
+        StartCoroutine(Shouting_Duration(Shouting_Long));
+    }
+
     private IEnumerator PatternTimer()
     {
         while (gameObject.activeSelf)
@@ -51,7 +56,7 @@ public class TheKingWonchul : MonoBehaviour
             switch (Random.Range(0,2))
             {
                 case 0:
-                    ShoutingOrder();
+                    ShortShouting();
                     break;
                 case 1:
                     _Animator.SetInteger(_AnimControlKey, Slash);
