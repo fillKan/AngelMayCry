@@ -12,8 +12,7 @@ public class TheKingWonchul : MonoBehaviour
     private const int Shouting_Long = 5;
     private const int Ghost = 6;
 
-    private const float Shouting_Duration = 0.967f;
-    private const float Shouting_Effect = 1.3f;
+    private const float Shouting_Duration = 3.4f;
 
     private const float FrameTime = 0.083f;
     [SerializeField, Range(0f, 1f)] private float _SlowScale;
@@ -25,7 +24,8 @@ public class TheKingWonchul : MonoBehaviour
     [SerializeField] private float _GroggyTime;
 
     [Space()]
-    [SerializeField] private ParticleSystem _ShoutingEffect;
+    [SerializeField] private ParticleSystem _ShoutingEffect_Short;
+    [SerializeField] private ParticleSystem _ShoutingEffect_Long;
     [SerializeField] private CircleCollider2D _ShoutingHitBox;
 
     private void Awake()
@@ -60,7 +60,7 @@ public class TheKingWonchul : MonoBehaviour
                     ShortShouting();
                     break;
                 case 1:
-                    _Animator.SetInteger(_AnimControlKey, Slash);
+                    LongShouting();
                     break;
             }
             while (_Animator.GetInteger(_AnimControlKey) != Idle)
@@ -111,7 +111,10 @@ public class TheKingWonchul : MonoBehaviour
         MainCamera.Instance.CameraShake(0.8f, 0.15f);
         StartCoroutine(Shouting_PlayEffect());
     }
-
+    private void AE_Shouting_Long_End()
+    {
+        StartCoroutine(Shouting_Long_PlayEffect());
+    }
     private IEnumerator Appears_SlowTime(float scale)
     {
         float time = FrameTime * 3.5f;
@@ -142,11 +145,28 @@ public class TheKingWonchul : MonoBehaviour
     private IEnumerator Shouting_PlayEffect()
     {
         _ShoutingHitBox.gameObject.SetActive(true);
-        _ShoutingEffect.Play();
+        _ShoutingEffect_Short.Play();
 
-        for (float i = 0f; i < Shouting_Effect; i += Time.deltaTime * Time.timeScale)
+        float duration = _ShoutingEffect_Short.main.duration;
+
+        for (float i = 0f; i < duration; i += Time.deltaTime * Time.timeScale)
         {
-            _ShoutingHitBox.radius = Mathf.Lerp(0.5f, 10f, Mathf.Min(i / Shouting_Effect, 1f));
+            _ShoutingHitBox.radius = Mathf.Lerp(0.5f, 10f, Mathf.Min(i / duration, 1f));
+            yield return null;
+        }
+        _ShoutingHitBox.gameObject.SetActive(false);
+    }
+    private IEnumerator Shouting_Long_PlayEffect()
+    {
+        _ShoutingHitBox.gameObject.SetActive(true);
+        _ShoutingEffect_Long.Play();
+
+        float duration = _ShoutingEffect_Long.main.duration;
+
+        MainCamera.Instance.CameraShake(duration, duration * 0.1f);
+        for (float i = 0f; i < duration; i += Time.deltaTime * Time.timeScale)
+        {
+            _ShoutingHitBox.radius = Mathf.Lerp(0.5f, 10f, Mathf.Min(i / duration, 1f));
             yield return null;
         }
         _ShoutingHitBox.gameObject.SetActive(false);
