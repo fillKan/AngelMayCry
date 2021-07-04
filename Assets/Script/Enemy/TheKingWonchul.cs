@@ -9,10 +9,10 @@ public class TheKingWonchul : MonoBehaviour
     private const int Slash = 2;
     private const int Groggy = 3;
     private const int Shouting = 4;
-    private const int Ghost = 5;
+    private const int Shouting_Long = 5;
+    private const int Ghost = 6;
 
-    private const float Shouting_Short = 1.267f;
-    private const float Shouting_Long = 1.967f;
+    private const float Shouting_Duration = 0.967f;
     private const float Shouting_Effect = 1.3f;
 
     private const float FrameTime = 0.083f;
@@ -40,12 +40,11 @@ public class TheKingWonchul : MonoBehaviour
     private void ShortShouting()
     {
         _Animator.SetInteger(_AnimControlKey, Shouting);
-        StartCoroutine(Shouting_Duration(Shouting_Short));
     }
     private void LongShouting()
     {
-        _Animator.SetInteger(_AnimControlKey, Shouting);
-        StartCoroutine(Shouting_Duration(Shouting_Long));
+        _Animator.SetInteger(_AnimControlKey, Shouting_Long);
+        StartCoroutine(Shouting_Holding(Shouting_Duration));
     }
 
     private IEnumerator PatternTimer()
@@ -67,6 +66,11 @@ public class TheKingWonchul : MonoBehaviour
             while (_Animator.GetInteger(_AnimControlKey) != Idle)
                 yield return null;
         }
+    }
+
+    private void AE_SetIdleState()
+    {
+        _Animator.SetInteger(_AnimControlKey, Idle);
     }
 
     private void AE_Appears_SlowTime()
@@ -129,7 +133,7 @@ public class TheKingWonchul : MonoBehaviour
             yield return null;
         _Animator.SetInteger(_AnimControlKey, Idle);
     }
-    private IEnumerator Shouting_Duration(float time)
+    private IEnumerator Shouting_Holding(float time)
     {
         for (float i = 0f; i < time; i += Time.deltaTime * Time.timeScale)
             yield return null;
