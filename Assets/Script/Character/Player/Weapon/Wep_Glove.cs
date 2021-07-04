@@ -45,7 +45,7 @@ public class Wep_Glove : WeaponBase
                 break;
 
             case eCommands.Up:
-                if (key == eCommands.Left)
+                if (key == eCommands.Right)
 					PlayAnimation("Player_Glove_Airborne", out isAttacked);
                 break;
         }

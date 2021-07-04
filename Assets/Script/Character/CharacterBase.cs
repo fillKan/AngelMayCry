@@ -40,8 +40,9 @@ public class CharacterBase : MonoBehaviour
 	protected bool _isInAir = true;
 
 	protected delegate void OnStateEnter();
-	protected OnStateEnter _OnIdle;
-	protected OnStateEnter _OnHit;
+	protected OnStateEnter _OnIdle = null;
+	protected OnStateEnter _OnHit = null;
+	protected OnStateEnter _OnDeath = null;
 	protected System.Action<float, float, Vector2, GameObject> _OnAttackCountered;
 
 	private IEnumerator _StunTimeRoutine = null;
@@ -94,9 +95,9 @@ public class CharacterBase : MonoBehaviour
 							if (_CurYVel > -10)
 							{
 								_isInAir = false;
-								if (_State == eState.Hit)
+								if (_State == eState.Hit || _State == eState.Dead)
 									SetState(eState.Down);
-								else
+								else if (_State == eState.Idle)
 									SetState(eState.Idle);
 							}
 							else
@@ -124,9 +125,13 @@ public class CharacterBase : MonoBehaviour
 			return;
 		}
 		_Hp -= damage * _DamageMultiplier;
+		AddForce(knockBack);
+		GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
+		StartCoroutine(HitBlinkingRoutine());
 		if(_Hp <= 0)
 		{
 			Death();
+			return;
 		}
 		_SuperArmor -= damage;
 		if(_SuperArmor <= 0 && _MaxSuperArmor != 0)
@@ -134,20 +139,6 @@ public class CharacterBase : MonoBehaviour
 			OnSuperArmorBreak();
 			return;
 		}
-
-		knockBack.x *= _KnockBackMultiplier;
-		if (_KnockBackMultiplier <= 0.5)
-			knockBack.y = 0;
-		if (knockBack.y != 0)
-		{
-			_CurYVel = knockBack.y * Time.unscaledDeltaTime;
-			_isInAir = true;
-		}
-		_Rigidbody.AddForce(knockBack);
-		
-		GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
-
-		StartCoroutine(HitBlinkingRoutine());
 
 		if (_SuperArmor > 0 || stunTime == 0)
 			return;
@@ -163,7 +154,29 @@ public class CharacterBase : MonoBehaviour
 
 	public virtual void Death()
 	{
+		_OnDeath?.Invoke();
+		if (!_isInAir)
+		{
+			AddForce(new Vector2(200 * (Mathf.Sign(transform.localScale.x) == 1 ? -1 : 1), 200));
+		}
+		SetState(eState.Hit);
+		_State = eState.Dead;
+	}
 
+	private IEnumerator CorpseDisappearRoutine()
+	{
+		yield return new WaitForSeconds(2f);
+
+		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+		Color color = Color.white;
+		while (renderer.color.a > 0)
+		{
+			color.a -= 0.3f * Time.deltaTime;
+			renderer.color = color;
+			yield return null;
+		}
+
+		gameObject.SetActive(false);
 	}
 
 	public virtual void OnSuperArmorBreak()
@@ -178,12 +191,17 @@ public class CharacterBase : MonoBehaviour
 	{
 		yield return new WaitForSeconds(time);
 		yield return new WaitUntil(() => { return GetIsInAir() == false; });
-		_SuperArmor = _MaxSuperArmor;
-		if (_State == eState.Hit)
+		if(_SuperArmor <= 0)
+			_SuperArmor = _MaxSuperArmor;
+		if (_State == eState.Hit && !_isInAir)
 			SetState(eState.Idle);
-		else if (_State == eState.Down)
-			SetState(eState.Wake);
 		_StunTimeRoutine = null;
+	}
+
+	private IEnumerator WakeRoutine()
+	{
+		yield return new WaitForSeconds(Random.Range(1f, 1.5f));
+		SetState(eState.Wake);
 	}
 
 	private IEnumerator HitBlinkingRoutine(float time = 0.01f)
@@ -198,11 +216,23 @@ public class CharacterBase : MonoBehaviour
 		return _isInAir;
 	}
 
+	public void AddForce(Vector2 force)
+	{
+		force.x *= _KnockBackMultiplier;
+		if (_KnockBackMultiplier <= 0.5)
+			force.y = 0;
+		if (force.y != 0)
+		{
+			_CurYVel = force.y * Time.unscaledDeltaTime;
+			_isInAir = true;
+		}
+		_Rigidbody.AddForce(force);
+	}
+
 	public void SetState(eState state)
 	{
 		_CounterAttackState = eCounterAttackState.None;
-		_State = state;
-		switch(_State)
+		switch(state)
 		{
 			case eState.Idle:
 				_Animator.Play("Idle");
@@ -212,13 +242,18 @@ public class CharacterBase : MonoBehaviour
 
 			case eState.Hit:
 				_Animator.Play("Hit");
-				_Animator.speed = 0;
 				_OnHit?.Invoke();
 				break;
 
 			case eState.Down:
 				_Animator.Play("Down");
-				_Animator.speed = 0.1f;
+				if (_State == eState.Dead)
+				{
+					StartCoroutine(CorpseDisappearRoutine());
+					state = eState.Dead;
+				}
+				else
+					StartCoroutine(WakeRoutine());
 				break;
 
 			case eState.Wake:
@@ -226,6 +261,7 @@ public class CharacterBase : MonoBehaviour
 				_Animator.speed = 1;
 				break;
 		}
+		_State = state;
 	}
 
 	public void SetCounterAttackState(eCounterAttackState state)
