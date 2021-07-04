@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Camera: {fileID: 1064530355}
-  _ShakeCurve:
+  _ShakeCurve_WaterFall:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -454,26 +454,35 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _ShakeCurve_Liner:
+  _ShakeCurve_Cliff:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.19576074
+      outSlope: -0.19576074
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8033626
+      value: 0.84273314
+      inSlope: -0.19780642
+      outSlope: -0.19780642
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14853837
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      value: 0
+      inSlope: -0.051565804
+      outSlope: -0.051565804
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 1
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
