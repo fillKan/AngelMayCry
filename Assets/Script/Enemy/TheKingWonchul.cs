@@ -8,6 +8,8 @@ public class TheKingWonchul : MonoBehaviour
     private const int Appears = 1;
     private const int Slash = 2;
     private const int Groggy = 3;
+    private const int Shouting = 4;
+    private const int Ghost = 5;
 
     private const float FrameTime = 0.083f;
     [SerializeField, Range(0f, 1f)] private float _SlowScale;
@@ -25,6 +27,11 @@ public class TheKingWonchul : MonoBehaviour
     private void GroggyOrder()
     {
         _Animator.SetInteger(_AnimControlKey, Groggy);
+    }
+    [ContextMenu("ShoutingOrder")]
+    private void ShoutingOrder()
+    {
+        _Animator.SetInteger(_AnimControlKey, Shouting);
     }
     private IEnumerator PatternTimer()
     {
