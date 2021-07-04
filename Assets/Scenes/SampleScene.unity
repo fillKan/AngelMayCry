@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 128450095}
   - component: {fileID: 128450096}
   - component: {fileID: 128450097}
+  - component: {fileID: 128450098}
+  - component: {fileID: 128450099}
   m_Layer: 0
   m_Name: TheKing_Wonchul
   m_TagString: Untagged
@@ -373,10 +375,9 @@ MonoBehaviour:
   _SlowScale: 0.1
   _Animator: {fileID: 128450095}
   _PatternWait: 3
-  _GroggyTime: 5
+  _Groggy: {fileID: 128450099}
   _ShoutingShort: {fileID: 128450097}
-  _ShoutingEffect_Long: {fileID: 666366564}
-  _ShoutingHitBox: {fileID: 1465897454}
+  _ShoutingLong: {fileID: 128450098}
 --- !u!114 &128450097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +394,37 @@ MonoBehaviour:
   _Animator: {fileID: 128450095}
   _ShoutingEffect: {fileID: 1797940449}
   _ShoutingHitCir: {fileID: 1465897454}
+--- !u!114 &128450098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128450092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166e3b9805cdc9d4592772afe1b4413f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DefaultAnimationCode: 0
+  _Animator: {fileID: 128450095}
+  _ShoutingEffect: {fileID: 666366564}
+  _ShoutingHitCir: {fileID: 1465897454}
+--- !u!114 &128450099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128450092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae7401b437c7874684b8d172fbe86cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DefaultAnimationCode: 0
+  _Animator: {fileID: 128450095}
+  GroggyTime: 5
 --- !u!1 &172498630
 GameObject:
   m_ObjectHideFlags: 0
