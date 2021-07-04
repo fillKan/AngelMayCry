@@ -11,6 +11,9 @@ public class TheKingWonchul : MonoBehaviour
     private const int Shouting = 4;
     private const int Ghost = 5;
 
+    private const float Shouting_Short = 1.267f;
+    private const float Shouting_Long = 1.967f;
+
     private const float FrameTime = 0.083f;
     [SerializeField, Range(0f, 1f)] private float _SlowScale;
 
@@ -36,6 +39,7 @@ public class TheKingWonchul : MonoBehaviour
     private void ShoutingOrder()
     {
         _Animator.SetInteger(_AnimControlKey, Shouting);
+        StartCoroutine(Shouting_Duration(Shouting_Short));
     }
     private IEnumerator PatternTimer()
     {
@@ -44,8 +48,15 @@ public class TheKingWonchul : MonoBehaviour
             for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
                 yield return null;
 
-            _Animator.SetInteger(_AnimControlKey, Slash);
-
+            switch (Random.Range(0,2))
+            {
+                case 0:
+                    ShoutingOrder();
+                    break;
+                case 1:
+                    _Animator.SetInteger(_AnimControlKey, Slash);
+                    break;
+            }
             while (_Animator.GetInteger(_AnimControlKey) != Idle)
                 yield return null;
         }
@@ -108,6 +119,12 @@ public class TheKingWonchul : MonoBehaviour
     private IEnumerator Groggy_Looping()
     {
         for (float i = 0f; i < _GroggyTime; i += Time.deltaTime * Time.timeScale)
+            yield return null;
+        _Animator.SetInteger(_AnimControlKey, Idle);
+    }
+    private IEnumerator Shouting_Duration(float time)
+    {
+        for (float i = 0f; i < time; i += Time.deltaTime * Time.timeScale)
             yield return null;
         _Animator.SetInteger(_AnimControlKey, Idle);
     }
