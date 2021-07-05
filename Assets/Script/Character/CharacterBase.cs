@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterBase : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class CharacterBase : MonoBehaviour
 	[Tooltip("0.5보다 작으면 y축 넉백 무시")]
 	[SerializeField] protected float _KnockBackMultiplier = 1;
 	[SerializeField] protected float _DamageMultiplier = 1;
+
+	[Header("UI")]
+	[SerializeField] private Canvas _Canvas = null;
+	[SerializeField] private Image _HpGauge = null;
+	[SerializeField] private Image _SuperArmorGauge = null;
 
 	protected Rigidbody2D _Rigidbody;
 	protected Animator _Animator;
@@ -128,13 +134,24 @@ public class CharacterBase : MonoBehaviour
 		AddForce(knockBack);
 		GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
 		StartCoroutine(HitBlinkingRoutine());
+
+		if(_HpGauge != null)
+		{
+			_HpGauge.fillAmount = _Hp / _MaxHp;
+		}
+
 		if(_Hp <= 0)
 		{
 			Death();
 			return;
 		}
+
 		_SuperArmor -= damage;
-		if(_SuperArmor <= 0 && _MaxSuperArmor != 0)
+		if (_SuperArmorGauge != null)
+		{
+			_SuperArmorGauge.fillAmount = _SuperArmor / _MaxSuperArmor;
+		}
+		if (_SuperArmor <= 0 && _MaxSuperArmor != 0)
 		{
 			OnSuperArmorBreak();
 			return;
@@ -155,6 +172,7 @@ public class CharacterBase : MonoBehaviour
 	public virtual void Death()
 	{
 		_OnDeath?.Invoke();
+		_Canvas.gameObject.SetActive(false);
 		if (!_isInAir)
 		{
 			AddForce(new Vector2(200 * (Mathf.Sign(transform.localScale.x) == 1 ? -1 : 1), 200));

@@ -59,6 +59,11 @@ public class Player : CharacterBase
 			StartCoroutine(OnHitInvincibleRoutine());
 		};
 
+		_OnDeath = () =>
+		{
+			StartCoroutine(OnDeathGameRestartRoutine());
+		};
+
 		_OnAttackCountered = (float damage, float stunTime, Vector2 knockback, GameObject from) =>
 		{
 			switch(_CounterAttackState)
@@ -255,6 +260,14 @@ public class Player : CharacterBase
 		GetComponent<SpriteRenderer>().color = Color.white;
 	
 		_HurtBox.SetActive(true);
+	}
+	private IEnumerator OnDeathGameRestartRoutine()
+	{
+		yield return new WaitForSeconds(2);
+		MainCamera.Instance.Fade(new Color(0, 0, 0, 0), Color.black, 1, () =>
+		{
+			UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+		});
 	}
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
     {
