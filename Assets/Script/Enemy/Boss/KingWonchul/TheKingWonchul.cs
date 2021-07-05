@@ -11,37 +11,35 @@ public class TheKingWonchul : MonoBehaviour
 
     [SerializeField] private float _PatternWait;
 
-    [Space()]
+    [Header("BossPattern_Special")]
     [SerializeField] private BossPattern _Appears;
-    [SerializeField] private BossPattern _SlashSlash;
-    [SerializeField] private BossPattern _Slash;
     [SerializeField] private BossPattern _Groggy;
-    [SerializeField] private BossPattern _ShoutingShort;
     [SerializeField] private BossPattern _ShoutingLong;
+
+    [Header("BossPattern_Normal")]
+    [SerializeField] private BossPattern[] _Patterns;
 
     private void Awake()
     {
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
 
-        _Appears.Init();
-        _Groggy.Init();
-        _ShoutingShort.Init();
-        _ShoutingLong.Init();
-        _SlashSlash.Init();
+        // Special Pattern Init
+        {
+            _Appears.Init();
+            _Groggy.Init();
+            _ShoutingLong.Init();
+        }
+        for (int i = 0; i < _Patterns.Length; i++) 
+        {
+            _Patterns[i].Init();
+        }
         _Appears.Action();
-        _Slash.Init();
     }
     public void Awaken()
     {
         _ShoutingLong.Action();
         StartCoroutine(PatternTimer());
     }
-    [ContextMenu("GroggyOrder")]
-    private void GroggyOrder()
-    {
-        _Groggy.Action();
-    }
-
     private IEnumerator PatternTimer()
     {
         while (_Animator.GetInteger(_AnimControlKey) != Idle)
@@ -52,26 +50,12 @@ public class TheKingWonchul : MonoBehaviour
             for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
                 yield return null;
 
-            switch (Random.Range(0, 4))
-            {
-                case 0:
-                    _ShoutingShort.Action();
-                    break;
-                case 1:
-                    _ShoutingLong.Action();
-                    break;
-                case 2:
-                    _SlashSlash.Action();
-                    break;
-                case 3:
-                    _Slash.Action();
-                    break;
-            }
+            _Patterns[Random.Range(0, _Patterns.Length)].Action();
+
             while (_Animator.GetInteger(_AnimControlKey) != Idle)
                 yield return null;
         }
     }
-
     private void AE_SetIdleState()
     {
         _Animator.SetInteger(_AnimControlKey, Idle);

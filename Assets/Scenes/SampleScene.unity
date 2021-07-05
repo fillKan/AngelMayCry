@@ -380,11 +380,12 @@ MonoBehaviour:
   _Animator: {fileID: 128450095}
   _PatternWait: 3
   _Appears: {fileID: 128450100}
-  _SlashSlash: {fileID: 128450103}
-  _Slash: {fileID: 128450104}
   _Groggy: {fileID: 128450099}
-  _ShoutingShort: {fileID: 128450097}
   _ShoutingLong: {fileID: 128450098}
+  _Patterns:
+  - {fileID: 128450097}
+  - {fileID: 128450103}
+  - {fileID: 128450104}
 --- !u!114 &128450097
 MonoBehaviour:
   m_ObjectHideFlags: 0
