@@ -28,4 +28,9 @@ public abstract class BossPattern : MonoBehaviour
     }
     public virtual void Notify_PlayerEnter() { _HasPlayer =  true; }
     public virtual void Notify_PlayerExit()  { _HasPlayer = false; }
+
+    public void AE_SetDefaultState()
+    {
+        _Animator.SetInteger(_AnimatorHash, _DefaultAnimationCode);
+    }
 }
