@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ptrn_Move : BossPattern
 {
     public override int AnimationCode => 9;
+    public override bool CanAction => !_HasPlayer;
 
     [Header("Move Property")]
     [SerializeField] private Rigidbody2D _Rigidbody;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ptrn_ShoutShort : BossPattern
 {
     public override int AnimationCode => 4;
+    public override bool CanAction => _HasPlayer;
 
     [Header("Shouting Property")]
     [SerializeField] private ParticleSystem _ShoutingEffect;

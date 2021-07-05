@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ptrn_SlashSlash : BossPattern
 {
     public override int AnimationCode => 2;
+    public override bool CanAction => _HasPlayer;
 
     private void AE_SSlash_End()
     {

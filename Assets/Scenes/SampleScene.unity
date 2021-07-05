@@ -386,11 +386,11 @@ MonoBehaviour:
   _Appears: {fileID: 128450100}
   _Groggy: {fileID: 128450099}
   _ShoutingLong: {fileID: 128450098}
-  _Move: {fileID: 128450105}
   _Patterns:
   - {fileID: 128450097}
   - {fileID: 128450103}
   - {fileID: 128450104}
+  - {fileID: 128450105}
 --- !u!114 &128450097
 MonoBehaviour:
   m_ObjectHideFlags: 0

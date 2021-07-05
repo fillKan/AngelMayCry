@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ptrn_Slash : BossPattern
 {
+    public override bool CanAction => _HasPlayer;
+
     public override int AnimationCode => _AnimationCode;
     private int _AnimationCode = 7;
 
