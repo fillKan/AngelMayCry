@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 128450100}
   - component: {fileID: 128450103}
   - component: {fileID: 128450104}
+  - component: {fileID: 128450105}
   m_Layer: 10
   m_Name: TheKing_Wonchul
   m_TagString: Untagged
@@ -382,6 +383,7 @@ MonoBehaviour:
   _Appears: {fileID: 128450100}
   _Groggy: {fileID: 128450099}
   _ShoutingLong: {fileID: 128450098}
+  _Move: {fileID: 128450105}
   _Patterns:
   - {fileID: 128450097}
   - {fileID: 128450103}
@@ -570,6 +572,22 @@ MonoBehaviour:
   _Animator: {fileID: 128450095}
   _Rigidbody: {fileID: 128450101}
   _StepForce: 160
+--- !u!114 &128450105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128450092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9594e4d02132c41b9af9ac2aebedbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DefaultAnimationCode: 0
+  _Animator: {fileID: 128450095}
+  _Rigidbody: {fileID: 128450101}
+  _StepForce: 500
 --- !u!1 &172498630
 GameObject:
   m_ObjectHideFlags: 0
