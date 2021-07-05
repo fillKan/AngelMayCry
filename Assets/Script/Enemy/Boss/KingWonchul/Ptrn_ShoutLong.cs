@@ -12,10 +12,23 @@ public class Ptrn_ShoutLong : BossPattern
     [SerializeField] private ParticleSystem _ShoutingEffect;
     [SerializeField] private CircleCollider2D _ShoutingHitCir;
 
+    [Header("Summon Wonchul")]
+    [SerializeField] private GameObject _Wonchul;
+    [SerializeField] private float _Interval;
+    [SerializeField] private float _SummonRangeWidth;
+
+    private int _ShoutingCount = -1;
+
+    public override void Action()
+    {
+        base.Action();
+        _ShoutingCount++;
+    }
     private void AE_ShoutLong_End()
     {
         StartCoroutine(PlayEffect());
         StartCoroutine(AnimHolding());
+        StartCoroutine(SummonWonchul());
     }
     private IEnumerator PlayEffect()
     {
@@ -31,6 +44,23 @@ public class Ptrn_ShoutLong : BossPattern
             yield return null;
         }
         _ShoutingHitCir.gameObject.SetActive(false);
+    }
+    private IEnumerator SummonWonchul()
+    {
+        Vector2 position = transform.position;
+
+        for (int i = 0; i < _ShoutingCount * 3; i++)
+        {
+            for (float j = 0f; j < _Interval; j += Time.deltaTime * Time.timeScale)
+            {
+                if (_Animator.GetInteger(_AnimatorHash) != AnimationCode)
+                    yield break;
+
+                yield return null;
+            }
+            Vector2 summonPoint = position + new Vector2(Random.Range(-1f, 1f) * _SummonRangeWidth, -1.15f);
+            Instantiate(_Wonchul, summonPoint, Quaternion.identity);
+        }
     }
     private IEnumerator AnimHolding()
     {
