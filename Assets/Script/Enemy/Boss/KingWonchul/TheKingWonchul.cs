@@ -26,6 +26,7 @@ public class TheKingWonchul : MonoBehaviour
 
     [Space()]
     [SerializeField] private BossPattern _Appears;
+    [SerializeField] private BossPattern _SlashSlash;
     [SerializeField] private BossPattern _Groggy;
     [SerializeField] private BossPattern _ShoutingShort;
     [SerializeField] private BossPattern _ShoutingLong;
@@ -38,7 +39,7 @@ public class TheKingWonchul : MonoBehaviour
         _Groggy.Init();
         _ShoutingShort.Init();
         _ShoutingLong.Init();
-
+        _SlashSlash.Init();
         _Appears.Action();
     }
     public void Awaken()
@@ -62,13 +63,16 @@ public class TheKingWonchul : MonoBehaviour
             for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
                 yield return null;
 
-            switch (Random.Range(0,2))
+            switch (Random.Range(0, 3))
             {
                 case 0:
                     _ShoutingShort.Action();
                     break;
                 case 1:
                     _ShoutingLong.Action();
+                    break;
+                case 2:
+                    _SlashSlash.Action();
                     break;
             }
             while (_Animator.GetInteger(_AnimControlKey) != Idle)
@@ -79,18 +83,5 @@ public class TheKingWonchul : MonoBehaviour
     private void AE_SetIdleState()
     {
         _Animator.SetInteger(_AnimControlKey, Idle);
-    }
-
-    private void AE_Slash_End()
-    {
-        _Animator.SetInteger(_AnimControlKey, Idle);
-    }
-    private void AE_Slash_Shake1()
-    {
-        MainCamera.Instance.CameraShake(0.4f, 0.2f);
-    }
-    private void AE_Slash_Shake2()
-    {
-        MainCamera.Instance.CameraShake(0.9f, 0.15f);
     }
 }
