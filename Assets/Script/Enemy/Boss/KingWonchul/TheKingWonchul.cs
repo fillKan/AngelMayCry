@@ -11,6 +11,11 @@ public class TheKingWonchul : MonoBehaviour
 
     [SerializeField] private float _PatternWait;
 
+    [Header("Recognition")]
+    [SerializeField] private Transform _PlayerTransform;
+    [SerializeField] private SecondaryCollider _RangeCollider;
+    private bool _HasPlayer = false;
+
     [Header("BossPattern_Special")]
     [SerializeField] private BossPattern _Appears;
     [SerializeField] private BossPattern _Groggy;
@@ -24,6 +29,21 @@ public class TheKingWonchul : MonoBehaviour
     {
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
 
+        _RangeCollider.OnTriggerAction += (Collider2D other, bool isEnter) =>
+        {
+            if (!other.CompareTag("Player")) return;
+
+            if (_HasPlayer = isEnter)
+            {
+                for (int i = 0; i < _Patterns.Length; i++)
+                    _Patterns[i].Notify_PlayerEnter();
+            }
+            else
+            {
+                for (int i = 0; i < _Patterns.Length; i++)
+                    _Patterns[i].Notify_PlayerExit();
+            }
+        };
         // Special Pattern Init
         {
             _Appears.Init();
@@ -51,9 +71,8 @@ public class TheKingWonchul : MonoBehaviour
         {
             for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
                 yield return null;
-
-            _Move.Action();
-            // _Patterns[Random.Range(0, _Patterns.Length)].Action();
+            
+            _Patterns[Random.Range(0, _Patterns.Length)].Action();
 
             while (_Animator.GetInteger(_AnimControlKey) != Idle)
                 yield return null;
