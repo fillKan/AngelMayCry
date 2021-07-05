@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class Ptrn_Move : BossPattern
 {
+    private readonly Vector3 LookLeft = Vector3.one;
+    private readonly Vector3 LookRight = new Vector3(-1, 1, 1);
+
     public override int AnimationCode => 9;
     public override bool CanAction => !_HasPlayer;
 
     [Header("Move Property")]
+    [SerializeField] private Transform _Target;
     [SerializeField] private Rigidbody2D _Rigidbody;
     [SerializeField] private float _StepForce;
 
     public override void Action()
     {
+        transform.localScale = (_Target.transform.localPosition.x > transform.localPosition.x)
+            ? LookRight : LookLeft;
+        
         base.Action();
         StartCoroutine(MoveRoutine());
     }
     private void AE_Move_Step()
     {
-        _Rigidbody.AddForce(Vector2.left * _StepForce);
+        _Rigidbody.AddForce(Vector2.left * transform.localScale.x * _StepForce);
     }
     private IEnumerator MoveRoutine()
     {

@@ -20,7 +20,7 @@ public class Ptrn_Slash : BossPattern
     }
     private void AE_Slash_Step()
     {
-        _Rigidbody.AddForce(Vector2.left * _StepForce);
+        _Rigidbody.AddForce(Vector2.left * transform.localScale.x * _StepForce);
     }
     private void AE_SlashInner_Shake()
     {
