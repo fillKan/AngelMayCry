@@ -59,8 +59,15 @@ public class TheKingWonchul : MonoBehaviour
     }
     public void Awaken()
     {
+        MainCamera.Instance.SetCameraScale(7.2f, 1f);
+
         _ShoutingLong.Action();
         StartCoroutine(PatternTimer());
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z)) _ShoutingLong.Action();
+        if (Input.GetKeyDown(KeyCode.X)) _Groggy.Action();
     }
     private IEnumerator PatternTimer()
     {
@@ -70,6 +77,9 @@ public class TheKingWonchul : MonoBehaviour
         while (gameObject.activeSelf)
         {
             for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
+                yield return null;
+
+            while (_Animator.GetInteger(_AnimControlKey) != Idle)
                 yield return null;
 
             CanActionPatternsUpdate();

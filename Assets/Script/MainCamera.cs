@@ -74,6 +74,10 @@ public class MainCamera : Singleton<MainCamera>
         };
         _CrntShakeCurve = GetStyle(curveStyle);
     }
+    public void SetCameraScale(float scale, float time)
+    {
+        StartCoroutine(CameraScaleRoutine(scale, time));
+    }
 
     private void Update()
     {
@@ -89,6 +93,17 @@ public class MainCamera : Singleton<MainCamera>
 
                 _CrntShakeCurve = null;
             }
+        }
+    }
+
+    private IEnumerator CameraScaleRoutine(float scale, float time)
+    {
+        float startScale = _Camera.orthographicSize;
+
+        for (float i = 0f; i < time; i += Time.deltaTime)
+        {
+            _Camera.orthographicSize = Mathf.Lerp(startScale, scale, _ShakeCurve_WaterFall.Evaluate(Mathf.Min(1f, 1 - i / time)));
+            yield return null;
         }
     }
 }
