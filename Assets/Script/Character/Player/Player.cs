@@ -13,6 +13,8 @@ public class Player : CharacterBase
 
     public Rigidbody2D Rigidbody => _Rigidbody;
 
+	[SerializeField] private PlayerWeaponsUI _WeaponsUI;
+
     [Header("Move Property")]
     [SerializeField] private float _JumpForce;
     private bool _CanJump;
@@ -43,6 +45,7 @@ public class Player : CharacterBase
         _AnimatorHash = _Animator.GetParameter(0).nameHash;
 		_State = CharacterBase.eState.Idle;
         InitWeapons();
+		_WeaponsUI.UpdateCurrentWeapons(_EqiupedWeapons);
 
 		_OnIdle = () =>
 		{
@@ -285,7 +288,7 @@ public class Player : CharacterBase
 		_EqiupedWeapons[3] = WeaponBase.eWeapons.None;
 		_EqiupedWeapons[4] = WeaponBase.eWeapons.None;
 
-        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Sword];
+        _CurWeapon = _WeaponDatas[(int)WeaponBase.eWeapons.Glove];
     }
 	private void SwapWeapon(int index)
 	{
@@ -295,6 +298,7 @@ public class Player : CharacterBase
 			return;
 		_CurWeapon = _WeaponDatas[(int)_EqiupedWeapons[index]];
 		_CurWeapon.OnSwap();
+		_WeaponsUI.SwapWeapon(index);
 
 		_WeaponSwapParticle.Play(_EqiupedWeapons[index]);
 		if (_State == eState.Attack)
