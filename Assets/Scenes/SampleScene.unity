@@ -26300,7 +26300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b637f34a2c041742814d173b0ab6203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TraceTarget: {fileID: 0}
+  TraceTarget: {fileID: 1480724059}
   _Offset: {x: 0, y: 1, z: -10}
 --- !u!114 &1064530358
 MonoBehaviour:
