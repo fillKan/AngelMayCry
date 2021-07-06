@@ -15,6 +15,7 @@ public class Prtn_Ghost : BossPattern
     private Stack<GhostProjectile> _GhostPool;
 
     [SerializeField] private ParticleSystem _ParticleSystem;
+    [SerializeField] private Transform _BrustPoint;
 
     private Transform _Player;
 
@@ -59,26 +60,31 @@ public class Prtn_Ghost : BossPattern
     }
     private void GhostBrust()
     {
+        Vector2 position = _BrustPoint.position;
         for (int i = 0; i < BrustCount; i++)
         {
-            try
-            {
-                _GhostPool.Pop().Project(_Player);
-            }
-            catch
+            var ghost = _GhostPool.Pop();
+            if (ghost == null)
             {
                 AddPoolObject();
-                _GhostPool.Pop().Project(_Player);
+                ghost = _GhostPool.Pop();
             }
+            ghost.transform.localPosition = position;
+            ghost.Project(_Player);
         }
     }
     private void AddPoolObject()
     {
+        Vector2 position = _BrustPoint.position;
         for (int i = 0; i < BrustCount; i++)
         {
-            _GhostPool.Push(Instantiate(_GhostProjectile));
+            _GhostPool.Push(Instantiate(_GhostProjectile, position, Quaternion.identity));
 
-            _GhostPool.Peek().ReleaseEvent += o => _GhostPool.Push(o);
+            _GhostPool.Peek().ReleaseEvent += o => 
+            {
+                _GhostPool.Push(o); 
+                o.gameObject.SetActive(false);
+            };
             _GhostPool.Peek().gameObject.SetActive(false);
         }
     }
