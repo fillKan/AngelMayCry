@@ -51,6 +51,7 @@ public class Prtn_Ghost : BossPattern
 
             yield return null;
         }
+        AE_SetDefaultState();
     }
     private bool CanRoutineBreak()
     {
