@@ -24,10 +24,10 @@ public class Ptrn_Slash : BossPattern
     }
     private void AE_SlashInner_Shake()
     {
-        MainCamera.Instance.CameraShake(0.4f, 0.2f);
+        MainCamera.Instance.CameraShake(0.4f, 0.3f);
     }
     private void AE_SlashOutter_Shake()
     {
-        MainCamera.Instance.CameraShake(0.9f, 0.15f);
+        MainCamera.Instance.CameraShake(0.9f, 0.2f);
     }
 }

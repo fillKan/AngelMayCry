@@ -27,6 +27,10 @@ public class Ptrn_Move : BossPattern
     {
         _Rigidbody.AddForce(Vector2.left * transform.localScale.x * _StepForce);
     }
+    private void AE_Move_Shake()
+    {
+        MainCamera.Instance.CameraShake(0.3f, 0.1f);
+    }
     private IEnumerator MoveRoutine()
     {
         bool IsMoving() 

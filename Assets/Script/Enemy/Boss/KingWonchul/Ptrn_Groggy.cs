@@ -11,7 +11,7 @@ public class Ptrn_Groggy : BossPattern
 
     private void AE_Groggy_HoldBegin()
     {
-        MainCamera.Instance.CameraShake(1f, 0.2f);
+        MainCamera.Instance.CameraShake(1f, 0.35f);
         StartCoroutine(GroggyHolding());
     }
     private IEnumerator GroggyHolding()

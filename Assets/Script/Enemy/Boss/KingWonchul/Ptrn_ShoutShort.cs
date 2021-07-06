@@ -13,7 +13,7 @@ public class Ptrn_ShoutShort : BossPattern
 
     private void AE_ShoutShort_End()
     {
-        MainCamera.Instance.CameraShake(0.8f, 0.15f);
+        MainCamera.Instance.CameraShake(0.8f, 0.25f);
         StartCoroutine(PlayEffect());
     }
 
