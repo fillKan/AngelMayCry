@@ -44,12 +44,13 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: d2cf49ec5e7ebe441b10d3ff41d97f7e, type: 3}
-    totalSpriteSurfaceArea: 69632
+    totalSpriteSurfaceArea: 73728
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 2671276166385170932, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
   - {fileID: -8026573711033598753, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
   - {fileID: -900636180149773374, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
   - {fileID: -8851113215683075711, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
@@ -68,6 +69,7 @@ SpriteAtlas:
   - {fileID: 306565322453831567, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
   - {fileID: -8384323354967367721, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Danny_Idle_9
   - Danny_Idle_8
   - Danny_Idle_1
   - Danny_Idle_0
