@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class TheKingWonchul : MonoBehaviour
 {
+    private readonly Vector3 LookLeft = Vector3.one;
+    private readonly Vector3 LookRight = new Vector3(-1, 1, 1);
+
     private const int Idle = 0;
 
+    [SerializeField] private Transform _HeartPoint;
     [SerializeField] private Animator _Animator;
     private int _AnimControlKey;
 
@@ -83,6 +87,10 @@ public class TheKingWonchul : MonoBehaviour
                 yield return null;
 
             CanActionPatternsUpdate();
+
+            transform.localScale = (_HeartPoint.position.x < _PlayerTransform.localPosition.x)
+                    ? LookRight : LookLeft;
+
             _CanActionPatterns[Random.Range(0, _CanActionPatterns.Count)].Action();
 
             while (_Animator.GetInteger(_AnimControlKey) != Idle)

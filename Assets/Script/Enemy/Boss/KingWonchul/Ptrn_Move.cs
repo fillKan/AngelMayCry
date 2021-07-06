@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Ptrn_Move : BossPattern
 {
-    private readonly Vector3 LookLeft = Vector3.one;
-    private readonly Vector3 LookRight = new Vector3(-1, 1, 1);
-
     public override int AnimationCode => 9;
     public override bool CanAction => !_HasPlayer;
 
@@ -17,9 +14,6 @@ public class Ptrn_Move : BossPattern
 
     public override void Action()
     {
-        transform.localScale = (_Target.transform.localPosition.x > transform.localPosition.x)
-            ? LookRight : LookLeft;
-        
         base.Action();
         StartCoroutine(MoveRoutine());
     }
