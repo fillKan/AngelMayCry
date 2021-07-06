@@ -12,7 +12,6 @@ public class Prtn_Ghost : BossPattern
 
     [Header("Ghost Property")]
     [SerializeField] private GhostProjectile _GhostProjectile;
-    [SerializeField] private GameObject _GhostReleaseEffect;
     private Stack<GhostProjectile> _GhostPool;
 
     [SerializeField] private ParticleSystem _ParticleSystem;
@@ -83,10 +82,7 @@ public class Prtn_Ghost : BossPattern
 
             _GhostPool.Peek().ReleaseEvent += o => 
             {
-                _GhostPool.Push(o); 
-                o.gameObject.SetActive(false);
-
-                Instantiate(_GhostReleaseEffect, o.transform.localPosition, Quaternion.identity);
+                _GhostPool.Push(o);
             };
             _GhostPool.Peek().gameObject.SetActive(false);
         }

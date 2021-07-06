@@ -18,6 +18,8 @@ public class GhostProjectile : MonoBehaviour
     [SerializeField] private float _PointD_Offset;
 
     [Space(), SerializeField] private float _Speed;
+    [SerializeField] private SpriteRenderer _Renderer;
+    [SerializeField] private ParticleSystem _ReleaseEffect;
 
     public void Project(Transform target)
     {
@@ -34,6 +36,7 @@ public class GhostProjectile : MonoBehaviour
         __PointD = (Vector2)target.position + 
             Vector2.right * Random.Range(-1f, 1f) * _PointD_Offset;
 
+        _Renderer.enabled = true;
         StartCoroutine(ProjectRoutine());
     }
     private IEnumerator ProjectRoutine()
@@ -45,6 +48,9 @@ public class GhostProjectile : MonoBehaviour
         }
         ReleaseEvent?.Invoke(this);
         MainCamera.Instance.CameraShake(0.2f, 0.15f);
+
+        _ReleaseEffect.Play();
+        _Renderer.enabled = false;
     }
     private Vector3 CaculateCurve(float rate)
     {
