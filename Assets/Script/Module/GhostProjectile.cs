@@ -44,6 +44,7 @@ public class GhostProjectile : MonoBehaviour
             yield return null;
         }
         ReleaseEvent?.Invoke(this);
+        MainCamera.Instance.CameraShake(0.2f, 0.15f);
     }
     private Vector3 CaculateCurve(float rate)
     {

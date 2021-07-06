@@ -775,6 +775,8 @@ MonoBehaviour:
   _Animator: {fileID: 128450095}
   _GhostProjectile: {fileID: 8420800643222292119, guid: f9a6221d3cf8e8e4d88905d2bbac8b49,
     type: 3}
+  _GhostReleaseEffect: {fileID: 1684038539396694552, guid: af797b453affa1941a4f33c809e52212,
+    type: 3}
   _ParticleSystem: {fileID: 877798174}
   _BrustPoint: {fileID: 877798171}
 --- !u!1 &172498630

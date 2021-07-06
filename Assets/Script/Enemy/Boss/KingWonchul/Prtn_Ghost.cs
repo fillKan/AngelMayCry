@@ -12,6 +12,7 @@ public class Prtn_Ghost : BossPattern
 
     [Header("Ghost Property")]
     [SerializeField] private GhostProjectile _GhostProjectile;
+    [SerializeField] private GameObject _GhostReleaseEffect;
     private Stack<GhostProjectile> _GhostPool;
 
     [SerializeField] private ParticleSystem _ParticleSystem;
@@ -29,7 +30,7 @@ public class Prtn_Ghost : BossPattern
     }
     private void AE_Ghost_Brust()
     {
-        MainCamera.Instance.CameraShake(0.2f, 0.1f, ShakeStyle.Cliff);
+        MainCamera.Instance.CameraShake(0.6f, 0.4f);
         StartCoroutine(BrustRoutine());
 
         _ParticleSystem.Play();
@@ -84,6 +85,8 @@ public class Prtn_Ghost : BossPattern
             {
                 _GhostPool.Push(o); 
                 o.gameObject.SetActive(false);
+
+                Instantiate(_GhostReleaseEffect, o.transform.localPosition, Quaternion.identity);
             };
             _GhostPool.Peek().gameObject.SetActive(false);
         }
