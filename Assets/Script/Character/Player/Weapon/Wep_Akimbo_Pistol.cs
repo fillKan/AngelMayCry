@@ -18,7 +18,7 @@ public class Wep_Akimbo_Pistol : WeaponBase
 
 	public override void Attack(eCommands direction, eCommands key)
 	{
-		if (_Player.State != CharacterBase.eState.Idle && _Player.State != CharacterBase.eState.Move && !_isCancelable) // 서있거나 이동중이 아니고 캔슬이 불가능할 때
+		if (_Player.GetState() != CharacterBase.eState.Idle && _Player.GetState() != CharacterBase.eState.Move && !_isCancelable) // 서있거나 이동중이 아니고 캔슬이 불가능할 때
 			return;
 		if (_Player.GetComponent<Rigidbody2D>().velocity.y != 0) // 공중에 있을 때
 			return;
@@ -61,7 +61,7 @@ public class Wep_Akimbo_Pistol : WeaponBase
 
 		if (isAttacked == false && _isCancelable == false) // 입력한 키에 맞는 공격이 없을 때
 		{
-			_Player.State = CharacterBase.eState.Idle;
+			_Player.SetState(CharacterBase.eState.Idle);
 			return;
 		}
 		base.Attack(direction, key);
@@ -78,7 +78,7 @@ public class Wep_Akimbo_Pistol : WeaponBase
 	{
 		yield return null;
 		Rigidbody2D rigid = player.GetComponent<Rigidbody2D>();
-		while (player.State == CharacterBase.eState.Attack)
+		while (player.GetState() == CharacterBase.eState.Attack)
 		{
 			if (Input.GetKey(KeyCode.A))
 			{
