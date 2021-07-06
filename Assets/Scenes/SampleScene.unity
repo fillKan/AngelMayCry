@@ -587,7 +587,8 @@ MonoBehaviour:
   _Animator: {fileID: 128450095}
   _ShoutingEffect: {fileID: 666366564}
   _ShoutingHitCir: {fileID: 1465897454}
-  _Wonchul: {fileID: 47678752002797898, guid: 93df5eee0f48888429e6154ba3d5abac, type: 3}
+  _Wonchul: {fileID: 1673354872207484323, guid: 93df5eee0f48888429e6154ba3d5abac,
+    type: 3}
   _Interval: 0.4
   _SummonRangeWidth: 4
 --- !u!114 &128450099
