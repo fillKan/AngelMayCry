@@ -44,22 +44,24 @@ public class HitBox : MonoBehaviour
 		if (gameObject.tag == "EnemyHitBox" && collision.tag == "EnemyHurtBox")
 			return;
 
-		CharacterBase Other = collision.transform.root.GetComponent<CharacterBase>(); 
-		if (Other.GetState() == CharacterBase.eState.Down || Other.GetState() == CharacterBase.eState.Dead || Other.GetState() == CharacterBase.eState.Wake)
-			return;
-		for(int i = 0; i < _CollidedObjects.Count; i++) // 한 오브젝트가 두 번 충돌하는걸 방지
-		{
-			if (Other.gameObject == _CollidedObjects[i])
-				return;
-		}
-		_CollidedObjects.Add(Other.gameObject);
-		
-		MainCamera.Instance.CameraShake(_CameraShakeTime == -1 ? _HitStop * 2f : _CameraShakeTime, _CameraShakeForce);
-		TimeManager.Instance.HitStop(_HitStop);
-		_Knockback.x *= Mathf.Sign(transform.root.localScale.x);
+		if (collision.transform.root.TryGetComponent(out CharacterBase Other))
+        {
+			if (Other.GetState() == CharacterBase.eState.Down || 
+				Other.GetState() == CharacterBase.eState.Dead || 
+				Other.GetState() == CharacterBase.eState.Wake) return;
 
-		if (Other.TryGetComponent(out CharacterBase character)) {
-			character.DealDamage(_Damage, _StunTime, _Knockback, transform.root.gameObject);
+			for (int i = 0; i < _CollidedObjects.Count; i++) // 한 오브젝트가 두 번 충돌하는걸 방지
+			{
+				if (Other.gameObject == _CollidedObjects[i])
+					return;
+			}
+			_CollidedObjects.Add(Other.gameObject);
+
+			MainCamera.Instance.CameraShake(_CameraShakeTime == -1 ? _HitStop * 2f : _CameraShakeTime, _CameraShakeForce);
+			TimeManager.Instance.HitStop(_HitStop);
+			_Knockback.x *= Mathf.Sign(transform.root.localScale.x);
+
+			Other.DealDamage(_Damage, _StunTime, _Knockback, transform.root.gameObject);
 		}
 	}
 
