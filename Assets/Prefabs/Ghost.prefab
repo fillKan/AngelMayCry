@@ -4933,7 +4933,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -9841,6 +9841,7 @@ MonoBehaviour:
   _PointB_Offset: 5
   _PointC_Offset: 5
   _PointD_Offset: 1
-  _Speed: 1.5
+  _Speed: 1
   _Renderer: {fileID: 8420800643222292107}
   _ReleaseEffect: {fileID: 5754820718610722939}
+  _PathEffect: {fileID: 8420800643128599019}

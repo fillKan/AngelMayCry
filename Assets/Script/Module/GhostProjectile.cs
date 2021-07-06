@@ -18,12 +18,16 @@ public class GhostProjectile : MonoBehaviour
     [SerializeField] private float _PointD_Offset;
 
     [Space(), SerializeField] private float _Speed;
+
+    [Header("Object Graghics")]
     [SerializeField] private SpriteRenderer _Renderer;
     [SerializeField] private ParticleSystem _ReleaseEffect;
+    [SerializeField] private ParticleSystem _PathEffect;
 
     public void Project(Transform target)
     {
         gameObject.SetActive(true);
+        _PathEffect.Play();
 
         _Speed = Random.Range(1.2f, 0.8f);
 
@@ -51,6 +55,8 @@ public class GhostProjectile : MonoBehaviour
 
         _ReleaseEffect.Play();
         _Renderer.enabled = false;
+
+        _PathEffect.Stop();
     }
     private Vector3 CaculateCurve(float rate)
     {
