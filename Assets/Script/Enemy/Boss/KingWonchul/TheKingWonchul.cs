@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheKingWonchul : MonoBehaviour
+public class TheKingWonchul : CharacterBase
 {
     private readonly Vector3 LookLeft = Vector3.one;
     private readonly Vector3 LookRight = new Vector3(-1, 1, 1);
@@ -10,7 +10,6 @@ public class TheKingWonchul : MonoBehaviour
     private const int Idle = 0;
 
     [SerializeField] private Transform _HeartPoint;
-    [SerializeField] private Animator _Animator;
     private int _AnimControlKey;
 
     [SerializeField] private float _PatternWait;
@@ -29,8 +28,9 @@ public class TheKingWonchul : MonoBehaviour
     [SerializeField] private BossPattern[] _Patterns;
     private List<BossPattern> _CanActionPatterns;
 
-    private void Awake()
+    protected override void Awake()
     {
+		base.Awake();
         _AnimControlKey = _Animator.GetParameter(0).nameHash;
         _CanActionPatterns = new List<BossPattern>(_Patterns.Length);
 
@@ -60,7 +60,12 @@ public class TheKingWonchul : MonoBehaviour
             _Patterns[i].Init();
         }
         _Appears.Action();
-    }
+
+		_OnSuperArmorBreak += () =>
+		{
+			_Groggy.Action();
+		};
+	}
     public void Awaken()
     {
         MainCamera.Instance.SetCameraScale(7.2f, 1f);
@@ -68,8 +73,9 @@ public class TheKingWonchul : MonoBehaviour
         _ShoutingLong.Action();
         StartCoroutine(PatternTimer());
     }
-    private void Update()
+    protected override void Update()
     {
+		base.Update();
         if (Input.GetKeyDown(KeyCode.Z)) _ShoutingLong.Action();
         if (Input.GetKeyDown(KeyCode.X)) _Groggy.Action();
     }
@@ -88,7 +94,7 @@ public class TheKingWonchul : MonoBehaviour
 
             CanActionPatternsUpdate();
 
-            transform.localScale = (_HeartPoint.position.x < _PlayerTransform.localPosition.x)
+            transform.localScale = (_HeartPoint.position.x > _PlayerTransform.localPosition.x)
                     ? LookRight : LookLeft;
 
             _CanActionPatterns[Random.Range(0, _CanActionPatterns.Count)].Action();

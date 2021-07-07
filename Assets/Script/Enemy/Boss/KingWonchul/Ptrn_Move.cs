@@ -19,7 +19,7 @@ public class Ptrn_Move : BossPattern
     }
     private void AE_Move_Step()
     {
-        _Rigidbody.AddForce(Vector2.left * transform.localScale.x * _StepForce);
+        _Rigidbody.AddForce(Vector2.right * transform.localScale.x * _StepForce);
     }
     private void AE_Move_Shake()
     {

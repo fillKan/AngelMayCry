@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ptrn_Groggy : BossPattern
 {
     public override int AnimationCode => 3;
+	private readonly int GroggyEnd = 20;
 
     [Header("Groggy Property")]
     public float GroggyTime;
@@ -19,6 +20,6 @@ public class Ptrn_Groggy : BossPattern
         for (float i = 0f; i < GroggyTime; i += Time.deltaTime * Time.timeScale) { 
             yield return null;
         }
-        _Animator.SetInteger(_AnimatorHash, _DefaultAnimationCode);
+        _Animator.SetInteger(_AnimatorHash, GroggyEnd);
     }
 }
