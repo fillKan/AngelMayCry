@@ -9715,7 +9715,7 @@ GameObject:
   - component: {fileID: 8420800643222292119}
   m_Layer: 6
   m_Name: Ghost
-  m_TagString: PlayerHitBox
+  m_TagString: EnemyHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9799,13 +9799,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936a30afbc547464d92a1f76a5c7bf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Damage: 0
+  _Damage: 10
   _Knockback: {x: 0, y: 0}
-  _StunTime: 0
+  _StunTime: 0.5
   _Event: 0
-  _CameraShakeForce: 0
+  _CameraShakeForce: 0.1
   _CameraShakeTime: -1
-  _HitStop: 0
+  _HitStop: 0.05
   _HitParticle: {fileID: 0}
   _HitSound: PlaceHolder
 --- !u!58 &8420800643222292118

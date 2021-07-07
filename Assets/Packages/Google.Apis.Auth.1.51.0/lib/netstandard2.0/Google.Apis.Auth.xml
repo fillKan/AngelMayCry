@@ -180,8 +180,8 @@
         <member name="P:Google.Apis.Auth.GoogleJsonWebSignature.Payload.Locale">
             <summary>
             End-User's locale, represented as a BCP47 [RFC5646] language tag.
-            This is typically an ISO 639-1 Alpha-2 [ISO639‑1] language code in lowercase and an
-            ISO 3166-1 Alpha-2 [ISO3166‑1] country code in uppercase, separated by a dash.
+            This is typically an ISO 639-1 Alpha-2 [ISO639??] language code in lowercase and an
+            ISO 3166-1 Alpha-2 [ISO3166??] country code in uppercase, separated by a dash.
             For example, en-US or fr-CA.
             </summary>
         </member>

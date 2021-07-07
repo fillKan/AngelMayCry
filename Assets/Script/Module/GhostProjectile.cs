@@ -23,8 +23,14 @@ public class GhostProjectile : MonoBehaviour
     [SerializeField] private SpriteRenderer _Renderer;
     [SerializeField] private ParticleSystem _ReleaseEffect;
     [SerializeField] private ParticleSystem _PathEffect;
+	private CircleCollider2D _Collider;
 
-    public void Project(Transform target)
+	public void Awake()
+	{
+		_Collider = GetComponent<CircleCollider2D>();
+	}
+
+	public void Project(Transform target)
     {
         gameObject.SetActive(true);
         _PathEffect.Play();
@@ -41,7 +47,8 @@ public class GhostProjectile : MonoBehaviour
             Vector2.right * Random.Range(-1f, 1f) * _PointD_Offset;
 
         _Renderer.enabled = true;
-        StartCoroutine(ProjectRoutine());
+		_Collider.enabled = true;
+		StartCoroutine(ProjectRoutine());
     }
     private IEnumerator ProjectRoutine()
     {
@@ -54,9 +61,10 @@ public class GhostProjectile : MonoBehaviour
         MainCamera.Instance.CameraShake(0.2f, 0.15f);
 
         _ReleaseEffect.Play();
+		_Collider.enabled = false;
         _Renderer.enabled = false;
 
-        _PathEffect.Stop();
+		_PathEffect.Stop();
     }
     private Vector3 CaculateCurve(float rate)
     {

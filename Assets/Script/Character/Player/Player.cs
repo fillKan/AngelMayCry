@@ -30,7 +30,6 @@ public class Player : CharacterBase
     [Header("Other Property")]
 	[SerializeField] private Particle_WeaponSwap _WeaponSwapParticle;
 	private int _AnimatorHash;
-	public string NextAnimation { get; set; }
 	[SerializeField]private GameObject _HurtBox;
 
     // ¹«±â
@@ -81,11 +80,6 @@ public class Player : CharacterBase
 	protected override void Update()
     {
 		base.Update();
-		if(NextAnimation != "")
-		{
-			_Animator.Play(NextAnimation);
-			NextAnimation = "";
-		}
         if (_State == CharacterBase.eState.Idle || _State == CharacterBase.eState.Move)
         {
 			if (Input.GetKey(KeyCode.A))
