@@ -62,6 +62,7 @@ public class DemonWonchul : EnemyBase
     }
     private void AnimEvnt_Attack(int strokeCount)
     {
+        return;
         switch (strokeCount)
         {
             case 1:

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CharacterBase : MonoBehaviour
 {
+	readonly int SUPERARMOR_DESTROYED = -123456789;
 	public enum eState
 	{
 		Idle,
@@ -34,6 +35,9 @@ public class CharacterBase : MonoBehaviour
 	[SerializeField] protected float _KnockBackMultiplier = 1;
 	[SerializeField] protected float _DamageMultiplier = 1;
 
+	[Tooltip("True면 Hit, Down 등 통상 피격에 관련된 애니메이션들을 재생하지 않음"), SerializeField]
+	protected bool _IgnoreHitAnimations = false;
+
 	[Header("UI")]
 	[SerializeField] private Canvas _Canvas = null;
 	[SerializeField] private Image _HpGauge = null;
@@ -49,7 +53,9 @@ public class CharacterBase : MonoBehaviour
 	protected OnStateEnter _OnIdle = null;
 	protected OnStateEnter _OnHit = null;
 	protected OnStateEnter _OnDeath = null;
+	protected OnStateEnter _OnSuperArmorBreak = null;
 	protected System.Action<float, float, Vector2, GameObject> _OnAttackCountered;
+	public string NextAnimation { get; set; }
 
 	private IEnumerator _StunTimeRoutine = null;
 	protected float _CurYVel = 0;
@@ -64,17 +70,20 @@ public class CharacterBase : MonoBehaviour
 	{
 		_Hp = _MaxHp;
 		_SuperArmor = _MaxSuperArmor;
-		_KnockBackMultiplier = 1;
-		_DamageMultiplier = 1;
 		_State = eState.Idle;
 		_isInAir = true;
 	}
 
 	protected virtual void Update()
 	{
-		if(_Rigidbody.velocity.y <= -8 && _State == eState.Hit)
+		if(_Rigidbody.velocity.y <= -8 && _State == eState.Hit && !_IgnoreHitAnimations)
 		{
-			_Animator.Play("Fall");
+			NextAnimation = "Fall";
+		}
+		if (NextAnimation != "")
+		{
+			_Animator.Play(NextAnimation);
+			NextAnimation = "";
 		}
 	}
 
@@ -133,9 +142,8 @@ public class CharacterBase : MonoBehaviour
 		_Hp -= damage * _DamageMultiplier;
 		AddForce(knockBack);
 		GetComponent<SpriteRenderer>().material.SetInt("_isBlinking", 1);
-		StartCoroutine(HitBlinkingRoutine());
 
-		if(_HpGauge != null)
+		if (_HpGauge != null)
 		{
 			_HpGauge.fillAmount = _Hp / _MaxHp;
 		}
@@ -143,19 +151,24 @@ public class CharacterBase : MonoBehaviour
 		if(_Hp <= 0)
 		{
 			Death();
+			StartCoroutine(HitBlinkingRoutine());
 			return;
 		}
 
-		_SuperArmor -= damage;
-		if (_SuperArmorGauge != null)
+		if (_SuperArmor != SUPERARMOR_DESTROYED)
 		{
-			_SuperArmorGauge.fillAmount = _SuperArmor / _MaxSuperArmor;
+			_SuperArmor -= damage;
+			if (_SuperArmorGauge != null)
+			{
+				_SuperArmorGauge.fillAmount = _SuperArmor / _MaxSuperArmor;
+			}
+			if (_SuperArmor <= 0 && _MaxSuperArmor != 0)
+			{
+				OnSuperArmorBreak();
+				return;
+			}
 		}
-		if (_SuperArmor <= 0 && _MaxSuperArmor != 0)
-		{
-			OnSuperArmorBreak();
-			return;
-		}
+		StartCoroutine(HitBlinkingRoutine());
 
 		if (_SuperArmor > 0 || stunTime == 0)
 			return;
@@ -197,23 +210,28 @@ public class CharacterBase : MonoBehaviour
 		gameObject.SetActive(false);
 	}
 
-	public virtual void OnSuperArmorBreak()
+	public void OnSuperArmorBreak()
 	{
+		_SuperArmor = SUPERARMOR_DESTROYED;
 		SetState(eState.Hit);
-		StartCoroutine(HitBlinkingRoutine(0.15f));
-		StartCoroutine(StunTimeRoutine(3));
-		TimeManager.Instance.HitStop(0.5f);
+		StartCoroutine(HitBlinkingRoutine(0.4f));
+		TimeManager.Instance.HitStop(0.75f);
+		_OnSuperArmorBreak?.Invoke();
 	}
 
 	private IEnumerator StunTimeRoutine(float time)
 	{
 		yield return new WaitForSeconds(time);
 		yield return new WaitUntil(() => { return GetIsInAir() == false; });
-		if(_SuperArmor <= 0)
-			_SuperArmor = _MaxSuperArmor;
-		if (_State == eState.Hit && !_isInAir)
+		if (_State == eState.Hit && !_isInAir && !_IgnoreHitAnimations)
 			SetState(eState.Idle);
 		_StunTimeRoutine = null;
+	}
+
+	public void ResetSuperArmor()
+	{
+		_SuperArmor = _MaxSuperArmor;
+		_SuperArmorGauge.fillAmount = 1;
 	}
 
 	private IEnumerator WakeRoutine()
@@ -222,7 +240,7 @@ public class CharacterBase : MonoBehaviour
 		SetState(eState.Wake);
 	}
 
-	private IEnumerator HitBlinkingRoutine(float time = 0.01f)
+	private IEnumerator HitBlinkingRoutine(float time = 0.02f)
 	{
 		yield return new WaitForSecondsRealtime(time);
 
@@ -236,7 +254,7 @@ public class CharacterBase : MonoBehaviour
 
 	public void AddForce(Vector2 force)
 	{
-		force.x *= _KnockBackMultiplier;
+		force *= _KnockBackMultiplier;
 		if (_KnockBackMultiplier <= 0.5)
 			force.y = 0;
 		if (force.y != 0)
@@ -253,18 +271,21 @@ public class CharacterBase : MonoBehaviour
 		switch(state)
 		{
 			case eState.Idle:
-				_Animator.Play("Idle");
+				if(!_IgnoreHitAnimations)
+					NextAnimation = "Idle";
 				_Animator.speed = 1;
 				_OnIdle?.Invoke();
 				break;
 
 			case eState.Hit:
-				_Animator.Play("Hit");
+				if(!_IgnoreHitAnimations)
+					NextAnimation = "Hit";
 				_OnHit?.Invoke();
 				break;
 
 			case eState.Down:
-				_Animator.Play("Down");
+				if(!_IgnoreHitAnimations)
+					NextAnimation = "Down";
 				if (_State == eState.Dead)
 				{
 					StartCoroutine(CorpseDisappearRoutine());
@@ -275,7 +296,7 @@ public class CharacterBase : MonoBehaviour
 				break;
 
 			case eState.Wake:
-				_Animator.Play("Wake");
+				NextAnimation = "Wake";
 				_Animator.speed = 1;
 				break;
 		}

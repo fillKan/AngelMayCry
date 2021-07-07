@@ -44,12 +44,13 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: d2cf49ec5e7ebe441b10d3ff41d97f7e, type: 3}
-    totalSpriteSurfaceArea: 73728
+    totalSpriteSurfaceArea: 1422208
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 513de0e256b92bd439411340062d3464, type: 3}
   - {fileID: 2671276166385170932, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
   - {fileID: -8026573711033598753, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
   - {fileID: -900636180149773374, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
@@ -60,6 +61,8 @@ SpriteAtlas:
   - {fileID: 5246479071300169373, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
   - {fileID: -768183566551754034, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
   - {fileID: -6686848917280613083, guid: 93af39b75606ef64698f4d216a6a728f, type: 3}
+  - {fileID: 21300000, guid: a3bd5d9861a954f4499b04bd19d1fb9e, type: 3}
+  - {fileID: 21300000, guid: 8fe4fec817efb894a9ef87db2147ba8a, type: 3}
   - {fileID: 7588564954399553273, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
   - {fileID: -5375743020782407368, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
   - {fileID: -238557851597286614, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
@@ -68,7 +71,11 @@ SpriteAtlas:
   - {fileID: 3910209343050848015, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
   - {fileID: 306565322453831567, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
   - {fileID: -8384323354967367721, guid: fcbfcf0937c468d49af3ac18dc01afda, type: 3}
+  - {fileID: 21300000, guid: 293a979c7a3661a46a193453c419988e, type: 3}
+  - {fileID: 21300000, guid: 5a3370bc63423f7439b23d389f79ae4e, type: 3}
+  - {fileID: 21300000, guid: 12f9fddd154366845a59ead4d41297bb, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Dog-Fly
   - Danny_Idle_9
   - Danny_Idle_8
   - Danny_Idle_1
@@ -79,6 +86,8 @@ SpriteAtlas:
   - Danny_Idle_4
   - Danny_Idle_7
   - Danny_Idle_6
+  - Dog-Fall
+  - Dog-Attack-2
   - Danny_Walk_4
   - Danny_Walk_5
   - Danny_Walk_6
@@ -87,6 +96,9 @@ SpriteAtlas:
   - Danny_Walk_1
   - Danny_Walk_2
   - Danny_Walk_3
+  - Dog-Attack-1
+  - chong-all
+  - Dog-Dead
   m_RenderDataMap: {}
   m_Tag: Danny_Atlas
   m_IsVariant: 0
