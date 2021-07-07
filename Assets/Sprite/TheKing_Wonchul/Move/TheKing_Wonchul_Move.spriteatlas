@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TheKing_Wonchul_Move
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c24ce05554e0b4244b76afb360628b46, type: 3}
+    totalSpriteSurfaceArea: 13811200
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 48bc8460b08d996469265ddec5422040, type: 3}
+  - {fileID: 21300000, guid: 3b0a6cd0657a36f4ea7df65ae95eaead, type: 3}
+  - {fileID: 21300000, guid: c0d434c4bca59de46a6bbfae9eaf39bb, type: 3}
+  - {fileID: 21300000, guid: e67a9d0598456ac488ba785d5028008d, type: 3}
+  - {fileID: 21300000, guid: 6465ece5d13837040afeeafebe7c5832, type: 3}
+  - {fileID: 21300000, guid: 5884c0482c83c87409595fbef0fcceb1, type: 3}
+  - {fileID: 21300000, guid: 5176c6b9e7c14b144b2ae04d93d2a306, type: 3}
+  - {fileID: 21300000, guid: 815f889aacc74cc47ac888a53f08aca1, type: 3}
+  - {fileID: 21300000, guid: c92227fbe4d9ed142ba7774628799313, type: 3}
+  - {fileID: 21300000, guid: acec758c0e397174ba877fe9dd1cbc4f, type: 3}
+  - {fileID: 21300000, guid: aba2053d75f8a364dbbc7fec9eed67d7, type: 3}
+  - {fileID: 21300000, guid: 4bb2428d48946374aa9d09d9d08339c3, type: 3}
+  - {fileID: 21300000, guid: ae95d9ff201c5d948b8b66c1a0af38fa, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Boss-Move-11
+  - Boss-Move-6
+  - Boss-Move-12
+  - Boss-Move-2
+  - Boss-Move-5
+  - Boss-Move-13
+  - Boss-Move-8
+  - Boss-Move-10
+  - Boss-Move-9
+  - Boss-Move-4
+  - Boss-Move-3
+  - Boss-Move-1
+  - Boss-Move-7
+  m_RenderDataMap: {}
+  m_Tag: TheKing_Wonchul_Move
+  m_IsVariant: 0

@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TheKing_Wonchul_Slash_Inner
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 5482146ff0d59ee498da9970d7dbc118, type: 3}
+    totalSpriteSurfaceArea: 14745600
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 5b591ef0405cda54cba14a7f5c511f9c, type: 3}
+  - {fileID: 21300000, guid: b18f4a7225965de4abaff18b1efe5e9d, type: 3}
+  - {fileID: 21300000, guid: d197f04476380f84ea72a67a42c2222c, type: 3}
+  - {fileID: 21300000, guid: 40c3f3d5c57dbb142b4ab239145968e1, type: 3}
+  - {fileID: 21300000, guid: 426381391b395824b909069db733f1cc, type: 3}
+  - {fileID: 21300000, guid: 89bd045a16220064784874efeec32ae2, type: 3}
+  - {fileID: 21300000, guid: fcec9a5b52139334bb2d72a50ac29b55, type: 3}
+  - {fileID: 21300000, guid: aa04928b7089248419e5cde9f45e5a4b, type: 3}
+  - {fileID: 21300000, guid: 4bccaa3e9ba891042a239e89b26f3b5d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Boss-slash2-1
+  - Boss-slash2-9
+  - Boss-slash2-7
+  - Boss-slash2-2
+  - Boss-slash2-4
+  - Boss-slash2-8
+  - Boss-slash2-3
+  - Boss-slash2-5
+  - Boss-slash2-6
+  m_RenderDataMap: {}
+  m_Tag: TheKing_Wonchul_Slash_Inner
+  m_IsVariant: 0
