@@ -163,6 +163,7 @@ public class Player : CharacterBase
                 {
                     _CanJump = true;
                     _Animator.SetInteger(_AnimatorHash, Idle);
+					_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, 0f);
                 
                     break;
                 }
