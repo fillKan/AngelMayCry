@@ -24,6 +24,9 @@ public class GhostProjectile : MonoBehaviour
     [SerializeField] private ParticleSystem _ReleaseEffect;
     [SerializeField] private ParticleSystem _PathEffect;
 
+    [Header("Other")]
+    [SerializeField] private SecondaryCollider _MapTrigger;
+
 	private CircleCollider2D _Collider;
     private Transform _Target;
 
@@ -33,6 +36,17 @@ public class GhostProjectile : MonoBehaviour
 	private void Awake()
 	{
 		_Collider = GetComponent<CircleCollider2D>();
+
+        _MapTrigger.OnTriggerAction += (Collider2D other, bool enter) =>
+        {
+            if (!enter || !_Collider.enabled || !_Renderer.enabled)
+                return;
+
+            if (other.CompareTag("Ground") || other.CompareTag("Player"))
+            {
+                _ProjectBreak = true;
+            }
+        };
 	}
     private void OnBecameInvisible()
     {
@@ -64,6 +78,7 @@ public class GhostProjectile : MonoBehaviour
     private IEnumerator ProjectRoutine()
     {
         int reCacluateCount = 1;
+        float lastSpeed = 0f;
 
         for (float i = 0f; i < ShootingTime; i += Time.deltaTime * Time.timeScale * _Speed)
         {
@@ -76,11 +91,20 @@ public class GhostProjectile : MonoBehaviour
                 __PointD += between;
                 _LastTargetPoint = nowPosition;
             }
-            transform.localPosition = CaculateCurve(Mathf.Min(1f, i / ShootingTime));
+            Vector3 caculatedCurve = CaculateCurve(Mathf.Min(1f, i / ShootingTime));
+
+            lastSpeed = (caculatedCurve - transform.localPosition).magnitude;
+            transform.localPosition = caculatedCurve;
 
             if (_ProjectBreak)
                 break;
 
+            yield return null;
+        }
+        Vector3 dir = (__PointD - __PointC).normalized;
+        while (!_ProjectBreak)
+        {
+            transform.localPosition += dir * lastSpeed;
             yield return null;
         }
         ReleaseEvent?.Invoke(this);
