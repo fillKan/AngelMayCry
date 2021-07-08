@@ -171,11 +171,11 @@ public class Player : CharacterBase
     }
     private void SetNatualAnimation()
     {
-        if (_Rigidbody.velocity.y < 0)
+        if (_Rigidbody.velocity.y < -0.1f)
         {
             _Animator.SetInteger(_AnimatorHash, Landing);
         }
-        else if (_Rigidbody.velocity.y > 0)
+        else if (_Rigidbody.velocity.y > 0.1f)
         {
             _Animator.SetInteger(_AnimatorHash, Jump);
         }
