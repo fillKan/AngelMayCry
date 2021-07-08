@@ -28,13 +28,17 @@ public class GhostProjectile : MonoBehaviour
     private Transform _Target;
 
     private Vector2 _LastTargetPoint;
+    private bool _ProjectBreak;
 
-	public void Awake()
+	private void Awake()
 	{
 		_Collider = GetComponent<CircleCollider2D>();
 	}
-
-	public void Project(Transform target)
+    private void OnBecameInvisible()
+    {
+        _ProjectBreak = true;
+    }
+    public void Project(Transform target)
     {
         gameObject.SetActive(true);
         _PathEffect.Play();
@@ -53,7 +57,9 @@ public class GhostProjectile : MonoBehaviour
 
         _Renderer.enabled = true;
 		_Collider.enabled = true;
-		StartCoroutine(ProjectRoutine());
+
+        _ProjectBreak = false;
+        StartCoroutine(ProjectRoutine());
     }
     private IEnumerator ProjectRoutine()
     {
@@ -71,6 +77,10 @@ public class GhostProjectile : MonoBehaviour
                 _LastTargetPoint = nowPosition;
             }
             transform.localPosition = CaculateCurve(Mathf.Min(1f, i / ShootingTime));
+
+            if (_ProjectBreak)
+                break;
+
             yield return null;
         }
         ReleaseEvent?.Invoke(this);
