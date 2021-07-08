@@ -457,13 +457,67 @@ MonoBehaviour:
   _FadeMask: {fileID: 293349778}
   _ShakeCurve_WaterFall:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.0018616
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4334777
+      value: 0.5017494
+      inSlope: -2.5806425
+      outSlope: -2.5806425
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.16547544
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   _ShakeCurve_Cliff:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.19576074
+      outSlope: -0.19576074
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8033626
+      value: 0.84273314
+      inSlope: -0.19780642
+      outSlope: -0.19780642
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14853837
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.051565804
+      outSlope: -0.051565804
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1494,6 +1548,7 @@ MonoBehaviour:
   _MaxSuperArmor: 0
   _KnockBackMultiplier: 1
   _DamageMultiplier: 1
+  _IgnoreHitAnimations: 0
   _Canvas: {fileID: 377404871}
   _HpGauge: {fileID: 1697445734}
   _SuperArmorGauge: {fileID: 0}
@@ -7170,6 +7225,7 @@ MonoBehaviour:
   _MaxSuperArmor: 0
   _KnockBackMultiplier: 1
   _DamageMultiplier: 1
+  _IgnoreHitAnimations: 0
   _Canvas: {fileID: 2068033483}
   _HpGauge: {fileID: 1639450772}
   _SuperArmorGauge: {fileID: 0}
@@ -7463,6 +7519,7 @@ MonoBehaviour:
   _MaxSuperArmor: 0
   _KnockBackMultiplier: 1
   _DamageMultiplier: 1
+  _IgnoreHitAnimations: 0
   _Canvas: {fileID: 315342792}
   _HpGauge: {fileID: 1525766779}
   _SuperArmorGauge: {fileID: 0}

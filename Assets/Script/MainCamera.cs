@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum ShakeStyle
 {
-    WaterFall, Cliff
+    WaterFall, Cliff, Rise
 }
 public class MainCamera : Singleton<MainCamera>
 {
@@ -15,6 +15,7 @@ public class MainCamera : Singleton<MainCamera>
     [Header("Shake Curves")]
     [SerializeField] private AnimationCurve _ShakeCurve_WaterFall;
     [SerializeField] private AnimationCurve _ShakeCurve_Cliff;
+    [SerializeField] private AnimationCurve _ShakeCurve_Rise;
 
     private AnimationCurve _CrntShakeCurve;
 
@@ -70,6 +71,7 @@ public class MainCamera : Singleton<MainCamera>
         {
             ShakeStyle.WaterFall => _ShakeCurve_WaterFall,
             ShakeStyle.Cliff => _ShakeCurve_Cliff,
+            ShakeStyle.Rise => _ShakeCurve_Rise,
             _ => null
         };
         _CrntShakeCurve = GetStyle(curveStyle);

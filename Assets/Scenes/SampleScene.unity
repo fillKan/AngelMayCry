@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 128450104}
   - component: {fileID: 128450105}
   - component: {fileID: 128450106}
+  - component: {fileID: 128450107}
   m_Layer: 10
   m_Name: TheKing_Wonchul
   m_TagString: Untagged
@@ -591,6 +592,7 @@ MonoBehaviour:
   _Appears: {fileID: 128450100}
   _Groggy: {fileID: 128450099}
   _ShoutingLong: {fileID: 128450098}
+  _Death: {fileID: 128450107}
   _Patterns:
   - {fileID: 128450097}
   - {fileID: 128450103}
@@ -820,6 +822,22 @@ MonoBehaviour:
     type: 3}
   _ParticleSystem: {fileID: 877798174}
   _BrustPoint: {fileID: 877798171}
+--- !u!114 &128450107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128450092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0cf2077a7dabc4ea19ce786003408a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DefaultAnimationCode: 0
+  _Animator: {fileID: 128450095}
+  _ShoutingEffect: {fileID: 666366564}
+  _GhostEffect: {fileID: 877798174}
 --- !u!1 &172498630
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +947,39 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _ShakeCurve_Rise:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7086529
+      value: 0.9717157
+      inSlope: 1.8506961
+      outSlope: 1.8506961
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.00001
+      value: 0.004715532
+      inSlope: -6.9783683
+      outSlope: -6.9783683
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14669082
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
