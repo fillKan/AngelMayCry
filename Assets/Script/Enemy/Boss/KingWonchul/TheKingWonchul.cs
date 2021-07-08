@@ -23,6 +23,7 @@ public class TheKingWonchul : CharacterBase
     [SerializeField] private BossPattern _Appears;
     [SerializeField] private BossPattern _Groggy;
     [SerializeField] private BossPattern _ShoutingLong;
+    [SerializeField] private BossPattern _Death;
 
     [Header("BossPattern_Normal")]
     [SerializeField] private BossPattern[] _Patterns;
@@ -53,6 +54,7 @@ public class TheKingWonchul : CharacterBase
         {
             _Appears.Init();
             _Groggy.Init();
+			_Death.Init();
             _ShoutingLong.Init();
         }
         for (int i = 0; i < _Patterns.Length; i++) 
@@ -65,12 +67,17 @@ public class TheKingWonchul : CharacterBase
 		{
 			_Groggy.Action();
 		};
+		_OnDeath += () =>
+		{
+			StopAllCoroutines();
+			_Death.Action();
+		};
 	}
     public void Awaken()
     {
         MainCamera.Instance.SetCameraScale(7.2f, 1f);
 
-        _ShoutingLong.Action();
+		_ShoutingLong.Action();
         StartCoroutine(PatternTimer());
     }
     protected override void Update()

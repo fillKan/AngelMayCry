@@ -158,7 +158,7 @@ public class Player : CharacterBase
             var contacts = collision.contacts;
             foreach (var contactPoint in contacts)
             {
-                // 콜라이더의 밑 부분과 닿았는가??
+				// 콜라이더의 밑 부분과 닿았는가??
                 if (contactPoint.normal.y > 0)
                 {
                     _CanJump = true;
