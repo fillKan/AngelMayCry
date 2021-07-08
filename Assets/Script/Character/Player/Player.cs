@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : CharacterBase
 {
@@ -264,7 +265,7 @@ public class Player : CharacterBase
 		yield return new WaitForSeconds(2);
 		MainCamera.Instance.Fade(new Color(0, 0, 0, 0), Color.black, 1, () =>
 		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		});
 	}
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
