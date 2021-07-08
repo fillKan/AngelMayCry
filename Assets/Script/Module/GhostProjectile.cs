@@ -23,7 +23,11 @@ public class GhostProjectile : MonoBehaviour
     [SerializeField] private SpriteRenderer _Renderer;
     [SerializeField] private ParticleSystem _ReleaseEffect;
     [SerializeField] private ParticleSystem _PathEffect;
+
 	private CircleCollider2D _Collider;
+    private Transform _Target;
+
+    private Vector2 _LastTargetPoint;
 
 	public void Awake()
 	{
@@ -43,8 +47,9 @@ public class GhostProjectile : MonoBehaviour
         __PointB = start + _PointB + Random.insideUnitCircle * _PointB_Offset;
         __PointC = start + _PointC + Random.insideUnitCircle * _PointC_Offset;
 
-        __PointD = (Vector2)target.position + 
-            Vector2.right * Random.Range(-1f, 1f) * _PointD_Offset;
+        _Target = target;
+        _LastTargetPoint = _Target.position;
+        __PointD = _LastTargetPoint + Vector2.right * Random.Range(-1f, 1f) * _PointD_Offset;
 
         _Renderer.enabled = true;
 		_Collider.enabled = true;
@@ -52,8 +57,19 @@ public class GhostProjectile : MonoBehaviour
     }
     private IEnumerator ProjectRoutine()
     {
+        int reCacluateCount = 1;
+
         for (float i = 0f; i < ShootingTime; i += Time.deltaTime * Time.timeScale * _Speed)
         {
+            if (i >= reCacluateCount * 0.5f)
+            {
+                Vector2 nowPosition = _Target.position;
+                Vector2 between = (nowPosition - _LastTargetPoint);
+                reCacluateCount++;
+
+                __PointD += between;
+                _LastTargetPoint = nowPosition;
+            }
             transform.localPosition = CaculateCurve(Mathf.Min(1f, i / ShootingTime));
             yield return null;
         }
