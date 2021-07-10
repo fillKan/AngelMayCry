@@ -38,6 +38,9 @@ public class CharacterBase : MonoBehaviour
 	[Tooltip("True면 Hit, Down 등 통상 피격에 관련된 애니메이션들을 재생하지 않음"), SerializeField]
 	protected bool _IgnoreHitAnimations = false;
 
+	[SerializeField]
+	private HitBox _HitBox;
+
 	[Header("UI")]
 	[SerializeField] private Canvas _Canvas = null;
 	[SerializeField] private Image _HpGauge = null;
@@ -302,7 +305,6 @@ public class CharacterBase : MonoBehaviour
 		}
 		_State = state;
 	}
-
 	public void SetCounterAttackState(eCounterAttackState state)
 	{
 		_CounterAttackState = state;
@@ -312,9 +314,12 @@ public class CharacterBase : MonoBehaviour
 	{
 		return _State;
 	}
-
 	public void AE_PlaySound(string key)
 	{
 		SoundManager.Instance.Play(key);
+	}
+	public void AE_SetHitSound(string key)
+	{
+		_HitBox.HitSound = key;
 	}
 }

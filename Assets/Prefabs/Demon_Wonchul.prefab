@@ -135,7 +135,6 @@ MonoBehaviour:
   _CameraShakeTime: -1
   _HitStop: 0
   _HitParticle: {fileID: 0}
-  _HitSound: PlaceHolder
 --- !u!1 &1673354870755504992
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +852,8 @@ MonoBehaviour:
   _MaxSuperArmor: 0
   _KnockBackMultiplier: 1
   _DamageMultiplier: 1
+  _IgnoreHitAnimations: 0
+  _HitBox: {fileID: 1673354870406908513}
   _Canvas: {fileID: 1673354870922529949}
   _HpGauge: {fileID: 1673354871865813294}
   _SuperArmorGauge: {fileID: 0}

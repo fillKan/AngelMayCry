@@ -582,6 +582,7 @@ MonoBehaviour:
   _KnockBackMultiplier: 0.2
   _DamageMultiplier: 1
   _IgnoreHitAnimations: 1
+  _HitBox: {fileID: 0}
   _Canvas: {fileID: 190533206}
   _HpGauge: {fileID: 914446445}
   _SuperArmorGauge: {fileID: 1683627034}
@@ -11100,7 +11101,6 @@ MonoBehaviour:
   _CameraShakeTime: -1
   _HitStop: 0
   _HitParticle: {fileID: 0}
-  _HitSound: PlaceHolder
 --- !u!61 &477660105
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36763,7 +36763,6 @@ MonoBehaviour:
   _CameraShakeTime: -1
   _HitStop: 0
   _HitParticle: {fileID: 0}
-  _HitSound: PlaceHolder
 --- !u!61 &1406275153
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36842,7 +36841,6 @@ MonoBehaviour:
   _CameraShakeTime: -1
   _HitStop: 0
   _HitParticle: {fileID: 0}
-  _HitSound: PlaceHolder
 --- !u!58 &1465897454
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -36992,6 +36990,7 @@ MonoBehaviour:
   _KnockBackMultiplier: 1
   _DamageMultiplier: 1
   _IgnoreHitAnimations: 0
+  _HitBox: {fileID: 477660104}
   _Canvas: {fileID: 1758503850}
   _HpGauge: {fileID: 1856340246}
   _SuperArmorGauge: {fileID: 0}

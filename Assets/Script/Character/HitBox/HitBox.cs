@@ -32,8 +32,8 @@ public class HitBox : MonoBehaviour
 	private float _HitStop = 0;
 	[SerializeField]
 	private GameObject _HitParticle = null;
-	[SerializeField]
-	private string _HitSound = "PlaceHolder";
+	public string HitSound { get; set; }
+	private bool _isSoundPlayed = false;
 
 	List<GameObject> _CollidedObjects = new List<GameObject>();
 
@@ -46,6 +46,11 @@ public class HitBox : MonoBehaviour
 
 		if (collision.transform.root.TryGetComponent(out CharacterBase Other))
         {
+			if(!_isSoundPlayed)
+			{
+				SoundManager.Instance.Play(HitSound);
+				_isSoundPlayed = true;
+			}
 			if (Other.GetState() == CharacterBase.eState.Down || 
 				Other.GetState() == CharacterBase.eState.Dead || 
 				Other.GetState() == CharacterBase.eState.Wake) return;
