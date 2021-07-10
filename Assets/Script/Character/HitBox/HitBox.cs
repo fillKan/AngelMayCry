@@ -37,6 +37,11 @@ public class HitBox : MonoBehaviour
 
 	List<GameObject> _CollidedObjects = new List<GameObject>();
 
+	private void Awake()
+	{
+		HitSound = "";
+	}
+
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (gameObject.tag == "PlayerHitBox" && collision.tag == "PlayerHurtBox")
@@ -46,7 +51,7 @@ public class HitBox : MonoBehaviour
 
 		if (collision.transform.root.TryGetComponent(out CharacterBase Other))
         {
-			if(!_isSoundPlayed)
+			if(!_isSoundPlayed && HitSound != "")
 			{
 				SoundManager.Instance.Play(HitSound);
 				_isSoundPlayed = true;
@@ -73,5 +78,6 @@ public class HitBox : MonoBehaviour
 	private void OnEnable()
 	{
 		_CollidedObjects.Clear();
+		_isSoundPlayed = false;
 	}
 }

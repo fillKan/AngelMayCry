@@ -802,12 +802,12 @@ AnimationClip:
     functionName: AddForceX
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 5
+    floatParameter: 6
     intParameter: 0
     messageOptions: 0
   - time: 0.2
-    functionName: 
-    data: 
+    functionName: AE_SetHitSound
+    data: Sword_ShieldSlam_Hit
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -890,9 +890,16 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.25
-    functionName: HandleAnimationEventsToWeapon
-    data: 
+  - time: 0
+    functionName: AE_SetHitSound
+    data: Glove_Hit_M
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.15
+    functionName: AE_PlaySound
+    data: Glove_Swing_L
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
