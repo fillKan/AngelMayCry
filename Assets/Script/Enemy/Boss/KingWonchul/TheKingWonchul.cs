@@ -29,6 +29,8 @@ public class TheKingWonchul : CharacterBase
     [SerializeField] private BossPattern[] _Patterns;
     private List<BossPattern> _CanActionPatterns;
 
+    private IEnumerator _PatternTimer;
+
     protected override void Awake()
     {
 		base.Awake();
@@ -78,13 +80,30 @@ public class TheKingWonchul : CharacterBase
         MainCamera.Instance.SetCameraScale(7.2f, 1f);
 
 		_ShoutingLong.Action();
-        StartCoroutine(PatternTimer());
+        StartCoroutine(_PatternTimer = PatternTimer());
     }
     protected override void Update()
     {
 		base.Update();
         if (Input.GetKeyDown(KeyCode.Z)) _ShoutingLong.Action();
         if (Input.GetKeyDown(KeyCode.X)) _Groggy.Action();
+    }
+    public override void DealDamage(float damage, float stunTime, Vector2 knockBack, GameObject from)
+    {
+        base.DealDamage(damage, stunTime, knockBack, from);
+        _ShoutingLong.Notify_HealthUpdate(_Hp / _MaxHp);
+    }
+    public void PatternTimerForceStop()
+    {
+        if (_PatternTimer != null)
+        {
+            StopCoroutine(_PatternTimer);
+            _PatternTimer = null;
+        }
+    }
+    public void PatternTimerReStart()
+    {
+        StartCoroutine(_PatternTimer = PatternTimer());
     }
     private IEnumerator PatternTimer()
     {
@@ -94,9 +113,6 @@ public class TheKingWonchul : CharacterBase
         while (gameObject.activeSelf)
         {
             for (float i = 0f; i < _PatternWait; i += Time.deltaTime * Time.timeScale)
-                yield return null;
-
-            while (_Animator.GetInteger(_AnimControlKey) != Idle)
                 yield return null;
 
             CanActionPatternsUpdate();

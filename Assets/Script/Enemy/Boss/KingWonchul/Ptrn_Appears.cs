@@ -10,6 +10,7 @@ public class Ptrn_Appears : BossPattern
     [SerializeField] private TheKingWonchul _Owner;
 
     [Header("Appears Action Property")]
+    [SerializeField] private SlipingEffector _SlipingEffector;
     [SerializeField] private Rigidbody2D _Rigidbody;
     [SerializeField] private float _DashForce;
 
@@ -20,7 +21,7 @@ public class Ptrn_Appears : BossPattern
     public override void Action()
     {
         base.Action();
-        _Rigidbody.AddForce(new Vector2(-_DashForce, _DashForce * 0.3f));
+        _Rigidbody.AddForce(new Vector2(-_DashForce, 0));
     }
     private void AE_Appears_StartTimeCurve()
     {
@@ -28,8 +29,8 @@ public class Ptrn_Appears : BossPattern
     }
     private void AE_Appears_Strike()
     {
-        _Rigidbody.AddForce(Vector2.down * _DashForce * 0.6f);
         MainCamera.Instance.CameraShake(0.9f, 0.55f);
+        _SlipingEffector.SlipingStart();
     }
     private void AE_Appears_End()
     {

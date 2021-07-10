@@ -23,14 +23,36 @@ public class GhostProjectile : MonoBehaviour
     [SerializeField] private SpriteRenderer _Renderer;
     [SerializeField] private ParticleSystem _ReleaseEffect;
     [SerializeField] private ParticleSystem _PathEffect;
-	private CircleCollider2D _Collider;
 
-	public void Awake()
+    [Header("Other")]
+    [SerializeField] private SecondaryCollider _MapTrigger;
+
+	private CircleCollider2D _Collider;
+    private Transform _Target;
+
+    private Vector2 _LastTargetPoint;
+    private bool _ProjectBreak;
+
+	private void Awake()
 	{
 		_Collider = GetComponent<CircleCollider2D>();
-	}
 
-	public void Project(Transform target)
+        _MapTrigger.OnTriggerAction += (Collider2D other, bool enter) =>
+        {
+            if (!enter || !_Collider.enabled || !_Renderer.enabled)
+                return;
+
+            if (other.CompareTag("Ground") || other.CompareTag("Player"))
+            {
+                _ProjectBreak = true;
+            }
+        };
+	}
+    private void OnBecameInvisible()
+    {
+        _ProjectBreak = true;
+    }
+    public void Project(Transform target)
     {
         gameObject.SetActive(true);
         _PathEffect.Play();
@@ -43,18 +65,46 @@ public class GhostProjectile : MonoBehaviour
         __PointB = start + _PointB + Random.insideUnitCircle * _PointB_Offset;
         __PointC = start + _PointC + Random.insideUnitCircle * _PointC_Offset;
 
-        __PointD = (Vector2)target.position + 
-            Vector2.right * Random.Range(-1f, 1f) * _PointD_Offset;
+        _Target = target;
+        _LastTargetPoint = _Target.position;
+        __PointD = _LastTargetPoint + Vector2.right * Random.Range(-1f, 1f) * _PointD_Offset;
 
         _Renderer.enabled = true;
 		_Collider.enabled = true;
-		StartCoroutine(ProjectRoutine());
+
+        _ProjectBreak = false;
+        StartCoroutine(ProjectRoutine());
     }
     private IEnumerator ProjectRoutine()
     {
+        int reCacluateCount = 1;
+        float lastSpeed = 0f;
+
         for (float i = 0f; i < ShootingTime; i += Time.deltaTime * Time.timeScale * _Speed)
         {
-            transform.localPosition = CaculateCurve(Mathf.Min(1f, i / ShootingTime));
+            if (i >= reCacluateCount * 0.5f)
+            {
+                Vector2 nowPosition = _Target.position;
+                Vector2 between = (nowPosition - _LastTargetPoint);
+                reCacluateCount++;
+
+                __PointD += between;
+                _LastTargetPoint = nowPosition;
+            }
+            Vector3 caculatedCurve = CaculateCurve(Mathf.Min(1f, i / ShootingTime));
+
+            lastSpeed = (caculatedCurve - transform.localPosition).magnitude;
+            transform.localPosition = caculatedCurve;
+
+            if (_ProjectBreak)
+                break;
+
+            yield return null;
+        }
+        Vector3 dir = (__PointD - __PointC).normalized;
+        while (!_ProjectBreak)
+        {
+            transform.localPosition += dir * lastSpeed;
             yield return null;
         }
         ReleaseEvent?.Invoke(this);

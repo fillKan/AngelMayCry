@@ -521,6 +521,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _ShakeCurve_Rise:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &286329092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1436,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &749657773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6222951758477654545, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_Name
+      value: TheKing_Wonchul
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655011, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222951758477655016, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: _PlayerTransform
+      value: 
+      objectReference: {fileID: 1137496765}
+    - target: {fileID: 6222951758477655023, guid: 0adfc988a63933544b90227686eb6535,
+        type: 3}
+      propertyPath: _Target
+      value: 
+      objectReference: {fileID: 1137496765}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0adfc988a63933544b90227686eb6535, type: 3}
 --- !u!1 &864844082
 GameObject:
   m_ObjectHideFlags: 0

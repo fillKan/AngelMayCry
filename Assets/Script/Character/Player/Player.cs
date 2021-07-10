@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : CharacterBase
 {
@@ -163,6 +164,7 @@ public class Player : CharacterBase
                 {
                     _CanJump = true;
                     _Animator.SetInteger(_AnimatorHash, Idle);
+					_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, 0f);
                 
                     break;
                 }
@@ -171,11 +173,11 @@ public class Player : CharacterBase
     }
     private void SetNatualAnimation()
     {
-        if (_Rigidbody.velocity.y < 0)
+        if (_Rigidbody.velocity.y < -0.1f)
         {
             _Animator.SetInteger(_AnimatorHash, Landing);
         }
-        else if (_Rigidbody.velocity.y > 0)
+        else if (_Rigidbody.velocity.y > 0.1f)
         {
             _Animator.SetInteger(_AnimatorHash, Jump);
         }
@@ -263,7 +265,7 @@ public class Player : CharacterBase
 		yield return new WaitForSeconds(2);
 		MainCamera.Instance.Fade(new Color(0, 0, 0, 0), Color.black, 1, () =>
 		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		});
 	}
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)

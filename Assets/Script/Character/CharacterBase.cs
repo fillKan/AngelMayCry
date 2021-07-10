@@ -30,6 +30,7 @@ public class CharacterBase : MonoBehaviour
 	[Tooltip("슈퍼아머는 단순히 bool이 아니라 플로트로 하고 0보다 큰지로 판단")]
 	[SerializeField] protected float _MaxSuperArmor = 0;
 	protected float _SuperArmor;
+	public float SuperArmor => _SuperArmor;
 
 	[Tooltip("0.5보다 작으면 y축 넉백 무시")]
 	[SerializeField] protected float _KnockBackMultiplier = 1;
