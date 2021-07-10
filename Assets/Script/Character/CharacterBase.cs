@@ -312,4 +312,9 @@ public class CharacterBase : MonoBehaviour
 	{
 		return _State;
 	}
+
+	public void AE_PlaySound(string key)
+	{
+		SoundManager.Instance.Play(key);
+	}
 }
