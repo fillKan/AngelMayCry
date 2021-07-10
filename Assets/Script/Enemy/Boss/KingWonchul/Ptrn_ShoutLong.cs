@@ -31,7 +31,7 @@ public class Ptrn_ShoutLong : BossPattern
         }
         else
         {
-            base.Action();
+            ShoutingAction();
         }
     }
     public override void Notify_HealthUpdate(float restPercent)
@@ -44,6 +44,13 @@ public class Ptrn_ShoutLong : BossPattern
             ++_ShoutingCount;
             Action();
         }
+    }
+    private void ShoutingAction()
+    {
+        _HurtBox.enabled = false;
+        _Owner.PatternTimerForceStop();
+        
+        base.Action();
     }
     private void AE_ShoutLong_End()
     {
@@ -90,11 +97,12 @@ public class Ptrn_ShoutLong : BossPattern
 
         AE_SetDefaultState();
         _HurtBox.enabled = true;
+        _Owner.PatternTimerReStart();
     }
     private IEnumerator ActionHolding()
     {
         while (_Animator.GetInteger(_AnimatorHash) != _DefaultAnimationCode)
             yield return null;
-        base.Action();
+        ShoutingAction();
     }
 }
