@@ -63,12 +63,12 @@ public class Prtn_Ghost : BossPattern
         Vector2 position = _BrustPoint.position;
         for (int i = 0; i < BrustCount; i++)
         {
-            var ghost = _GhostPool.Pop();
-            if (ghost == null)
+            if (_GhostPool.Count == 0)
             {
                 AddPoolObject();
-                ghost = _GhostPool.Pop();
             }
+            var ghost = _GhostPool.Pop();
+
             ghost.transform.localPosition = position;
             ghost.Project(_Player);
         }
