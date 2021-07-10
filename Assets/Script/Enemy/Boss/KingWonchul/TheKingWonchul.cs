@@ -86,6 +86,11 @@ public class TheKingWonchul : CharacterBase
         if (Input.GetKeyDown(KeyCode.Z)) _ShoutingLong.Action();
         if (Input.GetKeyDown(KeyCode.X)) _Groggy.Action();
     }
+    public override void DealDamage(float damage, float stunTime, Vector2 knockBack, GameObject from)
+    {
+        base.DealDamage(damage, stunTime, knockBack, from);
+        _ShoutingLong.Notify_HealthUpdate(_Hp / _MaxHp);
+    }
     private IEnumerator PatternTimer()
     {
         while (_Animator.GetInteger(_AnimControlKey) != Idle)

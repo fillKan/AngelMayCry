@@ -34881,7 +34881,7 @@ MonoBehaviour:
   _HpGauge: {fileID: 6222951758913448807}
   _SuperArmorGauge: {fileID: 6222951757847075202}
   _HeartPoint: {fileID: 6222951758455429439}
-  _PatternWait: 2
+  _PatternWait: 3
   _PlayerTransform: {fileID: 0}
   _RangeCollider: {fileID: 6222951758139473739}
   _Appears: {fileID: 6222951758477655020}
@@ -34924,6 +34924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _DefaultAnimationCode: 0
   _Animator: {fileID: 6222951758477655013}
+  _Owner: {fileID: 6222951758477655016}
+  _HurtBox: {fileID: 6222951757300998876}
   _ShoutingEffect: {fileID: 6222951757232853075}
   _ShoutingHitCir: {fileID: 6222951758793360390}
   _Wonchul: {fileID: 1673354872207484323, guid: 93df5eee0f48888429e6154ba3d5abac,
