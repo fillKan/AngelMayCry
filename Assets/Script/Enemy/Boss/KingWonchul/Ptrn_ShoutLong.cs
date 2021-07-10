@@ -56,7 +56,7 @@ public class Ptrn_ShoutLong : BossPattern
         _ShoutingHitCir.gameObject.SetActive(true);
         _ShoutingEffect.Play();
 
-        float duration = _ShoutingEffect.main.duration + 0.3f;
+        float duration = _ShoutingEffect.main.duration + _ShoutingEffect.main.startLifetime.constant;
 
         MainCamera.Instance.CameraShake(duration, (duration - 0.3f) * 0.2f, ShakeStyle.Cliff);
         for (float i = 0f; i < duration; i += Time.deltaTime * Time.timeScale)

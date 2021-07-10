@@ -45075,7 +45075,7 @@ GameObject:
   - component: {fileID: 6222951758793360388}
   - component: {fileID: 6222951758793360390}
   - component: {fileID: 6222951758793360389}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShoutingHitBox
   m_TagString: EnemyHitBox
   m_Icon: {fileID: 0}
