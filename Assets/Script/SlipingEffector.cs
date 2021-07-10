@@ -24,7 +24,7 @@ public class SlipingEffector : MonoBehaviour
             StopCoroutine(_SlipingRoutine);
         }
     }
-    public void Start()
+    public void SlipingStart()
     {
         if (_SlipingRoutine != null) {
             StopCoroutine(_SlipingRoutine);

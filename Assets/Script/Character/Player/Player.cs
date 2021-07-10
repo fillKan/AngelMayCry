@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : CharacterBase
 {
@@ -151,8 +152,9 @@ public class Player : CharacterBase
 				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
 		}
 	}
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionStay2D(Collision2D collision)
     {
+		base.OnCollisionStay2D(collision);
         if (collision.collider.CompareTag("Ground"))
         {
             var contacts = collision.contacts;
@@ -169,13 +171,17 @@ public class Player : CharacterBase
             }
         }
     }
-    private void SetNatualAnimation()
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		_CanJump = false;
+	}
+	private void SetNatualAnimation()
     {
-        if (_Rigidbody.velocity.y < 0)
+        if (_Rigidbody.velocity.y < -0.1f)
         {
             _Animator.SetInteger(_AnimatorHash, Landing);
         }
-        else if (_Rigidbody.velocity.y > 0)
+        else if (_Rigidbody.velocity.y > 0.1f)
         {
             _Animator.SetInteger(_AnimatorHash, Jump);
         }
@@ -263,7 +269,7 @@ public class Player : CharacterBase
 		yield return new WaitForSeconds(2);
 		MainCamera.Instance.Fade(new Color(0, 0, 0, 0), Color.black, 1, () =>
 		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		});
 	}
     public void HandleAnimationEventsToWeapon(WeaponBase.eWeaponEvents weaponEvent)
@@ -302,6 +308,7 @@ public class Player : CharacterBase
 		_State = CharacterBase.eState.Idle;
 		NextAnimation = "Idle";
 		_Animator.SetInteger(_AnimatorHash, Idle);
+		SoundManager.Instance.Play("WeaponSwap");
 	}
     public void AddForceX(float x)
     {

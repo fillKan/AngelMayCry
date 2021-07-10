@@ -187,7 +187,7 @@ public class MovementModule : MonoBehaviour
             yield return null;
         BehaviourEnd?.Invoke(BehaviourIndex.Default);
 
-        Sliping.Start();
+        Sliping.SlipingStart();
         while (Sliping.IsProceeding)
             yield return null;
     }
@@ -216,7 +216,7 @@ public class MovementModule : MonoBehaviour
 
         while (_TrackingBehaviour != null)
             yield return null;
-        Sliping.Start();
+        Sliping.SlipingStart();
 
         yield return TrackingComplete;
         BehaviourEnd?.Invoke(BehaviourIndex.Tracking);

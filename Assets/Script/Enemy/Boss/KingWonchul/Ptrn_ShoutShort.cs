@@ -22,7 +22,7 @@ public class Ptrn_ShoutShort : BossPattern
         _ShoutingHitCir.gameObject.SetActive(true);
         _ShoutingEffect.Play();
 
-        float duration = _ShoutingEffect.main.duration;
+        float duration = _ShoutingEffect.main.duration + _ShoutingEffect.main.startLifetime.constant;
 
         for (float i = 0f; i < duration; i += Time.deltaTime * Time.timeScale)
         {
