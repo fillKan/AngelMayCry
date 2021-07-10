@@ -22,7 +22,7 @@ public class Ptrn_ShoutLong : BossPattern
     [SerializeField] private float _Interval;
     [SerializeField] private float _SummonRangeWidth;
 
-    private int _ShoutingCount = -1;
+    private int _ShoutingCount = 0;
     public override void Action()
     {
         if (_Owner.SuperArmor <= 0f)
