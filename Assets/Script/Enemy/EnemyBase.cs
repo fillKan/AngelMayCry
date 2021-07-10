@@ -22,6 +22,7 @@ public class EnemyBase : CharacterBase
 			_OnHit = () =>
 			{
 				_MovementModule.RoutineEnable = false;
+				_MovementModule.TrackingStop();
 				_MovementModule.MoveStop();
 				_MovementModule.StopAllCoroutines();
 			};
