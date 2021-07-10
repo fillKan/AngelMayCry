@@ -6,7 +6,12 @@ public class Ptrn_ShoutLong : BossPattern
 {
     public override int AnimationCode => 5;
 
-    private const float AnimHoldingTime = 2.6f;
+    private const int GroggyState = 3;
+    private const float AnimHoldingTime = 2.9f;
+
+    [Header("Owner Property")]
+    [SerializeField] private TheKingWonchul _Owner;
+    [SerializeField] private Collider2D _HurtBox;
 
     [Header("Shouting Property")]
     [SerializeField] private ParticleSystem _ShoutingEffect;
@@ -18,16 +23,32 @@ public class Ptrn_ShoutLong : BossPattern
     [SerializeField] private float _SummonRangeWidth;
 
     private int _ShoutingCount = -1;
-
     public override void Action()
     {
-        base.Action();
-        _ShoutingCount++;
+        if (_Owner.SuperArmor <= 0f)
+        {
+            StartCoroutine(ActionHolding());
+        }
+        else
+        {
+            base.Action();
+        }
+    }
+    public override void Notify_HealthUpdate(float restPercent)
+    {
+        base.Notify_HealthUpdate(restPercent);
+
+        // 0.7, 0.4, 0.1
+        if (restPercent <= 1 - 0.3f * (_ShoutingCount + 1))
+        {
+            ++_ShoutingCount;
+            Action();
+        }
     }
     private void AE_ShoutLong_End()
     {
         StartCoroutine(PlayEffect());
-        StartCoroutine(AnimHolding());
+        StartCoroutine(AnimDuration());
         StartCoroutine(SummonWonchul());
     }
     private IEnumerator PlayEffect()
@@ -62,10 +83,18 @@ public class Ptrn_ShoutLong : BossPattern
             Instantiate(_Wonchul, summonPoint, Quaternion.identity);
         }
     }
-    private IEnumerator AnimHolding()
+    private IEnumerator AnimDuration()
     {
         for (float i = 0f; i < AnimHoldingTime; i += Time.deltaTime * Time.timeScale)
             yield return null;
-        _Animator.SetInteger(_AnimatorHash, _DefaultAnimationCode);
+
+        AE_SetDefaultState();
+        _HurtBox.enabled = true;
+    }
+    private IEnumerator ActionHolding()
+    {
+        while (_Animator.GetInteger(_AnimatorHash) != _DefaultAnimationCode)
+            yield return null;
+        base.Action();
     }
 }
