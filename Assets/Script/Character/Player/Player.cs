@@ -80,6 +80,10 @@ public class Player : CharacterBase
 	}
 	protected override void Update()
     {
+		if(Input.GetKeyDown(KeyCode.F3))
+		{
+			_HurtBox.GetComponent<BoxCollider2D>().enabled = !_HurtBox.GetComponent<BoxCollider2D>().enabled;
+		}
 		base.Update();
         if (_State == CharacterBase.eState.Idle || _State == CharacterBase.eState.Move)
         {
