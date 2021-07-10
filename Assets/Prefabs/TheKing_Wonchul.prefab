@@ -34930,7 +34930,7 @@ MonoBehaviour:
   _ShoutingHitCir: {fileID: 6222951758793360390}
   _Wonchul: {fileID: 1673354872207484323, guid: 93df5eee0f48888429e6154ba3d5abac,
     type: 3}
-  _Interval: 0.4
+  _Interval: 0.2
   _SummonRangeWidth: 4
 --- !u!114 &6222951758477655019
 MonoBehaviour:
