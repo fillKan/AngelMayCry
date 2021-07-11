@@ -59,7 +59,6 @@ public class Player : CharacterBase
 				StopCoroutine(_MoveRoutine);
 				_MoveRoutine = null;
 			}
-			StartCoroutine(OnHitInvincibleRoutine());
 		};
 
 		_OnDeath = () =>
@@ -178,6 +177,18 @@ public class Player : CharacterBase
 	private void OnCollisionExit2D(Collision2D collision)
 	{
 		_CanJump = false;
+	}
+	public override void DealDamage(float damage, float stunTime, Vector2 knockBack, GameObject from)
+	{
+		if (_State == eState.Down || _State == eState.Dead || _State == eState.Wake)
+			return;
+		if (_CounterAttackState != eCounterAttackState.None)
+		{
+			return;
+		}
+		if (damage != 0)
+			StartCoroutine(OnHitInvincibleRoutine());
+		base.DealDamage(damage, stunTime, knockBack, from);
 	}
 	private void SetNatualAnimation()
     {

@@ -12,10 +12,10 @@ public class Ptrn_ShoutLong : BossPattern
     [Header("Owner Property")]
     [SerializeField] private TheKingWonchul _Owner;
     [SerializeField] private Collider2D _HurtBox;
+    [SerializeField] private HitBox _HitBox;
 
     [Header("Shouting Property")]
     [SerializeField] private ParticleSystem _ShoutingEffect;
-    [SerializeField] private CircleCollider2D _ShoutingHitCir;
 
     [Header("Summon Wonchul")]
     [SerializeField] private GameObject _Wonchul;
@@ -55,23 +55,20 @@ public class Ptrn_ShoutLong : BossPattern
     private void AE_ShoutLong_End()
     {
         StartCoroutine(PlayEffect());
-        StartCoroutine(AnimDuration());
         StartCoroutine(SummonWonchul());
     }
+	private void AE_ShoutLong_AnimDuration()
+	{
+		StartCoroutine(AnimDuration());
+	}
     private IEnumerator PlayEffect()
     {
-        _ShoutingHitCir.gameObject.SetActive(true);
         _ShoutingEffect.Play();
 
         float duration = _ShoutingEffect.main.duration + _ShoutingEffect.main.startLifetime.constant;
 
         MainCamera.Instance.CameraShake(duration, (duration - 0.3f) * 0.2f, ShakeStyle.Cliff);
-        for (float i = 0f; i < duration; i += Time.deltaTime * Time.timeScale)
-        {
-            _ShoutingHitCir.radius = Mathf.Lerp(0.5f, 10f, Mathf.Min(i / duration, 1f));
-            yield return null;
-        }
-        _ShoutingHitCir.gameObject.SetActive(false);
+		yield return null;
     }
     private IEnumerator SummonWonchul()
     {
@@ -92,10 +89,14 @@ public class Ptrn_ShoutLong : BossPattern
     }
     private IEnumerator AnimDuration()
     {
-        for (float i = 0f; i < AnimHoldingTime; i += Time.deltaTime * Time.timeScale)
-            yield return null;
+		_Animator.speed = 0;
+		for (float i = 0f; i < AnimHoldingTime; i += Time.deltaTime * Time.timeScale)
+		{
+			_HitBox.ClearCollidedObjects();
+			yield return null;
+		}
 
-        AE_SetDefaultState();
+		_Animator.speed = 1;
         _HurtBox.enabled = true;
         _Owner.PatternTimerReStart();
     }

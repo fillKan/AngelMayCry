@@ -35,7 +35,7 @@ public class HitBox : MonoBehaviour
 	public string HitSound { get; set; }
 	private bool _isSoundPlayed = false;
 
-	List<GameObject> _CollidedObjects = new List<GameObject>();
+	private List<GameObject> _CollidedObjects = new List<GameObject>();
 
 	private void Awake()
 	{
@@ -79,5 +79,10 @@ public class HitBox : MonoBehaviour
 	{
 		_CollidedObjects.Clear();
 		_isSoundPlayed = false;
+	}
+
+	public void ClearCollidedObjects()
+	{
+		_CollidedObjects.Clear();
 	}
 }
