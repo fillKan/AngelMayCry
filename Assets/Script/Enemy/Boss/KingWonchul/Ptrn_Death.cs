@@ -14,6 +14,10 @@ public class Ptrn_Death : BossPattern
 	{
 		base.Action();
 		_Animator.Play("TheKing_Wonchul_Death");
+		foreach(var iter in GameObject.FindGameObjectsWithTag("Enemy"))
+		{
+			iter.GetComponent<CharacterBase>().Death();
+		}
 	}
 
 	private void AE_Death_CameraShake_Rise()
