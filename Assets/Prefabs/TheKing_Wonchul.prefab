@@ -34885,7 +34885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxHp: 1000
-  _MaxSuperArmor: 100
+  _MaxSuperArmor: 150
   _KnockBackMultiplier: 0.3
   _DamageMultiplier: 1
   _IgnoreHitAnimations: 1

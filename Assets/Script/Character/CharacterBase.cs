@@ -177,10 +177,13 @@ public class CharacterBase : MonoBehaviour
 		if (_SuperArmor > 0 || stunTime == 0)
 			return;
 
+		if (!_IgnoreHitAnimations)
+		{
+			Vector2 scale = transform.localScale;
+			scale.x = Mathf.Abs(scale.x) * -Mathf.Sign(from.transform.localScale.x);
+			transform.localScale = scale;
+		}
 		SetState(eState.Hit);
-		Vector2 scale = transform.localScale;
-		scale.x = Mathf.Abs(scale.x) * -Mathf.Sign(from.transform.localScale.x);
-		transform.localScale = scale;
 		if (_StunTimeRoutine != null)
 			StopCoroutine(_StunTimeRoutine);
 		StartCoroutine(_StunTimeRoutine = StunTimeRoutine(knockBack.y == 0 ? stunTime : 0.01f));

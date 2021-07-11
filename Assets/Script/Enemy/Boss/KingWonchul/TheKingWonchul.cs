@@ -78,7 +78,7 @@ public class TheKingWonchul : CharacterBase
     public void Awaken()
     {
         MainCamera.Instance.SetCameraScale(7.2f, 1f);
-
+		SoundManager.Instance.Play("TheKing_Wonchul_BGM", 1, true);
 		_ShoutingLong.Action();
         StartCoroutine(_PatternTimer = PatternTimer());
     }
