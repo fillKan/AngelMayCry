@@ -885,6 +885,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: AE_SetHitSound
+    data: TheKing_Wonchul_SwordHit
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.41666666
     functionName: AE_Slash_Step
     data: 
@@ -895,6 +902,13 @@ AnimationClip:
   - time: 0.5
     functionName: AE_SlashInner_Shake
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
+    functionName: AE_PlaySound
+    data: TheKing_Wonchul_Swing
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

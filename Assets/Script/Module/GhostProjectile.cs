@@ -26,6 +26,7 @@ public class GhostProjectile : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] private SecondaryCollider _MapTrigger;
+	[SerializeField] private string _DestroySoundEffect;
 
 	private CircleCollider2D _Collider;
     private Transform _Target;
@@ -113,6 +114,7 @@ public class GhostProjectile : MonoBehaviour
         _ReleaseEffect.Play();
 		_Collider.enabled = false;
         _Renderer.enabled = false;
+		SoundManager.Instance.Play(_DestroySoundEffect);
 
 		_PathEffect.Stop();
     }

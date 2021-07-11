@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 3925669097587927037}
   - component: {fileID: 3925669097587927036}
   - component: {fileID: 3925669097587927039}
+  - component: {fileID: 3682500537048312514}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -449,6 +450,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3682500537048312514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925669097587927033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b991faaac6ffa444b5bea9b10925c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3925669097697853692
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +615,6 @@ MonoBehaviour:
   _CameraShakeTime: -1
   _HitStop: 0
   _HitParticle: {fileID: 0}
-  _HitSound: PlaceHolder
 --- !u!1 &3925669098125488418
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +633,7 @@ GameObject:
   - component: {fileID: 3925669098125488419}
   m_Layer: 10
   m_Name: Danny
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -854,6 +866,7 @@ MonoBehaviour:
   _KnockBackMultiplier: 1
   _DamageMultiplier: 1
   _IgnoreHitAnimations: 0
+  _HitBox: {fileID: 3925669097864987734}
   _Canvas: {fileID: 3925669097587927037}
   _HpGauge: {fileID: 3925669097264033116}
   _SuperArmorGauge: {fileID: 0}

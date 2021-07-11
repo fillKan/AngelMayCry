@@ -59,7 +59,6 @@ public class Player : CharacterBase
 				StopCoroutine(_MoveRoutine);
 				_MoveRoutine = null;
 			}
-			StartCoroutine(OnHitInvincibleRoutine());
 		};
 
 		_OnDeath = () =>
@@ -80,6 +79,10 @@ public class Player : CharacterBase
 	}
 	protected override void Update()
     {
+		if(Input.GetKeyDown(KeyCode.F3))
+		{
+			_HurtBox.GetComponent<BoxCollider2D>().enabled = !_HurtBox.GetComponent<BoxCollider2D>().enabled;
+		}
 		base.Update();
         if (_State == CharacterBase.eState.Idle || _State == CharacterBase.eState.Move)
         {
@@ -152,8 +155,9 @@ public class Player : CharacterBase
 				_CurWeapon.Attack(Direction, WeaponBase.eCommands.Middle);
 		}
 	}
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionStay2D(Collision2D collision)
     {
+		base.OnCollisionStay2D(collision);
         if (collision.collider.CompareTag("Ground"))
         {
             var contacts = collision.contacts;
@@ -164,14 +168,28 @@ public class Player : CharacterBase
                 {
                     _CanJump = true;
                     _Animator.SetInteger(_AnimatorHash, Idle);
-					_Rigidbody.velocity = new Vector2(_Rigidbody.velocity.x, 0f);
                 
                     break;
                 }
             }
         }
     }
-    private void SetNatualAnimation()
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		_CanJump = false;
+	}
+	public override void DealDamage(float damage, float stunTime, Vector2 knockBack, GameObject from)
+	{
+		if (_State == eState.Down || _State == eState.Dead || _State == eState.Wake)
+			return;
+		if (_CounterAttackState == eCounterAttackState.None)
+		{
+			if (damage != 0)
+				StartCoroutine(OnHitInvincibleRoutine());
+		}
+		base.DealDamage(damage, stunTime, knockBack, from);
+	}
+	private void SetNatualAnimation()
     {
         if (_Rigidbody.velocity.y < -0.1f)
         {
@@ -304,6 +322,7 @@ public class Player : CharacterBase
 		_State = CharacterBase.eState.Idle;
 		NextAnimation = "Idle";
 		_Animator.SetInteger(_AnimatorHash, Idle);
+		SoundManager.Instance.Play("WeaponSwap");
 	}
     public void AddForceX(float x)
     {

@@ -728,6 +728,13 @@ AnimationClip:
     floatParameter: 5
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: AE_SetHitSound
+    data: Glove_Hit_M
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.11111111
     functionName: AddForceY
     data: 
@@ -740,6 +747,13 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: -2.5
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.11111111
+    functionName: AE_PlaySound
+    data: Glove_Swing_L
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5555556

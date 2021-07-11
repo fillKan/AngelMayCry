@@ -32,10 +32,15 @@ public class HitBox : MonoBehaviour
 	private float _HitStop = 0;
 	[SerializeField]
 	private GameObject _HitParticle = null;
-	[SerializeField]
-	private string _HitSound = "PlaceHolder";
+	public string HitSound { get; set; }
+	private bool _isSoundPlayed = false;
 
-	List<GameObject> _CollidedObjects = new List<GameObject>();
+	private List<GameObject> _CollidedObjects = new List<GameObject>();
+
+	private void Awake()
+	{
+		HitSound = "";
+	}
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
@@ -46,6 +51,11 @@ public class HitBox : MonoBehaviour
 
 		if (collision.transform.root.TryGetComponent(out CharacterBase Other))
         {
+			if(!_isSoundPlayed && HitSound != "")
+			{
+				SoundManager.Instance.Play(HitSound);
+				_isSoundPlayed = true;
+			}
 			if (Other.GetState() == CharacterBase.eState.Down || 
 				Other.GetState() == CharacterBase.eState.Dead || 
 				Other.GetState() == CharacterBase.eState.Wake) return;
@@ -66,6 +76,12 @@ public class HitBox : MonoBehaviour
 	}
 
 	private void OnEnable()
+	{
+		_CollidedObjects.Clear();
+		_isSoundPlayed = false;
+	}
+
+	public void ClearCollidedObjects()
 	{
 		_CollidedObjects.Clear();
 	}

@@ -39,6 +39,9 @@ public class CharacterBase : MonoBehaviour
 	[Tooltip("True면 Hit, Down 등 통상 피격에 관련된 애니메이션들을 재생하지 않음"), SerializeField]
 	protected bool _IgnoreHitAnimations = false;
 
+	[SerializeField]
+	private HitBox _HitBox;
+
 	[Header("UI")]
 	[SerializeField] private Canvas _Canvas = null;
 	[SerializeField] private Image _HpGauge = null;
@@ -174,10 +177,13 @@ public class CharacterBase : MonoBehaviour
 		if (_SuperArmor > 0 || stunTime == 0)
 			return;
 
+		if (!_IgnoreHitAnimations)
+		{
+			Vector2 scale = transform.localScale;
+			scale.x = Mathf.Abs(scale.x) * -Mathf.Sign(from.transform.localScale.x);
+			transform.localScale = scale;
+		}
 		SetState(eState.Hit);
-		Vector2 scale = transform.localScale;
-		scale.x = Mathf.Abs(scale.x) * -Mathf.Sign(from.transform.localScale.x);
-		transform.localScale = scale;
 		if (_StunTimeRoutine != null)
 			StopCoroutine(_StunTimeRoutine);
 		StartCoroutine(_StunTimeRoutine = StunTimeRoutine(knockBack.y == 0 ? stunTime : 0.01f));
@@ -303,7 +309,6 @@ public class CharacterBase : MonoBehaviour
 		}
 		_State = state;
 	}
-
 	public void SetCounterAttackState(eCounterAttackState state)
 	{
 		_CounterAttackState = state;
@@ -312,5 +317,13 @@ public class CharacterBase : MonoBehaviour
 	public eState GetState()
 	{
 		return _State;
+	}
+	public void AE_PlaySound(string key)
+	{
+		SoundManager.Instance.Play(key);
+	}
+	public void AE_SetHitSound(string key)
+	{
+		_HitBox.HitSound = key;
 	}
 }
