@@ -9890,7 +9890,6 @@ MonoBehaviour:
   _CameraShakeTime: -1
   _HitStop: 0.05
   _HitParticle: {fileID: 0}
-  _HitSound: PlaceHolder
 --- !u!58 &8420800643222292118
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9929,3 +9928,4 @@ MonoBehaviour:
   _ReleaseEffect: {fileID: 5754820718610722939}
   _PathEffect: {fileID: 8420800643128599019}
   _MapTrigger: {fileID: 7476199262591968781}
+  _DestroySoundEffect: TheKing_Wonchul_Soul_Explode

@@ -34885,8 +34885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxHp: 1000
-  _MaxSuperArmor: 200
-  _KnockBackMultiplier: 0.2
+  _MaxSuperArmor: 100
+  _KnockBackMultiplier: 0.3
   _DamageMultiplier: 1
   _IgnoreHitAnimations: 1
   _HitBox: {fileID: 6222951758077939807}
@@ -34922,7 +34922,6 @@ MonoBehaviour:
   _DefaultAnimationCode: 0
   _Animator: {fileID: 6222951758477655013}
   _ShoutingEffect: {fileID: 6222951756980428803}
-  _ShoutingHitCir: {fileID: 0}
 --- !u!114 &6222951758477655018
 MonoBehaviour:
   m_ObjectHideFlags: 0

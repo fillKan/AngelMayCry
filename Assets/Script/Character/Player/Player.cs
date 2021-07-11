@@ -182,12 +182,11 @@ public class Player : CharacterBase
 	{
 		if (_State == eState.Down || _State == eState.Dead || _State == eState.Wake)
 			return;
-		if (_CounterAttackState != eCounterAttackState.None)
+		if (_CounterAttackState == eCounterAttackState.None)
 		{
-			return;
+			if (damage != 0)
+				StartCoroutine(OnHitInvincibleRoutine());
 		}
-		if (damage != 0)
-			StartCoroutine(OnHitInvincibleRoutine());
 		base.DealDamage(damage, stunTime, knockBack, from);
 	}
 	private void SetNatualAnimation()
