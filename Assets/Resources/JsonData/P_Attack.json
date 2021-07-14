@@ -1,0 +1,79 @@
+[
+  {
+    "Item": "Sward and Shield",
+    "ID": "Swing_1",
+    "Damage": "15",
+    "Hitbox_Duration": "0.2",
+    "Stun": "0.1",
+    "Push_Force_X": "0",
+    "Push_Force_Y": "0",
+    "Camera_Shaking_Force": "3",
+    "HitStop_Time": "0.1"
+  },
+  {
+    "Item": "Sward and Shield",
+    "ID": "Swing_2",
+    "Damage": "20",
+    "Hitbox_Duration": "0.2",
+    "Stun": "0.1",
+    "Push_Force_X": "0",
+    "Push_Force_Y": "0.5",
+    "Camera_Shaking_Force": "3",
+    "HitStop_Time": "0.1"
+  },
+  {
+    "Item": "Sward and Shield",
+    "ID": "Swing_3",
+    "Damage": "30",
+    "Hitbox_Duration": "0.5",
+    "Stun": "0.5",
+    "Push_Force_X": "1",
+    "Push_Force_Y": "0",
+    "Camera_Shaking_Force": "8",
+    "HitStop_Time": "0.3"
+  },
+  {
+    "Item": "Sward and Shield",
+    "ID": "Shield_Push",
+    "Damage": "5",
+    "Hitbox_Duration": "0.7",
+    "Stun": "1",
+    "Push_Force_X": "2.7",
+    "Push_Force_Y": "0",
+    "Camera_Shaking_Force": "3",
+    "HitStop_Time": "0.2"
+  },
+  {
+    "Item": "Sward and Shield",
+    "ID": "Dropping",
+    "Damage": "30",
+    "Hitbox_Duration": "0.5",
+    "Stun": "0.2",
+    "Push_Force_X": "0.5",
+    "Push_Force_Y": "0",
+    "Camera_Shaking_Force": "8",
+    "HitStop_Time": "0.3"
+  },
+  {
+    "Item": "Sward and Shield",
+    "ID": "Parrying",
+    "Damage": "5",
+    "Hitbox_Duration": "0.2",
+    "Stun": "1",
+    "Push_Force_X": "0.2",
+    "Push_Force_Y": "0",
+    "Camera_Shaking_Force": "1",
+    "HitStop_Time": "0.2"
+  },
+  {
+    "Item": "Sward and Shield",
+    "ID": "Parrying_2",
+    "Damage": "15",
+    "Hitbox_Duration": "0.2",
+    "Stun": "0",
+    "Push_Force_X": "0.2",
+    "Push_Force_Y": "0",
+    "Camera_Shaking_Force": "3",
+    "HitStop_Time": "0.3"
+  }
+]

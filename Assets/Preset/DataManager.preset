@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DataManager
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: a68c8d964b7fd49459dc29abdd7bfb5a,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ClientName
+    value: AngelMayCry-Client
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ClientID
+    value: 599096420806-52vljprqdqnb4jfoihc4eu87uf985p9d.apps.googleusercontent.com
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ClientPW
+    value: 0dnLe54N545KsbRi5Bqfu2bH
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: ProjectName
+    value: AngelMayCry
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: GoogleSheetTableKey
+    value: 1UFQ4FOhS7u15qv9Bf7NFZmizXtYa0AlOGEBBHfIwgVE
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoadSheetsIndex
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LoadSheetsRange
+    value: B1:J
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
